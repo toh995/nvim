@@ -20,9 +20,10 @@ function plugin_config.configure()
         packer.sync()
         return
     end
-    
+
     -- plugin-specific setup
     require("plugin_config.lsp").configure()
+    require("plugin_config.nvim_tree").configure()
 end
 
 function is_packer_installed()
@@ -32,7 +33,7 @@ function is_packer_installed()
 end
 
 function get_packer_install_path()
-    return vim.fn.stdpath("data").."/site/pack/packer/start/packer.nvim"    
+    return vim.fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
 end
 
 function bootstrap_packer()
@@ -58,6 +59,15 @@ function init_packer()
         use "hrsh7th/cmp-nvim-lsp"
         use "hrsh7th/cmp-nvim-lsp-signature-help"
         use "hrsh7th/cmp-path"
+
+	-- file explorer
+	use {
+	  'kyazdani42/nvim-tree.lua',
+	  requires = {
+	    'kyazdani42/nvim-web-devicons',
+	  },
+	  tag = 'nightly' -- optional, updated every week. (see issue #1193)
+	}
     end)
 end
 
