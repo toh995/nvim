@@ -1,12 +1,4 @@
---[[
-TODO:
-"highlight the currently active window
-highlight StatusLineNC cterm=bold ctermfg=white ctermbg=darkgray
-
-"go-to file (for AB specifically)
-set path+=$PWD
-set suffixesadd+=.js,.ts
-]]--
+local plugin_config = require("plugin_config")
 
 -------------
 -- OPTIONS --
@@ -29,6 +21,7 @@ vim.opt.number = true
 -- always open vertical splits on the right side
 vim.opt.splitright = true
 
+
 ------------------
 -- AUTOCOMMANDS --
 ------------------
@@ -47,14 +40,28 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end
 })
 
+
 ------------------------
 -- KEYBOARD SHORTCUTS --
 ------------------------
 -- set the keyboard shortcut ctrl+a to select all
-vim.api.nvim_set_keymap("", "<C-a>", "<esc>ggVG<CR>", { noremap = true })
+vim.keymap.set("", "<C-a>", "<esc>ggVG<CR>", { noremap = true })
 
 -- re-map keys to navigate through splits
-vim.api.nvim_set_keymap("", "<C-J>", "<C-W><C-J>", { noremap = true })
-vim.api.nvim_set_keymap("", "<C-K>", "<C-W><C-K>", { noremap = true })
-vim.api.nvim_set_keymap("", "<C-L>", "<C-W><C-L>", { noremap = true })
-vim.api.nvim_set_keymap("", "<C-H>", "<C-W><C-H>", { noremap = true })
+vim.keymap.set("", "<C-J>", "<C-W><C-J>", { noremap = true })
+vim.keymap.set("", "<C-K>", "<C-W><C-K>", { noremap = true })
+vim.keymap.set("", "<C-L>", "<C-W><C-L>", { noremap = true })
+vim.keymap.set("", "<C-H>", "<C-W><C-H>", { noremap = true })
+
+-------------
+-- PLUGINS --
+-------------
+plugin_config.configure()
+
+-- TODO:
+-- "highlight the currently active window
+-- highlight StatusLineNC cterm=bold ctermfg=white ctermbg=darkgray
+
+-- "go-to file (for AB specifically)
+-- set path+=$PWD
+-- set suffixesadd+=.js,.ts
