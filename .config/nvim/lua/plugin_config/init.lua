@@ -82,6 +82,11 @@ function init_packer()
 
 	-- colorized git status in the signs column
 	use "lewis6991/gitsigns.nvim"
+
+	-- Color schemes (subject to change!!!)
+	-- use "lunarvim/Onedarker.nvim"
+	use "Mofiqul/vscode.nvim"
+	require("vscode").setup({})
     end)
 end
 
