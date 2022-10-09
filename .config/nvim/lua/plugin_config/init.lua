@@ -23,6 +23,7 @@ function plugin_config.configure()
 
     -- plugin-specific setup
     require("plugin_config.git_blame").configure()
+    require("plugin_config.gitsigns").configure()
     require("plugin_config.lsp").configure()
     require("plugin_config.nvim_tree").configure()
     require("plugin_config.telescope").configure()
@@ -78,6 +79,9 @@ function init_packer()
 
 	-- show git blame inline
 	use "f-person/git-blame.nvim"
+
+	-- colorized git status in the signs column
+	use "lewis6991/gitsigns.nvim"
     end)
 end
 
