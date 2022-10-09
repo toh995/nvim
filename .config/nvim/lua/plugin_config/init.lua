@@ -84,7 +84,11 @@ function init_packer()
 	-- colorized git status in the signs column
 	use "lewis6991/gitsigns.nvim"
 
+	-- cutlass
 	use "gbprod/cutlass.nvim"
+
+	-- vim-tmux
+	use "christoomey/vim-tmux-navigator"
 
 	-- Color schemes (subject to change!!!)
 	-- use "lunarvim/Onedarker.nvim"
