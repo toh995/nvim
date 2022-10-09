@@ -4,6 +4,7 @@ local lsp = {}
 local cmp = require("cmp")
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lspconfig = require("lspconfig")
+local luasnip = require("luasnip")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 
@@ -81,10 +82,16 @@ function configure_autocomplete()
       cmp.setup({
          sources = {
             { name = "buffer" },
+            { name = "luasnip" },
             { name = "nvim_lsp" },
             { name = "nvim_lsp_signature_help" },
             { name = "path" },
          },
+	 snippet = {
+            expand = function(args)
+               luasnip.lsp_expand(args.body)
+            end
+	 },
          mapping = cmp.mapping.preset.insert({
             ["<CR>"] = cmp.mapping.confirm({ select = true }),
             ["<Tab>"] = cmp.mapping(function(fallback)

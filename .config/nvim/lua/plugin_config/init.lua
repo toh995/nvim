@@ -64,6 +64,9 @@ function init_packer()
         use "hrsh7th/cmp-nvim-lsp"
         use "hrsh7th/cmp-nvim-lsp-signature-help"
         use "hrsh7th/cmp-path"
+	-- snippets
+	use "L3MON4D3/LuaSnip"
+	use "saadparwaiz1/cmp_luasnip"
 
 	-- file explorer
 	use {
@@ -74,9 +77,9 @@ function init_packer()
 
 	-- file picker
 	use {
-		'nvim-telescope/telescope.nvim',
-		requires = { 'nvim-lua/plenary.nvim'},
-		branch = '0.1.x',
+		"nvim-telescope/telescope.nvim",
+		requires = { "nvim-lua/plenary.nvim"},
+		branch = "0.1.x",
 	}
 
 	-- syntax highlighting
