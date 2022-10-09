@@ -75,31 +75,35 @@ function get_capabilities()
 end
 
 function configure_autocomplete()
-   cmp.setup({
-      sources = {
-         { name = "buffer" },
-         { name = "nvim_lsp" },
-         { name = "nvim_lsp_signature_help" },
-         { name = "path" },
-      },
-      mapping = cmp.mapping.preset.insert({
-         ["<CR>"] = cmp.mapping.confirm({ select = true }),
-         ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-               cmp.select_next_item()
-            else
-               fallback()
-            end
-         end, { "i", "s" }),
-         ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-               cmp.select_prev_item()
-            else
-               fallback()
-            end
-         end, { "i", "s" }),
-      }),
-   })
+   if cmp == nil then
+      return
+   else
+      cmp.setup({
+         sources = {
+            { name = "buffer" },
+            { name = "nvim_lsp" },
+            { name = "nvim_lsp_signature_help" },
+            { name = "path" },
+         },
+         mapping = cmp.mapping.preset.insert({
+            ["<CR>"] = cmp.mapping.confirm({ select = true }),
+            ["<Tab>"] = cmp.mapping(function(fallback)
+               if cmp.visible() then
+                  cmp.select_next_item()
+               else
+                  fallback()
+               end
+            end, { "i", "s" }),
+            ["<S-Tab>"] = cmp.mapping(function(fallback)
+               if cmp.visible() then
+                  cmp.select_prev_item()
+               else
+                  fallback()
+               end
+            end, { "i", "s" }),
+         }),
+      })
+   end
 end
 
 return lsp
