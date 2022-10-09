@@ -22,6 +22,7 @@ function plugin_config.configure()
     end
 
     -- plugin-specific setup
+    require("plugin_config.cutlass").configure()
     require("plugin_config.git_blame").configure()
     require("plugin_config.gitsigns").configure()
     require("plugin_config.lsp").configure()
@@ -82,6 +83,8 @@ function init_packer()
 
 	-- colorized git status in the signs column
 	use "lewis6991/gitsigns.nvim"
+
+	use "gbprod/cutlass.nvim"
 
 	-- Color schemes (subject to change!!!)
 	-- use "lunarvim/Onedarker.nvim"
