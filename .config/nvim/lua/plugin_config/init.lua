@@ -22,6 +22,7 @@ function plugin_config.configure()
     end
 
     -- plugin-specific setup
+    require("plugin_config.git_blame").configure()
     require("plugin_config.lsp").configure()
     require("plugin_config.nvim_tree").configure()
     require("plugin_config.telescope").configure()
@@ -75,6 +76,8 @@ function init_packer()
 		branch = '0.1.x',
 	}
 
+	-- show git blame inline
+	use "f-person/git-blame.nvim"
     end)
 end
 

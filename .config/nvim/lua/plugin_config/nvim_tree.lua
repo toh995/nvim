@@ -21,7 +21,7 @@ function nvim_tree.configure()
 end
 
 function on_attach(_)
-	-- vim.keymap.set("", "e", function() nt_api.node.open.vertical() end)
+	-- vim.keymap.set("", "e", function() nt_api.node.open.vertical() end, { noremap = true })
 end
 
 
