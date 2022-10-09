@@ -1,8 +1,8 @@
 -- @module plugin_config.nvim_tree
 local nvim_tree = {}
 
-local nt = require('nvim-tree')
-local nt_api = require('nvim-tree.api')
+local nt = require("nvim-tree")
+-- local nt_api = require("nvim-tree.api")
 
 local on_attach
 
@@ -21,7 +21,7 @@ function nvim_tree.configure()
 end
 
 function on_attach(_)
-	vim.keymap.set("", "e", function() nt_api.node.open.vertical() end)
+	-- vim.keymap.set("", "e", function() nt_api.node.open.vertical() end)
 end
 
 

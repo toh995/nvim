@@ -24,6 +24,7 @@ function plugin_config.configure()
     -- plugin-specific setup
     require("plugin_config.lsp").configure()
     require("plugin_config.nvim_tree").configure()
+    require("plugin_config.telescope").configure()
 end
 
 function is_packer_installed()
@@ -63,11 +64,17 @@ function init_packer()
 	-- file explorer
 	use {
 		"kyazdani42/nvim-tree.lua",
-	  	requires = {
-			"kyazdani42/nvim-web-devicons",
-		},
+		requires = { "kyazdani42/nvim-web-devicons" },
 		tag = "nightly" -- optional, updated every week. (see issue #1193)
 	}
+
+	-- file picker
+	use {
+		'nvim-telescope/telescope.nvim',
+		requires = { 'nvim-lua/plenary.nvim'},
+		branch = '0.1.x',
+	}
+
     end)
 end
 
