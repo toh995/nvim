@@ -27,6 +27,7 @@ function plugin_config.configure()
     require("plugin_config.gitsigns").configure()
     require("plugin_config.lsp").configure()
     require("plugin_config.nvim_tree").configure()
+    require("plugin_config.nvim_treesitter").configure()
     require("plugin_config.telescope").configure()
 end
 
@@ -78,6 +79,15 @@ function init_packer()
 		branch = '0.1.x',
 	}
 
+	-- syntax highlighting
+	use {
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			require("nvim-treesitter.install").update({ with_sync = true })
+		end,
+	}
+
+
 	-- show git blame inline
 	use "f-person/git-blame.nvim"
 
@@ -94,6 +104,9 @@ function init_packer()
 	-- use "lunarvim/Onedarker.nvim"
 	use "Mofiqul/vscode.nvim"
 	require("vscode").setup({})
+
+	-- editor config
+	use "editorconfig/editorconfig-vim"
     end)
 end
 
