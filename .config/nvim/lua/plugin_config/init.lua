@@ -29,6 +29,7 @@ function plugin_config.configure()
     require("plugin_config.nvim_tree").configure()
     require("plugin_config.nvim_treesitter").configure()
     require("plugin_config.telescope").configure()
+    require("plugin_config.vim_test").configure()
 end
 
 function is_packer_installed()
@@ -93,6 +94,13 @@ function init_packer()
 		end,
 	}
 
+	-- test runner
+	use {
+		"vim-test/vim-test",
+		requires = {
+			"preservim/vimux",
+		}
+	}
 
 	-- show git blame inline
 	use "f-person/git-blame.nvim"
