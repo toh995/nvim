@@ -22,6 +22,7 @@ function plugin_config.configure()
     end
 
     -- plugin-specific setup
+    require("plugin_config.comment").configure()
     require("plugin_config.cutlass").configure()
     require("plugin_config.git_blame").configure()
     require("plugin_config.gitsigns").configure()
@@ -102,17 +103,20 @@ function init_packer()
 		}
 	}
 
-	-- show git blame inline
-	use "f-person/git-blame.nvim"
-
-	-- colorized git status in the signs column
-	use "lewis6991/gitsigns.nvim"
+	-- comment
+	use "numToStr/Comment.nvim"
 
 	-- cutlass
 	use "gbprod/cutlass.nvim"
 
 	-- vim-tmux
 	use "christoomey/vim-tmux-navigator"
+
+	-- show git blame inline
+	use "f-person/git-blame.nvim"
+
+	-- colorized git status in the signs column
+	use "lewis6991/gitsigns.nvim"
 
 	-- Color schemes (subject to change!!!)
 	-- use "lunarvim/Onedarker.nvim"
