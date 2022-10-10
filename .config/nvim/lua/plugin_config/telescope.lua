@@ -1,6 +1,7 @@
 -- @module plugin_config.telescope
 local telescope = {}
 
+local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 local t = require("telescope")
 
@@ -11,6 +12,8 @@ function telescope.configure()
 			mappings = {
 				i = {
 					["<C-u>"] = false,
+					["<C-j>"] = actions.move_selection_next,
+					["<C-k>"] = actions.move_selection_previous,
 				}
 			}
 		}
