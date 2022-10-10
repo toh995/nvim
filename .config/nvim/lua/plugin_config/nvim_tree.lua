@@ -16,7 +16,9 @@ function nvim_tree.configure()
 				},
 			},
 		},
-
+		git = {
+			ignore = false,
+		},
 		on_attach = on_attach
 	})
 
