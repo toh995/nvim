@@ -27,6 +27,7 @@ function plugin_config.configure()
     require("plugin_config.git_blame").configure()
     require("plugin_config.gitsigns").configure()
     require("plugin_config.lsp").configure()
+    require("plugin_config.nvim_autopairs").configure()
     require("plugin_config.nvim_tree").configure()
     require("plugin_config.nvim_treesitter").configure()
     require("plugin_config.telescope").configure()
@@ -111,6 +112,9 @@ function init_packer()
 
 	-- vim-tmux
 	use "christoomey/vim-tmux-navigator"
+
+	-- autopairs
+	use "windwp/nvim-autopairs"
 
 	-- show git blame inline
 	use "f-person/git-blame.nvim"
