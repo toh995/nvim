@@ -64,6 +64,7 @@ function init_packer()
         use "hrsh7th/cmp-nvim-lsp"
         use "hrsh7th/cmp-nvim-lsp-signature-help"
         use "hrsh7th/cmp-path"
+
 	-- snippets
 	use "L3MON4D3/LuaSnip"
 	use "saadparwaiz1/cmp_luasnip"
@@ -75,10 +76,12 @@ function init_packer()
 		tag = "nightly" -- optional, updated every week. (see issue #1193)
 	}
 
-	-- file picker
+	-- fuzzy finder
 	use {
 		"nvim-telescope/telescope.nvim",
-		requires = { "nvim-lua/plenary.nvim"},
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
 		branch = "0.1.x",
 	}
 
