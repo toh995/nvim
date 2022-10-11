@@ -107,6 +107,9 @@ function init_packer()
 	-- comment
 	use "numToStr/Comment.nvim"
 
+	-- vim surround
+	use "tpope/vim-surround"
+
 	-- cutlass
 	use "gbprod/cutlass.nvim"
 
