@@ -56,7 +56,6 @@ function lsp.configure()
 					group = augroup,
 					buffer = bufnr,
 					callback = function()
-						print("OH BOY")
 						vim.lsp.buf.format({
 							bufnr = bufnr,
 							filter = function(c)
