@@ -9,6 +9,8 @@ local on_attach
 function nvim_tree.configure()
 	-- setup
 	nt.setup({
+		on_attach = on_attach,
+		git = { ignore = false },
 		actions = {
 			open_file = {
 				window_picker = {
@@ -16,10 +18,6 @@ function nvim_tree.configure()
 				},
 			},
 		},
-		git = {
-			ignore = false,
-		},
-		on_attach = on_attach,
 	})
 
 	-- keymappings to open/close the file explorer

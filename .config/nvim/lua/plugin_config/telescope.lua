@@ -23,9 +23,11 @@ function telescope.configure()
 	vim.api.nvim_create_user_command("F", function()
 		builtin.find_files()
 	end, {})
+
 	vim.api.nvim_create_user_command("R", function()
 		builtin.resume()
 	end, {})
+
 	vim.api.nvim_create_user_command("G", function(tbl)
 		builtin.live_grep({
 			search_dirs = { tbl.fargs[1] },
