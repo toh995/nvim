@@ -57,9 +57,14 @@ function init_packer()
         use "wbthomason/packer.nvim"
 
         -- LSP
-        use "neovim/nvim-lspconfig"
         use "williamboman/mason.nvim"
         use "williamboman/mason-lspconfig.nvim"
+	use "jayp0521/mason-null-ls.nvim"
+        use "neovim/nvim-lspconfig"
+	use {
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = { "nvim-lua/plenary.nvim" }
+	}
 
         -- autocomplete
         use "hrsh7th/nvim-cmp"
@@ -113,11 +118,11 @@ function init_packer()
 	-- cutlass
 	use "gbprod/cutlass.nvim"
 
-	-- vim-tmux
-	use "christoomey/vim-tmux-navigator"
-
 	-- autopairs
 	use "windwp/nvim-autopairs"
+
+	-- vim-tmux
+	use "christoomey/vim-tmux-navigator"
 
 	-- show git blame inline
 	use "f-person/git-blame.nvim"
