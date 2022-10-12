@@ -21,6 +21,8 @@ vim.opt.number = true
 -- always open vertical splits on the right side
 vim.opt.splitright = true
 
+-- set the display width for tab characters
+vim.opt.tabstop = 4
 
 ------------------
 -- AUTOCOMMANDS --
@@ -28,8 +30,8 @@ vim.opt.splitright = true
 -- automatically detect file changes
 vim.opt.updatetime = 500
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
-  	pattern = { "*" },
-  	command = "checktime",
+	pattern = { "*" },
+	command = "checktime",
 })
 
 -- disable the auto-insertion of comments
@@ -37,9 +39,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "*" },
 	callback = function()
 		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
-	end
+	end,
 })
-
 
 ------------------------
 -- KEYBOARD SHORTCUTS --
