@@ -19,16 +19,17 @@ function nvim_tree.configure()
 		git = {
 			ignore = false,
 		},
-		on_attach = on_attach
+		on_attach = on_attach,
 	})
 
 	-- keymappings to open/close the file explorer
-	vim.keymap.set("", "<leader>nt", function() api.tree.toggle(true) end, { noremap = true })
+	vim.keymap.set("", "<leader>nt", function()
+		api.tree.toggle(true)
+	end, { noremap = true })
 end
 
 function on_attach(_)
 	-- vim.keymap.set("", "e", function() api.node.open.vertical() end, { noremap = true })
 end
-
 
 return nvim_tree
