@@ -16,7 +16,7 @@ local configure_autocomplete
 
 function lsp.configure()
 	-- todo: add glint to mason
-	local SERVER_NAMES = { "ember", "eslint", "glint", "html", "sumneko_lua", "tsserver" }
+	local SERVER_NAMES = { "cssls", "ember", "eslint", "glint", "html", "sumneko_lua", "tsserver" }
 
 	-- set up mason FIRST
 	mason.setup()
@@ -69,13 +69,6 @@ function lsp.configure()
 	})
 
 	mason_null_ls.setup({ automatic_installation = true })
-
-	-- autofix eslint on save
-	-- todo: use ``
-	--vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	--   pattern = { "*.tsx", "*.ts", "*.jsx", "*.js*" },
-	--   command = "EslintFixAll",
-	--})
 
 	-- todo: refactor this...
 	lspconfig.html.setup({
