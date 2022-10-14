@@ -22,6 +22,7 @@ vim.opt.number = true
 vim.opt.splitright = true
 
 -- set the display width for tab characters
+vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
 ------------------
