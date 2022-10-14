@@ -13,8 +13,6 @@ function bufferline.configure()
 	vim.keymap.set("", "J", ":tabprevious<CR>", { noremap = true })
 	vim.keymap.set("", "K", ":tabnext<CR>", { noremap = true })
 
-	vim.opt.mousemoveevent = true
-
 	b.setup({
 		options = {
 			mode = "tabs",
