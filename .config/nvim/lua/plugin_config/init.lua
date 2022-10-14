@@ -22,6 +22,7 @@ function plugin_config.configure()
 	end
 
 	-- plugin-specific setup
+	require("plugin_config.bufferline").configure()
 	require("plugin_config.comment").configure()
 	require("plugin_config.cutlass").configure()
 	require("plugin_config.git_blame").configure()
@@ -91,6 +92,13 @@ function init_packer()
 				"nvim-lua/plenary.nvim",
 			},
 			branch = "0.1.x",
+		})
+
+		-- tabs
+		use({
+			"akinsho/bufferline.nvim",
+			tag = "v2.*",
+			requires = "kyazdani42/nvim-web-devicons",
 		})
 
 		-- syntax highlighting
