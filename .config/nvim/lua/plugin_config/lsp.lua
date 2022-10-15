@@ -44,7 +44,9 @@ function lsp.configure()
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 	null_ls.setup({
 		sources = {
-			null_ls.builtins.formatting.eslint_d,
+			null_ls.builtins.formatting.eslint_d.with({
+				extra_args = { "--report-unused-disable-directives", "--fix" },
+			}),
 			null_ls.builtins.formatting.prettierd,
 			null_ls.builtins.formatting.stylua,
 		},
