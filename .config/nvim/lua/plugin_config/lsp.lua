@@ -11,7 +11,6 @@ local mason_null_ls = require("mason-null-ls")
 local null_ls = require("null-ls")
 
 local on_attach
-local get_capabilities
 local configure_autocomplete
 
 function lsp.configure()
@@ -29,7 +28,7 @@ function lsp.configure()
 	-- todo: display a loading progress bar for LSP
 	-- https://github.com/arkav/lualine-lsp-progress
 	-- https://github.com/nvim-lua/lsp-status.nvim
-	local capabilities = get_capabilities()
+	local capabilities = cmp_nvim_lsp.default_capabilities()
 
 	for _, server_name in ipairs(SERVER_NAMES) do
 		lspconfig[server_name].setup({
@@ -107,12 +106,6 @@ function on_attach(_, bufnr)
 	vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
 	vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = bufnr })
 	vim.keymap.set("", "<leader>k", vim.lsp.buf.hover, { noremap = true, buffer = bufnr })
-end
-
-function get_capabilities()
-	local ret = vim.lsp.protocol.make_client_capabilities()
-	ret = cmp_nvim_lsp.update_capabilities(ret)
-	return ret
 end
 
 function configure_autocomplete()
