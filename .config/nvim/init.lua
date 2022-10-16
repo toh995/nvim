@@ -59,11 +59,3 @@ vim.keymap.set("", "<C-H>", "<C-W><C-H>", { noremap = true })
 -- PLUGINS --
 -------------
 plugin_config.configure()
-
--- TODO:
--- "highlight the currently active window
--- highlight StatusLineNC cterm=bold ctermfg=white ctermbg=darkgray
-
--- "go-to file (for AB specifically)
--- set path+=$PWD
--- set suffixesadd+=.js,.ts

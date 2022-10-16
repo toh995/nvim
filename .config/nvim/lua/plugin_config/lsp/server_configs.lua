@@ -38,9 +38,9 @@ function server_configs.configure()
 		on_attach = set_lsp_keybindings,
 	})
 
-	---------
+	-----------
 	-- GLint --
-	---------
+	-----------
 	lspconfig.glint.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
