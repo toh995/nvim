@@ -13,6 +13,9 @@ function cutlass.configure()
 	vim.cmd([[xnoremap m d]])
 	vim.cmd([[nnoremap mm dd]])
 	vim.cmd([[nnoremap M D]])
+
+	-- extra keymap for pasting...
+	vim.cmd([[xnoremap p "_dP]])
 end
 
 return cutlass
