@@ -80,6 +80,8 @@ function init_packer()
 		use("hrsh7th/cmp-nvim-lsp")
 		use("hrsh7th/cmp-nvim-lsp-signature-help")
 		use("hrsh7th/cmp-path")
+		-- icons for autocomplete
+		use("onsails/lspkind.nvim")
 
 		-- snippets
 		use("L3MON4D3/LuaSnip")

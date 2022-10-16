@@ -2,6 +2,7 @@
 local lsp = {}
 
 local cmp = require("cmp")
+local lspkind = require("lspkind")
 local luasnip = require("luasnip")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
@@ -57,6 +58,20 @@ function configure_autocomplete()
 					end
 				end, { "i", "s" }),
 			}),
+			formatting = {
+				format = lspkind.cmp_format({
+					mode = "symbol",
+					maxwidth = 50,
+					ellipsis_char = "...",
+					menu = {
+						buffer = "[Buffer]",
+						nvim_lsp = "[LSP]",
+						luasnip = "[LuaSnip]",
+						nvim_lua = "[Lua]",
+						latex_symbols = "[Latex]",
+					},
+				}),
+			},
 		})
 	end
 end
