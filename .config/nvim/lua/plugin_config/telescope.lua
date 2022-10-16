@@ -29,10 +29,13 @@ function telescope.configure()
 	end, {})
 
 	vim.api.nvim_create_user_command("G", function(tbl)
+		local filepath = tbl.fargs[1] or "."
+		local glob_pattern = tbl.fargs[2] or "*"
+
 		builtin.live_grep({
-			search_dirs = { tbl.fargs[1] },
-			glob_pattern = tbl.fargs[2],
-			prompt_title = tbl.fargs[1] .. " " .. tbl.fargs[2],
+			search_dirs = { filepath },
+			glob_pattern = glob_pattern,
+			prompt_title = filepath .. " " .. glob_pattern,
 		})
 	end, {
 		nargs = "*",
