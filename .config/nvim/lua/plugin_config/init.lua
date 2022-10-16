@@ -22,6 +22,12 @@ function plugin_config.configure()
 	end
 
 	-- plugin-specific setup
+	-- we need to configure the color schemes FIRST,
+	-- so that the rest of the plugins have knowledge of it.
+	-- the rest of the plugings are configured in
+	-- alphabetical order
+	require("plugin_config.color_schemes").configure()
+
 	require("plugin_config.bufferline").configure()
 	require("plugin_config.comment").configure()
 	require("plugin_config.cutlass").configure()
@@ -138,10 +144,9 @@ function init_packer()
 		-- colorized git status in the signs column
 		use("lewis6991/gitsigns.nvim")
 
-		-- Color schemes (subject to change!!!)
+		-- Color schemes
 		-- use "lunarvim/Onedarker.nvim"
 		use("Mofiqul/vscode.nvim")
-		require("vscode").setup({})
 
 		-- editor config
 		use("editorconfig/editorconfig-vim")
