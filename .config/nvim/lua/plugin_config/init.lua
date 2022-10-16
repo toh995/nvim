@@ -37,6 +37,7 @@ function plugin_config.configure()
 	require("plugin_config.nvim_autopairs").configure()
 	require("plugin_config.nvim_tree").configure()
 	require("plugin_config.nvim_treesitter").configure()
+	require("plugin_config.nvim_ts_autotag").configure()
 	require("plugin_config.telescope").configure()
 	require("plugin_config.vim_test").configure()
 end
@@ -134,6 +135,9 @@ function init_packer()
 
 		-- autopairs
 		use("windwp/nvim-autopairs")
+
+		-- auto-close HTML tags
+		use("windwp/nvim-ts-autotag")
 
 		-- vim-tmux
 		use("christoomey/vim-tmux-navigator")
