@@ -15,7 +15,7 @@ function cutlass.configure()
 	vim.cmd([[nnoremap M D]])
 
 	-- extra keymap for pasting, while in visual mode...
-	vim.cmd([[xnoremap p "_dP]])
+	vim.cmd([[xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>]])
 end
 
 return cutlass
