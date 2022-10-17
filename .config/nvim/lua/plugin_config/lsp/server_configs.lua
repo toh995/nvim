@@ -8,10 +8,11 @@ local lspconfig = require("lspconfig")
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 local function set_lsp_keybindings(_, bufnr)
-	vim.keymap.set("", "<leader>gd", vim.lsp.buf.definition, { noremap = true, buffer = bufnr })
-	vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
-	-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = bufnr })
+	vim.keymap.set("", "<leader>gd", builtin.lsp_definitions, { noremap = true, buffer = bufnr })
 	vim.keymap.set("", "<leader>gr", builtin.lsp_references, { noremap = true, buffer = bufnr })
+	-- vim.keymap.set("", "<leader>gd", vim.lsp.buf.definition, { noremap = true, buffer = bufnr })
+	-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = bufnr })
+	vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
 	vim.keymap.set("", "<leader>k", vim.lsp.buf.hover, { noremap = true, buffer = bufnr })
 end
 
