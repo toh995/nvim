@@ -21,7 +21,7 @@ function telescope.configure()
 
 	-- user commands, to launch various picker windows
 	vim.api.nvim_create_user_command("F", function()
-		builtin.find_files()
+		builtin.find_files({ hidden = true })
 	end, {})
 
 	vim.api.nvim_create_user_command("R", function()
