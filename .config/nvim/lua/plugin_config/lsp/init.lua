@@ -80,11 +80,15 @@ function configure_null_ls()
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 	null_ls.setup({
 		sources = {
+			-- LUA
+			null_ls.builtins.formatting.stylua,
+
+			-- JS, TS, HTML
+			-- List eslint LAST, to ensure it takes precedence over prettier
+			null_ls.builtins.formatting.prettierd,
 			null_ls.builtins.formatting.eslint_d.with({
 				extra_args = { "--report-unused-disable-directives", "--fix" },
 			}),
-			null_ls.builtins.formatting.prettierd,
-			null_ls.builtins.formatting.stylua,
 		},
 		on_attach = function(client, bufnr)
 			if client.supports_method("textDocument/formatting") then
