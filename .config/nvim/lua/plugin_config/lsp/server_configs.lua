@@ -14,6 +14,7 @@ local function set_lsp_keybindings(_, bufnr)
 	-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = bufnr })
 	vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
 	vim.keymap.set("", "<leader>k", vim.lsp.buf.hover, { noremap = true, buffer = bufnr })
+	vim.keymap.set("", "<leader>d", vim.diagnostic.open_float, { noremap = true })
 end
 
 function server_configs.configure()
