@@ -46,6 +46,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 ------------------------
 -- KEYBOARD SHORTCUTS --
 ------------------------
+-- use semicolon to ender cmdline mode
+vim.keymap.set("", ";", ":", { noremap = true })
+
 -- set the keyboard shortcut ctrl+a to select all
 vim.keymap.set("", "<C-a>", "<esc>ggVG<CR>", { noremap = true })
 
