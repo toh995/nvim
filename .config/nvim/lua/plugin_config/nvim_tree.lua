@@ -13,6 +13,7 @@ function nvim_tree.configure()
 		open_on_tab = true,
 		on_attach = on_attach,
 		git = { ignore = false },
+		view = { adaptive_size = true },
 		-- J and K are reserved for tab navigation
 		remove_keymaps = { "J", "K" },
 		actions = {
