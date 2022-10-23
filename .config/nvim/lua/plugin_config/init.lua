@@ -117,6 +117,7 @@ function init_packer()
 				require("nvim-treesitter.install").update({ with_sync = true })
 			end,
 		})
+		use("nvim-treesitter/nvim-treesitter-context")
 
 		-- test runner
 		use({
