@@ -10,8 +10,11 @@ function bufferline.configure()
 	vim.keymap.set("", "Q", ":tabclose<CR>", { noremap = true })
 	vim.keymap.set("", "J", ":BufferLineCyclePrev<CR>", { noremap = true })
 	vim.keymap.set("", "K", ":BufferLineCycleNext<CR>", { noremap = true })
-	vim.keymap.set("", "<leader>J", ":BufferLineMovePrev<CR>", { noremap = true })
-	vim.keymap.set("", "<leader>K", ":BufferLineMoveNext<CR>", { noremap = true })
+	-- BufferLineMovePrev and BufferLineMoveNext aren't working
+	-- as of 2022-11-13
+	-- but tabmove is working fine
+	vim.keymap.set("", "<leader>J", ":tabmove-<CR>", { noremap = true })
+	vim.keymap.set("", "<leader>K", ":tabmove+<CR>", { noremap = true })
 
 	-- user commands
 	vim.api.nvim_create_user_command("TVS", "tab vs", {})
