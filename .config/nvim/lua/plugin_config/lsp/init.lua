@@ -17,7 +17,8 @@ local configure_null_ls
 function lsp.configure()
 	-- set up mason FIRST
 	mason.setup()
-	mason_lspconfig.setup({ automatic_installation = true })
+	mason_lspconfig.setup({ automatic_installation = false }) -- NOTE: would love to set this to true someday!
+	require("lspconfig").cssls.setup({})
 
 	configure_autocomplete()
 	configure_null_ls()
@@ -109,7 +110,7 @@ function configure_null_ls()
 		end,
 	})
 
-	mason_null_ls.setup({ automatic_installation = true })
+	mason_null_ls.setup({ automatic_installation = false }) -- NOTE: would love to set this to true someday!
 end
 
 return lsp
