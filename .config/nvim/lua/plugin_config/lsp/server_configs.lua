@@ -50,6 +50,11 @@ function server_configs.configure()
 		on_attach = set_lsp_keybindings,
 	})
 
+	-------------
+	-- Haskell --
+	-------------
+	lspconfig.hls.setup({})
+
 	----------
 	-- HTML --
 	----------
