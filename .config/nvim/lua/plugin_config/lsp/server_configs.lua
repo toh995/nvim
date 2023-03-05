@@ -67,7 +67,7 @@ function server_configs.configure()
 	---------
 	-- Lua --
 	---------
-	lspconfig.sumneko_lua.setup({
+	lspconfig.lua_ls.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 		settings = {
