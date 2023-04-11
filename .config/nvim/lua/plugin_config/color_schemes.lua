@@ -5,6 +5,7 @@ local vscode = require("vscode")
 
 function color_schemes.configure()
 	vscode.setup({})
+	vscode.load()
 end
 
 return color_schemes
