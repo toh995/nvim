@@ -86,7 +86,9 @@ function configure_null_ls()
 
 			-- JS, TS, HTML
 			-- List eslint LAST, to ensure it takes precedence over prettier
-			null_ls.builtins.formatting.prettierd,
+			null_ls.builtins.formatting.prettierd.with({
+				disabled_filetypes = { "markdown", "yaml" },
+			}),
 			null_ls.builtins.formatting.eslint_d.with({
 				extra_args = { "--report-unused-disable-directives", "--fix" },
 			}),
