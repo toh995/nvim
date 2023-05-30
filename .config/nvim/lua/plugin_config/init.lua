@@ -24,7 +24,7 @@ function plugin_config.configure()
 	-- plugin-specific setup
 	-- we need to configure the color schemes FIRST,
 	-- so that the rest of the plugins have knowledge of it.
-	-- the rest of the plugings are configured in
+	-- the rest of the pluging are configured in
 	-- alphabetical order
 	require("plugin_config.color_schemes").configure()
 

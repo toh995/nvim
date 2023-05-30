@@ -25,7 +25,6 @@ function lsp.configure()
 	-- To avoid this, use nix to install stuff.
 	mason.setup()
 	mason_lspconfig.setup({ automatic_installation = false }) -- NOTE: would love to set this to true someday! Not working as of 2022-11-13
-	require("lspconfig").cssls.setup({})
 
 	configure_autocomplete()
 	configure_null_ls()
