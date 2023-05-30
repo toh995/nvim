@@ -15,7 +15,14 @@ local configure_autocomplete
 local configure_null_ls
 
 function lsp.configure()
-	-- set up mason FIRST
+	-- Set up mason FIRST
+	--
+	-- NOTE: if BOTH:
+	--   - You use NixOS
+	--   - You use mason to install stuff
+	-- then, the below code will break.
+	--
+	-- To avoid this, use nix to install stuff.
 	mason.setup()
 	mason_lspconfig.setup({ automatic_installation = false }) -- NOTE: would love to set this to true someday! Not working as of 2022-11-13
 	require("lspconfig").cssls.setup({})
