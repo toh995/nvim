@@ -1,27 +1,31 @@
 -- @module plugin_config.lsp.server_configs
 local server_configs = {}
 
-local builtin = require("telescope.builtin")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local lspconfig = require("lspconfig")
-
-local capabilities = cmp_nvim_lsp.default_capabilities()
-
-local function set_lsp_keybindings(_, bufnr)
-	vim.keymap.set("", "<leader>gd", builtin.lsp_definitions, { noremap = true, buffer = bufnr })
-	vim.keymap.set("", "<leader>gr", builtin.lsp_references, { noremap = true, buffer = bufnr })
-	-- vim.keymap.set("", "<leader>gd", vim.lsp.buf.definition, { noremap = true, buffer = bufnr })
-	-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = bufnr })
-	vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
-	vim.keymap.set("", "<leader>k", vim.lsp.buf.hover, { noremap = true, buffer = bufnr })
-	vim.keymap.set("", "<leader>d", vim.diagnostic.open_float, { noremap = true })
-end
-
 function server_configs.configure()
+	local pkgs = {
+		builtin = require("telescope.builtin"),
+		cmp_nvim_lsp = require("cmp_nvim_lsp"),
+		lspconfig = require("lspconfig"),
+	}
+
+	-- capabilities and set_lsp_keybindings
+	-- will be passed to all servers
+	local capabilities = pkgs.cmp_nvim_lsp.default_capabilities()
+
+	local function set_lsp_keybindings(_, bufnr)
+		vim.keymap.set("", "<leader>gd", pkgs.builtin.lsp_definitions, { noremap = true, buffer = bufnr })
+		vim.keymap.set("", "<leader>gr", pkgs.builtin.lsp_references, { noremap = true, buffer = bufnr })
+		-- vim.keymap.set("", "<leader>gd", vim.lsp.buf.definition, { noremap = true, buffer = bufnr })
+		-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = bufnr })
+		vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
+		vim.keymap.set("", "<leader>k", vim.lsp.buf.hover, { noremap = true, buffer = bufnr })
+		vim.keymap.set("", "<leader>d", vim.diagnostic.open_float, { noremap = true })
+	end
+
 	---------
 	-- CSS --
 	---------
-	lspconfig.cssls.setup({
+	pkgs.lspconfig.cssls.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 	})
@@ -29,7 +33,7 @@ function server_configs.configure()
 	-----------
 	-- Ember --
 	-----------
-	lspconfig.ember.setup({
+	pkgs.lspconfig.ember.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 	})
@@ -37,7 +41,7 @@ function server_configs.configure()
 	-------------
 	-- ES Lint --
 	-------------
-	lspconfig.eslint.setup({
+	pkgs.lspconfig.eslint.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 	})
@@ -45,7 +49,7 @@ function server_configs.configure()
 	-----------
 	-- GLint --
 	-----------
-	lspconfig.glint.setup({
+	pkgs.lspconfig.glint.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 	})
@@ -53,12 +57,12 @@ function server_configs.configure()
 	-------------
 	-- Haskell --
 	-------------
-	lspconfig.hls.setup({})
+	pkgs.lspconfig.hls.setup({})
 
 	----------
 	-- HTML --
 	----------
-	lspconfig.html.setup({
+	pkgs.lspconfig.html.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 		filetypes = { "html", "handlebars" },
@@ -67,7 +71,7 @@ function server_configs.configure()
 	---------
 	-- Lua --
 	---------
-	lspconfig.lua_ls.setup({
+	pkgs.lspconfig.lua_ls.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 		settings = {
@@ -96,7 +100,7 @@ function server_configs.configure()
 	---------
 	-- Nix --
 	---------
-	lspconfig.nil_ls.setup({
+	pkgs.lspconfig.nil_ls.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 	})
@@ -108,7 +112,7 @@ function server_configs.configure()
 	local python_servers = { "pylsp", "ruff_lsp" }
 
 	for _, server in ipairs(python_servers) do
-		lspconfig[server].setup({
+		pkgs.lspconfig[server].setup({
 			capabilities = capabilities,
 			on_attach = set_lsp_keybindings,
 		})
@@ -117,7 +121,7 @@ function server_configs.configure()
 	---------------------------
 	-- TypeScript/JavaScript --
 	---------------------------
-	lspconfig.tsserver.setup({
+	pkgs.lspconfig.tsserver.setup({
 		capabilities = capabilities,
 		on_attach = set_lsp_keybindings,
 	})

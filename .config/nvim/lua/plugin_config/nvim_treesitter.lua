@@ -1,9 +1,9 @@
 -- @module plugin_config.nvim_treesitter
 local nvim_treesitter = {}
 
-local configs = require("nvim-treesitter.configs")
+function nvim_treesitter.config()
+	local configs = require("nvim-treesitter.configs")
 
-function nvim_treesitter.configure()
 	-- use treesitter for folding
 	vim.opt.foldmethod = "expr"
 	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

@@ -1,173 +1,170 @@
 -- @module plugin_config
 local plugin_config = {}
 
-local is_packer_installed
-local get_packer_install_path
-local bootstrap_packer
-local init_packer
-
 function plugin_config.configure()
-	local should_bootstrap = is_packer_installed()
-	if should_bootstrap then
-		bootstrap_packer()
-	end
-
-	init_packer()
-
-	if should_bootstrap then
-		-- sync, then skip the rest of the setup
-		local packer = require("packer")
-		packer.sync()
-		return
-	end
-
-	-- plugin-specific setup
-	-- we need to configure the color schemes FIRST,
-	-- so that the rest of the plugins have knowledge of it.
-	-- the rest of the pluging are configured in
-	-- alphabetical order
-	require("plugin_config.color_schemes").configure()
-
-	require("plugin_config.bufferline").configure()
-	require("plugin_config.comment").configure()
-	require("plugin_config.cutlass").configure()
-	require("plugin_config.git_blame").configure()
-	require("plugin_config.gitsigns").configure()
-	require("plugin_config.lsp").configure()
-	require("plugin_config.markdown_preview").configure()
-	require("plugin_config.nvim_autopairs").configure()
-	require("plugin_config.nvim_tree").configure()
-	require("plugin_config.nvim_treesitter").configure()
-	require("plugin_config.nvim_ts_autotag").configure()
-	require("plugin_config.telescope").configure()
-	require("plugin_config.vim_test").configure()
-end
-
-function is_packer_installed()
-	local install_path = get_packer_install_path()
-	install_path = vim.fn.glob(install_path)
-	return vim.fn.empty(install_path) > 0
-end
-
-function get_packer_install_path()
-	return vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-end
-
-function bootstrap_packer()
-	local install_path = get_packer_install_path()
-	vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-	vim.cmd([[packadd packer.nvim]])
-end
-
-function init_packer()
-	local packer = require("packer")
-	packer.startup(function(use)
-		-- package manager
-		use("wbthomason/packer.nvim")
-
-		-- LSP
-		use("williamboman/mason.nvim")
-		use("williamboman/mason-lspconfig.nvim")
-		use("jayp0521/mason-null-ls.nvim")
-		use("neovim/nvim-lspconfig")
-		use({
-			"jose-elias-alvarez/null-ls.nvim",
-			requires = { "nvim-lua/plenary.nvim" },
+	-- bootstrap lazy.nvim
+	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	if not vim.loop.fs_stat(lazypath) then
+		vim.fn.system({
+			"git",
+			"clone",
+			"--filter=blob:none",
+			"https://github.com/folke/lazy.nvim.git",
+			"--branch=stable", -- latest stable release
+			lazypath,
 		})
+	end
+	vim.opt.rtp:prepend(lazypath)
 
-		-- autocomplete
-		use("hrsh7th/nvim-cmp")
-		use("hrsh7th/cmp-buffer")
-		use("hrsh7th/cmp-nvim-lsp")
-		use("hrsh7th/cmp-nvim-lsp-signature-help")
-		use("hrsh7th/cmp-path")
-		-- icons for autocomplete
-		use("onsails/lspkind.nvim")
-
-		-- snippets
-		use("L3MON4D3/LuaSnip")
-		use("saadparwaiz1/cmp_luasnip")
+	-- set up packages
+	require("lazy").setup({
+		-- LSP
+		{
+			"neovim/nvim-lspconfig",
+			config = require("plugin_config.lsp").config,
+			dependencies = {
+				{ "williamboman/mason.nvim" },
+				{ "williamboman/mason-lspconfig.nvim" },
+				{ "jayp0521/mason-null-ls.nvim" },
+				{ "neovim/nvim-lspconfig" },
+				{
+					"jose-elias-alvarez/null-ls.nvim",
+					dependencies = { "nvim-lua/plenary.nvim" },
+				},
+				-- autocomplete
+				{ "hrsh7th/nvim-cmp" },
+				{ "hrsh7th/cmp-buffer" },
+				{ "hrsh7th/cmp-nvim-lsp" },
+				{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+				{ "hrsh7th/cmp-path" },
+				-- icons for autocomplete
+				{ "onsails/lspkind.nvim" },
+				-- snippets
+				{ "L3MON4D3/LuaSnip" },
+				{ "saadparwaiz1/cmp_luasnip" },
+				-- Telescope (for LSP go-tos)
+				{ "nvim-telescope/telescope.nvim" },
+			},
+		},
 
 		-- file explorer
-		use({
+		{
 			"kyazdani42/nvim-tree.lua",
-			requires = { "kyazdani42/nvim-web-devicons" },
-			tag = "nightly", -- optional, updated every week. (see issue #1193)
-		})
+			dependencies = { "kyazdani42/nvim-web-devicons" },
+			version = "nightly", -- optional, updated every week. (see issue #1193)
+			config = require("plugin_config.nvim_tree").config,
+		},
 
 		-- fuzzy finder
-		use({
+		{
 			"nvim-telescope/telescope.nvim",
-			requires = {
+			dependencies = {
 				"nvim-lua/plenary.nvim",
 			},
 			branch = "0.1.x",
-		})
+			config = require("plugin_config.telescope").config,
+		},
 
 		-- tabs
-		use({
+		{
 			"akinsho/bufferline.nvim",
-			tag = "v3.*",
-			requires = "kyazdani42/nvim-web-devicons",
-		})
+			version = "v3.*",
+			dependencies = { "kyazdani42/nvim-web-devicons" },
+			config = require("plugin_config.bufferline").config,
+		},
 
 		-- syntax highlighting
-		use({
+		{
 			"nvim-treesitter/nvim-treesitter",
-			run = function()
+			build = function()
 				local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 				ts_update()
 			end,
-		})
-		use("nvim-treesitter/nvim-treesitter-context")
+			config = require("plugin_config.nvim_treesitter").config,
+		},
+		{ "nvim-treesitter/nvim-treesitter-context" },
 
 		-- test runner
-		use({
+		{
 			"vim-test/vim-test",
-			requires = {
-				"preservim/vimux",
-			},
-		})
+			dependencies = { "preservim/vimux" },
+			config = require("plugin_config.vim_test").config,
+		},
 
 		-- Markdown preview
-		use({
+		{
 			"iamcco/markdown-preview.nvim",
-			run = function()
-				vim.fn["mkdp#util#install"]()
+			build = "cd app && yarn install",
+			init = function()
+				vim.g.mkdp_filetypes = { "markdown" }
 			end,
-		})
+			ft = { "markdown" },
+			config = require("plugin_config.markdown_preview").config,
+		},
 
 		-- comment
-		use("numToStr/Comment.nvim")
+		{
+			"numToStr/Comment.nvim",
+			config = require("plugin_config.comment").config,
+		},
 
 		-- vim surround
-		use("tpope/vim-surround")
+		{ "tpope/vim-surround" },
 
 		-- cutlass
-		use("gbprod/cutlass.nvim")
+		{
+			"gbprod/cutlass.nvim",
+			config = require("plugin_config.cutlass").config,
+		},
 
 		-- autopairs
-		use("windwp/nvim-autopairs")
+		{
+			"windwp/nvim-autopairs",
+			config = function()
+				require("nvim-autopairs").setup({})
+			end,
+		},
 
 		-- auto-close HTML tags
-		use("windwp/nvim-ts-autotag")
+		{
+			"windwp/nvim-ts-autotag",
+			config = function()
+				require("nvim-ts-autotag").setup()
+			end,
+		},
 
 		-- vim-tmux
-		use("christoomey/vim-tmux-navigator")
+		{ "christoomey/vim-tmux-navigator" },
 
 		-- show git blame inline
-		use("f-person/git-blame.nvim")
+		{
+			"f-person/git-blame.nvim",
+			config = require("plugin_config.git_blame").config,
+		},
 
 		-- colorized git status in the signs column
-		use("lewis6991/gitsigns.nvim")
+		{
+			"lewis6991/gitsigns.nvim",
+			-- TODO: Move these back into separate files??
+			config = function()
+				require("gitsigns").setup()
+			end,
+		},
 
 		-- Color schemes
-		-- use "lunarvim/Onedarker.nvim"
-		use("Mofiqul/vscode.nvim")
+		-- { "lunarvim/Onedarker.nvim" },
+		{
+			"Mofiqul/vscode.nvim",
+			config = function()
+				local vscode = require("vscode")
+				vscode.setup({})
+				vscode.load()
+			end,
+		},
 
 		-- editor config
-		use("editorconfig/editorconfig-vim")
-	end)
+		{ "editorconfig/editorconfig-vim" },
+	})
 end
 
 return plugin_config

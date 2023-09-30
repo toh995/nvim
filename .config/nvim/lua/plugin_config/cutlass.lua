@@ -1,9 +1,9 @@
 -- @module plugin_config.cutlass
 local cutlass = {}
 
-local c = require("cutlass")
+function cutlass.config()
+	local c = require("cutlass")
 
-function cutlass.configure()
 	c.setup({})
 
 	-- set up the "m" cut key

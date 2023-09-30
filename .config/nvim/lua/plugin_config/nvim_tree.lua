@@ -1,20 +1,19 @@
 -- @module plugin_config.nvim_tree
 local nvim_tree = {}
 
-local nt = require("nvim-tree")
-local api = require("nvim-tree.api")
-
-local on_attach
 local open_nvim_tree
 
-function nvim_tree.configure()
+function nvim_tree.config()
+	local nt = require("nvim-tree")
+	local api = require("nvim-tree.api")
+
 	-- setup
 	nt.setup({
 		open_on_tab = true,
-		on_attach = on_attach,
 		git = { ignore = false },
 		view = { adaptive_size = true },
 		-- J and K are reserved for tab navigation
+		-- TODO: fix this
 		remove_keymaps = { "J", "K" },
 		actions = {
 			open_file = {
@@ -32,10 +31,6 @@ function nvim_tree.configure()
 
 	-- open nvim tree on startup
 	vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-end
-
-function on_attach(_)
-	-- vim.keymap.set("", "e", function() api.node.open.vertical() end, { noremap = true })
 end
 
 -- open the tree if startup buffer is a directory, is empty or is unnamed

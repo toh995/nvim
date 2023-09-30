@@ -1,11 +1,11 @@
 -- @module plugin_config.telescope
 local telescope = {}
 
-local actions = require("telescope.actions")
-local builtin = require("telescope.builtin")
-local t = require("telescope")
+function telescope.config()
+	local actions = require("telescope.actions")
+	local builtin = require("telescope.builtin")
+	local t = require("telescope")
 
-function telescope.configure()
 	-- setup
 	t.setup({
 		defaults = {

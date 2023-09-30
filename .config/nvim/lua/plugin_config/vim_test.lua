@@ -1,7 +1,7 @@
 -- @module plugin_config.vim_test
 local vim_test = {}
 
-function vim_test.configure()
+function vim_test.config()
 	-- setup
 	vim.g["test#strategy"] = "vimux"
 	vim.g["test#javascript#mocha#executable"] = "mocha"

@@ -1,9 +1,9 @@
 -- @module plugin_config.bufferline
 local bufferline = {}
 
-local b = require("bufferline")
+function bufferline.config()
+	local b = require("bufferline")
 
-function bufferline.configure()
 	-- set up some keyboard shortcuts for tabs
 	vim.keymap.set("", "t", ":tabnew<CR>", { noremap = true })
 	vim.keymap.set("", "T", "<C-W>T", { noremap = true })

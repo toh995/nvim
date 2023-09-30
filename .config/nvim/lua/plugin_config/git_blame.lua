@@ -1,9 +1,9 @@
 -- @module plugin_config.git_blame
 local git_blame = {}
 
-local gb = require("gitblame")
+function git_blame.config()
+	local gb = require("gitblame")
 
-function git_blame.configure()
 	-- disable gitblame on startup
 	-- vim.g.gitblame_enabled = 0
 
