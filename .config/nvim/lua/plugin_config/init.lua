@@ -26,7 +26,6 @@ function plugin_config.configure()
 				{ "williamboman/mason.nvim" },
 				{ "williamboman/mason-lspconfig.nvim" },
 				{ "jayp0521/mason-null-ls.nvim" },
-				{ "neovim/nvim-lspconfig" },
 				{
 					"jose-elias-alvarez/null-ls.nvim",
 					dependencies = { "nvim-lua/plenary.nvim" },

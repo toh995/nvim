@@ -2,78 +2,32 @@
 local server_configs = {}
 
 function server_configs.configure()
-	local pkgs = {
-		builtin = require("telescope.builtin"),
-		cmp_nvim_lsp = require("cmp_nvim_lsp"),
-		lspconfig = require("lspconfig"),
-	}
+	local cmp_nvim_lsp = require("cmp_nvim_lsp")
+	local lspconfig = require("lspconfig")
 
-	-- capabilities and set_lsp_keybindings
-	-- will be passed to all servers
-	local capabilities = pkgs.cmp_nvim_lsp.default_capabilities()
+	local capabilities = cmp_nvim_lsp.default_capabilities()
 
-	local function set_lsp_keybindings(_, bufnr)
-		vim.keymap.set("", "<leader>gd", pkgs.builtin.lsp_definitions, { noremap = true, buffer = bufnr })
-		vim.keymap.set("", "<leader>gr", pkgs.builtin.lsp_references, { noremap = true, buffer = bufnr })
-		-- vim.keymap.set("", "<leader>gd", vim.lsp.buf.definition, { noremap = true, buffer = bufnr })
-		-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = bufnr })
-		vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = bufnr })
-		vim.keymap.set("", "<leader>k", vim.lsp.buf.hover, { noremap = true, buffer = bufnr })
-		vim.keymap.set("", "<leader>d", vim.diagnostic.open_float, { noremap = true })
-	end
+	-- Ember
+	lspconfig.ember.setup({ capabilities = capabilities })
+	lspconfig.glint.setup({ capabilities = capabilities })
 
-	---------
-	-- CSS --
-	---------
-	pkgs.lspconfig.cssls.setup({
+	-- Haskell
+	lspconfig.hls.setup({ capabilities = capabilities })
+
+	-- HTML/CSS
+	lspconfig.cssls.setup({ capabilities = capabilities })
+	lspconfig.html.setup({
 		capabilities = capabilities,
-		on_attach = set_lsp_keybindings,
-	})
-
-	-----------
-	-- Ember --
-	-----------
-	pkgs.lspconfig.ember.setup({
-		capabilities = capabilities,
-		on_attach = set_lsp_keybindings,
-	})
-
-	-------------
-	-- ES Lint --
-	-------------
-	pkgs.lspconfig.eslint.setup({
-		capabilities = capabilities,
-		on_attach = set_lsp_keybindings,
-	})
-
-	-----------
-	-- GLint --
-	-----------
-	pkgs.lspconfig.glint.setup({
-		capabilities = capabilities,
-		on_attach = set_lsp_keybindings,
-	})
-
-	-------------
-	-- Haskell --
-	-------------
-	pkgs.lspconfig.hls.setup({})
-
-	----------
-	-- HTML --
-	----------
-	pkgs.lspconfig.html.setup({
-		capabilities = capabilities,
-		on_attach = set_lsp_keybindings,
 		filetypes = { "html", "handlebars" },
 	})
 
-	---------
-	-- Lua --
-	---------
-	pkgs.lspconfig.lua_ls.setup({
+	-- JS/TS
+	lspconfig.eslint.setup({ capabilities = capabilities })
+	lspconfig.tsserver.setup({ capabilities = capabilities })
+
+	-- Lua
+	lspconfig.lua_ls.setup({
 		capabilities = capabilities,
-		on_attach = set_lsp_keybindings,
 		settings = {
 			Lua = {
 				runtime = {
@@ -97,34 +51,13 @@ function server_configs.configure()
 		},
 	})
 
-	---------
-	-- Nix --
-	---------
-	pkgs.lspconfig.nil_ls.setup({
-		capabilities = capabilities,
-		on_attach = set_lsp_keybindings,
-	})
+	-- Nix
+	lspconfig.nil_ls.setup({ capabilities = capabilities })
 
-	------------
-	-- Python --
-	------------
-	-- do we need "pyright" too...?
-	local python_servers = { "pylsp", "ruff_lsp" }
-
-	for _, server in ipairs(python_servers) do
-		pkgs.lspconfig[server].setup({
-			capabilities = capabilities,
-			on_attach = set_lsp_keybindings,
-		})
-	end
-
-	---------------------------
-	-- TypeScript/JavaScript --
-	---------------------------
-	pkgs.lspconfig.tsserver.setup({
-		capabilities = capabilities,
-		on_attach = set_lsp_keybindings,
-	})
+	-- Python
+	lspconfig.pylsp.setup({ capabilities = capabilities })
+	-- lspconfig.pyright.setup({ capabilities = capabilities })
+	lspconfig.ruff_lsp.setup({ capabilities = capabilities })
 end
 
 return server_configs
