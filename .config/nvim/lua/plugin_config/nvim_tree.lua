@@ -7,14 +7,15 @@ function nvim_tree.config()
 	local nt = require("nvim-tree")
 	local api = require("nvim-tree.api")
 
+	-- disable netrw
+	vim.g.loaded_netrw = 1
+	vim.g.loaded_netrwPlugin = 1
+
 	-- setup
 	nt.setup({
 		open_on_tab = true,
 		git = { ignore = false },
 		view = { adaptive_size = true },
-		-- J and K are reserved for tab navigation
-		-- TODO: fix this
-		remove_keymaps = { "J", "K" },
 		actions = {
 			open_file = {
 				window_picker = {
@@ -22,6 +23,13 @@ function nvim_tree.config()
 				},
 			},
 		},
+		on_attach = function(bufnr)
+			-- Set default keymappings
+			api.config.mappings.default_on_attach(bufnr)
+			-- J and K are reserved for tab navigation
+			vim.keymap.del("n", "J", { buffer = bufnr })
+			vim.keymap.del("n", "K", { buffer = bufnr })
+		end,
 	})
 
 	-- keymappings to open/close the file explorer

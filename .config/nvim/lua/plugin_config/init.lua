@@ -48,9 +48,10 @@ function plugin_config.configure()
 
 		-- file explorer
 		{
-			"kyazdani42/nvim-tree.lua",
-			dependencies = { "kyazdani42/nvim-web-devicons" },
-			version = "nightly", -- optional, updated every week. (see issue #1193)
+			"nvim-tree/nvim-tree.lua",
+			version = "*",
+			lazy = false,
+			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = require("plugin_config.nvim_tree").config,
 		},
 
@@ -67,8 +68,8 @@ function plugin_config.configure()
 		-- tabs
 		{
 			"akinsho/bufferline.nvim",
-			version = "v3.*",
-			dependencies = { "kyazdani42/nvim-web-devicons" },
+			version = "*",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = require("plugin_config.bufferline").config,
 		},
 
