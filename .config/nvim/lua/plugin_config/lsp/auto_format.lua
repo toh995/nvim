@@ -1,16 +1,21 @@
 -- @module plugin_config.lsp.auto_format
 local auto_format = {}
 
+local build_eslint_d
+
 function auto_format.configure()
 	local lspconfig = require("lspconfig")
+
+	local fs = require("efmls-configs.fs")
 
 	local black = require("efmls-configs.formatters.black")
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
 	local ruff = require("efmls-configs.formatters.ruff")
 	local stylua = require("efmls-configs.formatters.stylua")
-	local eslint_d = require("efmls-configs.linters.eslint_d")
 
 	local util = require("../../util")
+
+	local eslint_d = build_eslint_d(fs)
 
 	-----------------------------------
 	-- Build languages and filetypes --
@@ -23,7 +28,6 @@ function auto_format.configure()
 	-- Web-dev
 	for _, lang in ipairs({ "javascript", "typescript" }) do
 		-- List eslint LAST, to ensure it takes precedence over prettier
-		--extra_args = { "--report-unused-disable-directives", "--fix" },
 		languages[lang] = { prettier_d, eslint_d }
 	end
 	for _, lang in ipairs({ "css", "html", "json", "jsonc", "handlebars" }) do
@@ -63,6 +67,19 @@ function auto_format.configure()
 			vim.lsp.buf.format({ name = "efm", bufnr = args.buf })
 		end,
 	})
+end
+
+function build_eslint_d(fs)
+	-- Adapted from https://github.com/creativenull/efmls-configs-nvim/blob/b273ecd/lua/efmls-configs/formatters/eslint_d.lua
+	-- The only thing I changed was, adding the argument `--report-unused-disable-directives`
+	local formatter = "eslint_d"
+	local args = "--report-unused-disable-directives --fix-to-stdout --stdin-filename '${INPUT}' --stdin"
+	local command = string.format("%s %s", fs.executable(formatter, fs.Scope.NODE), args)
+
+	return {
+		formatCommand = command,
+		formatStdin = true,
+	}
 end
 
 return auto_format
