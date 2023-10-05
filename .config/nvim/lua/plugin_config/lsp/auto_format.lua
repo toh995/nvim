@@ -2,51 +2,66 @@
 local auto_format = {}
 
 function auto_format.configure()
-	local mason_null_ls = require("mason-null-ls")
-	local null_ls = require("null-ls")
+	local lspconfig = require("lspconfig")
 
-	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-	null_ls.setup({
-		sources = {
-			-- Lua
-			null_ls.builtins.formatting.stylua,
+	local black = require("efmls-configs.formatters.black")
+	local prettier_d = require("efmls-configs.formatters.prettier_d")
+	local ruff = require("efmls-configs.formatters.ruff")
+	local stylua = require("efmls-configs.formatters.stylua")
+	local eslint_d = require("efmls-configs.linters.eslint_d")
 
-			-- Python
-			null_ls.builtins.formatting.black,
-			null_ls.builtins.formatting.ruff,
+	local util = require("../../util")
 
-			-- JS, TS, HTML
-			-- List eslint LAST, to ensure it takes precedence over prettier
-			null_ls.builtins.formatting.prettierd.with({
-				disabled_filetypes = { "markdown", "yaml" },
-			}),
-			null_ls.builtins.formatting.eslint_d.with({
-				extra_args = { "--report-unused-disable-directives", "--fix" },
-			}),
+	-----------------------------------
+	-- Build languages and filetypes --
+	-----------------------------------
+	local languages = {
+		lua = { stylua },
+		python = { black, ruff },
+	}
+
+	-- Web-dev
+	for _, lang in ipairs({ "javascript", "typescript" }) do
+		-- List eslint LAST, to ensure it takes precedence over prettier
+		--extra_args = { "--report-unused-disable-directives", "--fix" },
+		languages[lang] = { prettier_d, eslint_d }
+	end
+	for _, lang in ipairs({ "css", "html", "json", "jsonc", "handlebars" }) do
+		languages[lang] = { prettier_d }
+	end
+
+	local filetypes = util.tbl_keys(languages)
+
+	----------------
+	-- Set up efm --
+	----------------
+	lspconfig.efm.setup({
+		filetypes = filetypes,
+		settings = {
+			rootMarkers = { ".git/" },
+			languages = languages,
 		},
-		on_attach = function(client, bufnr)
-			-- auto-format on save
-			if client.supports_method("textDocument/formatting") then
-				vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-				vim.api.nvim_create_autocmd("BufWritePre", {
-					group = augroup,
-					buffer = bufnr,
-					callback = function()
-						vim.lsp.buf.format({
-							bufnr = bufnr,
-							filter = function(c)
-								return c.name == "null-ls"
-							end,
-						})
-					end,
-				})
-			end
-		end,
+		init_options = {
+			documentFormatting = true,
+			-- Format a subset of a document
+			-- documentRangeFormatting = true,
+		},
 	})
 
-	mason_null_ls.setup({
-		ensure_installed = {},
-		automatic_installation = false,
+	---------------------------
+	-- Set up format on save --
+	---------------------------
+	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = augroup,
+		callback = function(args)
+			local efm = vim.lsp.get_active_clients({ name = "efm", bufnr = args.buf })
+			if vim.tbl_isempty(efm) then
+				return
+			end
+			vim.lsp.buf.format({ name = "efm", bufnr = args.buf })
+		end,
 	})
 end
 

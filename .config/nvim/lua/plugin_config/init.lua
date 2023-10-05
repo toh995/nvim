@@ -25,11 +25,12 @@ function plugin_config.configure()
 			dependencies = {
 				{ "williamboman/mason.nvim" },
 				{ "williamboman/mason-lspconfig.nvim" },
-				{ "jayp0521/mason-null-ls.nvim" },
 				{
-					"jose-elias-alvarez/null-ls.nvim",
-					dependencies = { "nvim-lua/plenary.nvim" },
+					"creativenull/efmls-configs-nvim",
+					version = "v1.x.x",
 				},
+				-- Telescope (for LSP go-tos)
+				{ "nvim-telescope/telescope.nvim" },
 				-- autocomplete
 				{ "hrsh7th/nvim-cmp" },
 				{ "hrsh7th/cmp-buffer" },
@@ -41,8 +42,6 @@ function plugin_config.configure()
 				-- snippets
 				{ "L3MON4D3/LuaSnip" },
 				{ "saadparwaiz1/cmp_luasnip" },
-				-- Telescope (for LSP go-tos)
-				{ "nvim-telescope/telescope.nvim" },
 			},
 		},
 
