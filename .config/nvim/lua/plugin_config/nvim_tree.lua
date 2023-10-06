@@ -1,61 +1,67 @@
 -- @module plugin_config.nvim_tree
 local nvim_tree = {}
 
-local open_nvim_tree
+local setup_tree
 
 function nvim_tree.config()
-	local nt = require("nvim-tree")
-	local api = require("nvim-tree.api")
+	local pkgs = {
+		nvim_tree = require("nvim-tree"),
+		api = require("nvim-tree.api"),
+	}
 
-	-- disable netrw
+	-- Disable netrw
 	vim.g.loaded_netrw = 1
 	vim.g.loaded_netrwPlugin = 1
 
-	-- setup
-	nt.setup({
-		open_on_tab = true,
-		git = { ignore = false },
-		view = { adaptive_size = true },
-		actions = {
-			open_file = {
-				window_picker = {
-					enable = false,
-				},
-			},
-		},
-		on_attach = function(bufnr)
-			-- Set default keymappings
-			api.config.mappings.default_on_attach(bufnr)
-			-- J and K are reserved for tab navigation
-			vim.keymap.del("n", "J", { buffer = bufnr })
-			vim.keymap.del("n", "K", { buffer = bufnr })
-		end,
-	})
+	-- Setup
+	setup_tree(pkgs)
 
-	-- keymappings to open/close the file explorer
+	-- Keymappings
 	vim.keymap.set("", "<leader>nt", function()
-		api.tree.toggle(true)
+		pkgs.api.tree.toggle({ find_file = true })
 	end, { noremap = true })
 
-	-- open nvim tree on startup
-	vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+	vim.keymap.set("", "<leader>nf", function()
+		pkgs.api.tree.find_file({ focus = true, open = true })
+	end, { noremap = true })
 end
 
--- open the tree if startup buffer is a directory, is empty or is unnamed
-function open_nvim_tree(data)
-	-- buffer is a [No Name]
-	local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-	-- buffer is a directory
-	local directory = vim.fn.isdirectory(data.file) == 1
-	if not no_name and not directory then
-		return
-	end
-	-- change to the directory
-	if directory then
-		vim.cmd.cd(data.file)
-	end
-	-- open the tree
-	require("nvim-tree.api").tree.open()
+function setup_tree(pkgs)
+	pkgs.nvim_tree.setup({
+		-- When switching tabpage, or opening a new tabpage:
+		--    - If the tree was open, then keep it open
+		--    - If the tree was closed, then keep it closed
+		tab = { sync = {
+			open = true,
+			close = true,
+		} },
+
+		-- Auto-expand the size of the tree window
+		view = { width = {} },
+
+		-- Disable window-picker, when opening a new file
+		actions = { open_file = { window_picker = { enable = false } } },
+
+		-- Set keymappings
+		on_attach = function(bufnr)
+			local function opts(desc)
+				return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+			end
+
+			-- Set default keymappings
+			pkgs.api.config.mappings.default_on_attach(bufnr)
+
+			-- Remove J and K
+			-- They're reserved for tab navigation
+			vim.keymap.del("n", "J", { buffer = bufnr })
+			vim.keymap.del("n", "K", { buffer = bufnr })
+
+			-- Add some more keymaps
+			vim.keymap.set("n", "h", pkgs.api.node.navigate.parent_close, opts("Collapse current folder"))
+			vim.keymap.set("n", "H", pkgs.api.tree.collapse_all, opts("Collapse All"))
+			vim.keymap.set("n", "l", pkgs.api.node.open.edit, opts("Open"))
+		end,
+	})
 end
 
 return nvim_tree
