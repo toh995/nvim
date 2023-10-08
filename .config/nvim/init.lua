@@ -26,6 +26,10 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true
 
+-- ensure that status-line and other things are aligned
+-- see https://www.reddit.com/r/neovim/comments/ra7cbn/why_barbar_and_lualine_doesnt_align_with_nvimtree/
+vim.opt.fillchars:append("vert:▕")
+
 ------------------
 -- AUTOCOMMANDS --
 ------------------
