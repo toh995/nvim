@@ -36,6 +36,9 @@ function setup_tree(pkgs)
 			close = true,
 		} },
 
+		-- Hide the root folder path displayed at the top
+		renderer = { root_folder_label = false },
+
 		-- Auto-expand the size of the tree window
 		view = { width = {} },
 
