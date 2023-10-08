@@ -57,9 +57,7 @@ function plugin_config.configure()
 		-- fuzzy finder
 		{
 			"nvim-telescope/telescope.nvim",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-			},
+			dependencies = { "nvim-lua/plenary.nvim" },
 			branch = "0.1.x",
 			config = require("plugin_config.telescope").config,
 		},
@@ -70,6 +68,13 @@ function plugin_config.configure()
 			version = "*",
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = require("plugin_config.bufferline").config,
+		},
+
+		-- Status line
+		{
+			"nvim-lualine/lualine.nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			config = require("plugin_config.lualine").config,
 		},
 
 		-- syntax highlighting
