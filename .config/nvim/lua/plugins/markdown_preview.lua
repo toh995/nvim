@@ -1,4 +1,4 @@
--- @module plugin_config.markdown_preview
+-- @module plugins.markdown_preview
 local M = {}
 
 function M.config()

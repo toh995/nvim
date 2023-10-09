@@ -1,4 +1,4 @@
--- @module plugin_config.lsp.keybindings
+-- @module plugins.lsp.keybindings
 local M = {}
 
 local set_keybindings

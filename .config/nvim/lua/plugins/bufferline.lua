@@ -1,4 +1,4 @@
--- @module plugin_config.bufferline
+-- @module plugins.bufferline
 local M = {}
 
 function M.config()

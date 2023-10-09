@@ -1,4 +1,4 @@
--- @module plugin_config.lsp.server_configs
+-- @module plugins.lsp.server_configs
 local M = {}
 
 function M.configure()

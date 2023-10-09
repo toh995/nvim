@@ -1,4 +1,4 @@
--- @module plugin_config.nvim_treesitter
+-- @module plugins.nvim_treesitter
 local M = {}
 
 function M.config()

@@ -1,4 +1,4 @@
--- @module plugin_config.git_blame
+-- @module plugins.git_blame
 local M = {}
 
 function M.config()

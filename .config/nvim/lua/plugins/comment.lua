@@ -1,4 +1,4 @@
--- @module plugin_config.comment
+-- @module plugins.comment
 local M = {}
 
 function M.config()

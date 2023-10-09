@@ -1,4 +1,4 @@
--- @module plugin_config.cutlass
+-- @module plugins.cutlass
 local M = {}
 
 function M.config()

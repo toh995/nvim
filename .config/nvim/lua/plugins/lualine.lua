@@ -1,10 +1,10 @@
--- @module plugin_config.lualine
+-- @module plugins.lualine
 local M = {}
 
 function M.config()
 	local lualine = require("lualine")
 
-	local DiagnosticIcons = require("plugin_config.lsp.diagnostics").Icons
+	local DiagnosticIcons = require("plugins.lsp.diagnostics").Icons
 
 	-- icon for the window's file
 	local filetype = {

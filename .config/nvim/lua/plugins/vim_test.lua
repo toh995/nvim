@@ -1,4 +1,4 @@
--- @module plugin_config.vim_test
+-- @module plugins.vim_test
 local M = {}
 
 function M.config()

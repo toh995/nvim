@@ -1,4 +1,4 @@
--- @module plugin_config.telescope
+-- @module plugins.telescope
 local M = {}
 
 function M.config()

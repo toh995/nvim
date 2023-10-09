@@ -1,4 +1,4 @@
--- @module plugin_config.lsp.auto_complete
+-- @module plugins.lsp.auto_complete
 local M = {}
 
 function M.configure()

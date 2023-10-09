@@ -1,5 +1,3 @@
-local plugin_config = require("plugin_config")
-
 -------------
 -- OPTIONS --
 -------------
@@ -66,4 +64,4 @@ vim.keymap.set("", "<C-H>", "<C-W><C-H>", { noremap = true })
 -------------
 -- PLUGINS --
 -------------
-plugin_config.configure()
+require("plugins").configure()

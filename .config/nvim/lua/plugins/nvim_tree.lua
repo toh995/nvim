@@ -1,4 +1,4 @@
--- @module plugin_config.nvim_tree
+-- @module plugins.nvim_tree
 local M = {}
 
 local setup_tree

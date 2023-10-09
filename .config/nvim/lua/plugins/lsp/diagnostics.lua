@@ -1,4 +1,4 @@
--- @module plugin_config.lsp.diagnostics
+-- @module plugins.lsp.diagnostics
 local M = {}
 
 M.Icons = {

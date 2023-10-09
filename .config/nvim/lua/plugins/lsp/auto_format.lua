@@ -1,4 +1,4 @@
--- @module plugin_config.lsp.auto_format
+-- @module plugins.lsp.auto_format
 local M = {}
 
 local build_eslint_d

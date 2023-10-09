@@ -1,4 +1,4 @@
--- @module plugin_config
+-- @module plugins
 local M = {}
 
 function M.configure()
@@ -21,7 +21,7 @@ function M.configure()
 		-- LSP
 		{
 			"neovim/nvim-lspconfig",
-			config = require("plugin_config.lsp").config,
+			config = require("plugins.lsp").config,
 			dependencies = {
 				{ "williamboman/mason.nvim" },
 				{ "williamboman/mason-lspconfig.nvim" },
@@ -45,36 +45,20 @@ function M.configure()
 			},
 		},
 
-		-- file explorer
-		{
-			"nvim-tree/nvim-tree.lua",
-			version = "*",
-			lazy = false,
-			dependencies = { "nvim-tree/nvim-web-devicons" },
-			config = require("plugin_config.nvim_tree").config,
-		},
-
-		-- fuzzy finder
-		{
-			"nvim-telescope/telescope.nvim",
-			dependencies = { "nvim-lua/plenary.nvim" },
-			branch = "0.1.x",
-			config = require("plugin_config.telescope").config,
-		},
 
 		-- tabs
 		{
 			"akinsho/bufferline.nvim",
 			version = "*",
 			dependencies = { "nvim-tree/nvim-web-devicons" },
-			config = require("plugin_config.bufferline").config,
+			config = require("plugins.bufferline").config,
 		},
 
 		-- Status line
 		{
 			"nvim-lualine/lualine.nvim",
 			dependencies = { "nvim-tree/nvim-web-devicons" },
-			config = require("plugin_config.lualine").config,
+			config = require("plugins.lualine").config,
 		},
 
 		-- syntax highlighting
@@ -84,15 +68,32 @@ function M.configure()
 				local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
 				ts_update()
 			end,
-			config = require("plugin_config.nvim_treesitter").config,
+			config = require("plugins.nvim_treesitter").config,
 		},
 		{ "nvim-treesitter/nvim-treesitter-context" },
+
+		-- file explorer
+		{
+			"nvim-tree/nvim-tree.lua",
+			version = "*",
+			lazy = false,
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			config = require("plugins.nvim_tree").config,
+		},
+
+		-- fuzzy finder
+		{
+			"nvim-telescope/telescope.nvim",
+			dependencies = { "nvim-lua/plenary.nvim" },
+			branch = "0.1.x",
+			config = require("plugins.telescope").config,
+		},
 
 		-- test runner
 		{
 			"vim-test/vim-test",
 			dependencies = { "preservim/vimux" },
-			config = require("plugin_config.vim_test").config,
+			config = require("plugins.vim_test").config,
 		},
 
 		-- Markdown preview
@@ -103,13 +104,13 @@ function M.configure()
 				vim.g.mkdp_filetypes = { "markdown" }
 			end,
 			ft = { "markdown" },
-			config = require("plugin_config.markdown_preview").config,
+			config = require("plugins.markdown_preview").config,
 		},
 
 		-- comment
 		{
 			"numToStr/Comment.nvim",
-			config = require("plugin_config.comment").config,
+			config = require("plugins.comment").config,
 		},
 
 		-- vim surround
@@ -118,7 +119,7 @@ function M.configure()
 		-- cutlass
 		{
 			"gbprod/cutlass.nvim",
-			config = require("plugin_config.cutlass").config,
+			config = require("plugins.cutlass").config,
 		},
 
 		-- autopairs
@@ -143,7 +144,7 @@ function M.configure()
 		-- show git blame inline
 		{
 			"f-person/git-blame.nvim",
-			config = require("plugin_config.git_blame").config,
+			config = require("plugins.git_blame").config,
 		},
 
 		-- colorized git status in the signs column
