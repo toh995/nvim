@@ -4,7 +4,9 @@ local lualine = {}
 function lualine.config()
 	local l = require("lualine")
 
-	-- icon for the open file
+	local DiagnosticIcons = require("plugin_config.lsp.diagnostics").Icons
+
+	-- icon for the window's file
 	local filetype = {
 		"filetype",
 		icon_only = true,
@@ -24,6 +26,16 @@ function lualine.config()
 		},
 	}
 
+	local diagnostics = {
+		"diagnostics",
+		symbols = {
+			error = DiagnosticIcons.ERROR,
+			warn = DiagnosticIcons.WARN,
+			info = DiagnosticIcons.INFO,
+			hint = DiagnosticIcons.HINT,
+		},
+	}
+
 	-- show the current line number/column
 	-- see `:h statusline`
 	-- %l == current line number
@@ -39,7 +51,7 @@ function lualine.config()
 		},
 		sections = {
 			lualine_a = { "mode" },
-			lualine_b = { "diagnostics" },
+			lualine_b = { diagnostics },
 			lualine_c = { filetype, filename },
 			lualine_x = {},
 			lualine_y = { "progress" },

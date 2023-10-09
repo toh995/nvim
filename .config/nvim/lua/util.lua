@@ -29,4 +29,17 @@ function util.clone_deep(val)
 	return ret
 end
 
+-- @tparam string s
+-- @treturn string
+function util.capitalize_first_letter(s)
+	if s == "" then
+		return s
+	end
+
+	-- lua is 1-indexed!
+	local first = string.sub(s, 1, 1)
+	local second = string.sub(s, 2, -1)
+	return string.upper(first) .. second
+end
+
 return util

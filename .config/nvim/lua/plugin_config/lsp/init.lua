@@ -9,6 +9,7 @@ function lsp.config()
 	-- Set up other stuff
 	require("plugin_config.lsp.auto_complete").configure()
 	require("plugin_config.lsp.auto_format").configure()
+	require("plugin_config.lsp.diagnostics").configure()
 	require("plugin_config.lsp.keybindings").configure()
 	require("plugin_config.lsp.server_configs").configure()
 end
