@@ -1,7 +1,7 @@
 -- @module plugin_config.lsp.auto_complete
-local auto_complete = {}
+local M = {}
 
-function auto_complete.configure()
+function M.configure()
 	local cmp = require("cmp")
 	local lspkind = require("lspkind")
 	local luasnip = require("luasnip")
@@ -58,4 +58,4 @@ function auto_complete.configure()
 	end
 end
 
-return auto_complete
+return M

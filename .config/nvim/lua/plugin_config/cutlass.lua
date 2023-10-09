@@ -1,10 +1,10 @@
 -- @module plugin_config.cutlass
-local cutlass = {}
+local M = {}
 
-function cutlass.config()
-	local c = require("cutlass")
+function M.config()
+	local cutlass = require("cutlass")
 
-	c.setup({})
+	cutlass.setup({})
 
 	-- set up the "m" cut key
 	-- use vimscript for now...
@@ -18,4 +18,4 @@ function cutlass.config()
 	vim.cmd([[xnoremap <silent> p p:let @+=@0<CR>:let @"=@0<CR>]])
 end
 
-return cutlass
+return M

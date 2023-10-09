@@ -1,7 +1,7 @@
 -- @module plugin_config.telescope
-local telescope = {}
+local M = {}
 
-function telescope.config()
+function M.config()
 	local actions = require("telescope.actions")
 	local builtin = require("telescope.builtin")
 	local t = require("telescope")
@@ -43,4 +43,4 @@ function telescope.config()
 	})
 end
 
-return telescope
+return M

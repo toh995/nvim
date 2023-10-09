@@ -1,7 +1,7 @@
 -- @module plugin_config.nvim_treesitter
-local nvim_treesitter = {}
+local M = {}
 
-function nvim_treesitter.config()
+function M.config()
 	local configs = require("nvim-treesitter.configs")
 
 	-- use treesitter for folding
@@ -21,4 +21,4 @@ function nvim_treesitter.config()
 	})
 end
 
-return nvim_treesitter
+return M

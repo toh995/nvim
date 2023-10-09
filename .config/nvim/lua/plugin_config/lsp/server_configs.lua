@@ -1,7 +1,7 @@
 -- @module plugin_config.lsp.server_configs
-local server_configs = {}
+local M = {}
 
-function server_configs.configure()
+function M.configure()
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
 
@@ -60,4 +60,4 @@ function server_configs.configure()
 	lspconfig.ruff_lsp.setup({ capabilities = capabilities })
 end
 
-return server_configs
+return M

@@ -1,9 +1,9 @@
 -- @module plugin_config.lsp.keybindings
-local keybindings = {}
+local M = {}
 
 local set_keybindings
 
-function keybindings.configure()
+function M.configure()
 	local pkgs = {
 		telescope_builtin = require("telescope.builtin"),
 	}
@@ -27,4 +27,4 @@ function set_keybindings(pkgs)
 	end
 end
 
-return keybindings
+return M

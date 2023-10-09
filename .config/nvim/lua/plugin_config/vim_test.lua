@@ -1,7 +1,7 @@
 -- @module plugin_config.vim_test
-local vim_test = {}
+local M = {}
 
-function vim_test.config()
+function M.config()
 	-- setup
 	vim.g["test#strategy"] = "vimux"
 	vim.g["test#javascript#mocha#executable"] = "mocha"
@@ -11,4 +11,4 @@ function vim_test.config()
 	vim.keymap.set("", "<leader>T", ":TestFile<CR>", { noremap = true })
 end
 
-return vim_test
+return M

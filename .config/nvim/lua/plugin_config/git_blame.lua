@@ -1,8 +1,8 @@
 -- @module plugin_config.git_blame
-local git_blame = {}
+local M = {}
 
-function git_blame.config()
-	local gb = require("gitblame")
+function M.config()
+	local gitblame = require("gitblame")
 
 	-- disable gitblame on startup
 	-- vim.g.gitblame_enabled = 0
@@ -13,7 +13,7 @@ function git_blame.config()
 
 	-- keybindings
 	-- vim.keymap.set("", "<leader>gb", function() vim.api.nvim_command("GitBlameToggle") end, { noremap = true })
-	vim.keymap.set("", "<leader>gbu", gb.open_commit_url, { noremap = true })
+	vim.keymap.set("", "<leader>gbu", gitblame.open_commit_url, { noremap = true })
 end
 
-return git_blame
+return M

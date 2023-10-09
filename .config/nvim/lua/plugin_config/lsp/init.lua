@@ -1,7 +1,7 @@
 -- @module plugin_config.lsp
-local lsp = {}
+local M = {}
 
-function lsp.config()
+function M.config()
 	-- Set up mason FIRST
 	require("mason").setup()
 	require("mason-lspconfig").setup({ automatic_installation = false })
@@ -14,4 +14,4 @@ function lsp.config()
 	require("plugin_config.lsp.server_configs").configure()
 end
 
-return lsp
+return M

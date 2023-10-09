@@ -1,9 +1,9 @@
 -- @module plugin_config.markdown_preview
-local markdown_preview = {}
+local M = {}
 
-function markdown_preview.config()
+function M.config()
 	vim.api.nvim_create_user_command("MP", "MarkdownPreview", {})
 	-- vim.keymap.set("", "<leader>mp", ":MarkdownPreview<CR>", { noremap = true })
 end
 
-return markdown_preview
+return M

@@ -1,9 +1,9 @@
 -- @module plugin_config.lsp.auto_format
-local auto_format = {}
+local M = {}
 
 local build_eslint_d
 
-function auto_format.configure()
+function M.configure()
 	local lspconfig = require("lspconfig")
 
 	local fs = require("efmls-configs.fs")
@@ -82,4 +82,4 @@ function build_eslint_d(fs)
 	}
 end
 
-return auto_format
+return M

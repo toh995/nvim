@@ -1,7 +1,7 @@
 -- @module plugin_config.bufferline
-local bufferline = {}
+local M = {}
 
-function bufferline.config()
+function M.config()
 	local b = require("bufferline")
 
 	-- set up some keyboard shortcuts for tabs
@@ -36,4 +36,4 @@ function bufferline.config()
 	})
 end
 
-return bufferline
+return M

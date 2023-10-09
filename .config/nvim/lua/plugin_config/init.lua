@@ -1,7 +1,7 @@
 -- @module plugin_config
-local plugin_config = {}
+local M = {}
 
-function plugin_config.configure()
+function M.configure()
 	-- bootstrap lazy.nvim
 	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 	if not vim.loop.fs_stat(lazypath) then
@@ -171,4 +171,4 @@ function plugin_config.configure()
 	})
 end
 
-return plugin_config
+return M

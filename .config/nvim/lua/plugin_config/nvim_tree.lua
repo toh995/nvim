@@ -1,9 +1,9 @@
 -- @module plugin_config.nvim_tree
-local nvim_tree = {}
+local M = {}
 
 local setup_tree
 
-function nvim_tree.config()
+function M.config()
 	local pkgs = {
 		nvim_tree = require("nvim-tree"),
 		api = require("nvim-tree.api"),
@@ -67,4 +67,4 @@ function setup_tree(pkgs)
 	})
 end
 
-return nvim_tree
+return M

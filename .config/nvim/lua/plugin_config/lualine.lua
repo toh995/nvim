@@ -1,8 +1,8 @@
 -- @module plugin_config.lualine
-local lualine = {}
+local M = {}
 
-function lualine.config()
-	local l = require("lualine")
+function M.config()
+	local lualine = require("lualine")
 
 	local DiagnosticIcons = require("plugin_config.lsp.diagnostics").Icons
 
@@ -45,7 +45,7 @@ function lualine.config()
 		return "ln %l/%L:%c"
 	end
 
-	l.setup({
+	lualine.setup({
 		options = {
 			disabled_filetypes = { statusline = { "help", "NvimTree" } },
 		},
@@ -68,4 +68,4 @@ function lualine.config()
 	})
 end
 
-return lualine
+return M
