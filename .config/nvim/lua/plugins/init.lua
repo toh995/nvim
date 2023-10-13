@@ -42,6 +42,8 @@ function M.configure()
 				-- snippets
 				{ "L3MON4D3/LuaSnip" },
 				{ "saadparwaiz1/cmp_luasnip" },
+				-- custom lua stuff
+				{ "folke/neodev.nvim" },
 			},
 		},
 

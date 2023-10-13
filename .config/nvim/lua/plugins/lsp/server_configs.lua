@@ -4,6 +4,7 @@ local M = {}
 function M.configure()
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
+	local neodev = require("neodev") -- lua extras
 
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -26,6 +27,7 @@ function M.configure()
 	lspconfig.tsserver.setup({ capabilities = capabilities })
 
 	-- Lua
+	neodev.setup({})
 	lspconfig.lua_ls.setup({
 		capabilities = capabilities,
 		settings = {
