@@ -30,12 +30,12 @@ function M.config()
 
 	vim.api.nvim_create_user_command("G", function(tbl)
 		local filepath = tbl.fargs[1] or "."
-		local glob_pattern = tbl.fargs[2] or "*"
+		local glob_pattern = tbl.fargs[2] or ""
 
 		builtin.live_grep({
 			search_dirs = { filepath },
 			glob_pattern = glob_pattern,
-			prompt_title = filepath .. " " .. glob_pattern,
+			prompt_title = "Grep in " .. filepath .. " " .. glob_pattern,
 		})
 	end, {
 		nargs = "*",
