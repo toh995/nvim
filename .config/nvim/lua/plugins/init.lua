@@ -109,6 +109,12 @@ function M.configure()
 			config = require("plugins.markdown_preview").config,
 		},
 
+		-- Better escape
+		{
+			"max397574/better-escape.nvim",
+			config = require("plugins.better_escape").config,
+		},
+
 		-- comment
 		{
 			"numToStr/Comment.nvim",
