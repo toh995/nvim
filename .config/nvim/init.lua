@@ -32,7 +32,7 @@ vim.opt.fillchars:append("vert:▕")
 -- AUTOCOMMANDS --
 ------------------
 -- automatically detect file changes
-vim.opt.updatetime = 500
+vim.opt.updatetime = 250
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
 	pattern = { "*" },
 	command = "checktime",
