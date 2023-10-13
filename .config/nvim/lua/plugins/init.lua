@@ -44,6 +44,11 @@ function M.configure()
 				{ "saadparwaiz1/cmp_luasnip" },
 				-- custom lua stuff
 				{ "folke/neodev.nvim" },
+				-- custom tsserver
+				{
+					"pmizio/typescript-tools.nvim",
+					dependencies = { "nvim-lua/plenary.nvim" },
+				},
 			},
 		},
 

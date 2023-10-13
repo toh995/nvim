@@ -5,6 +5,7 @@ function M.configure()
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
 	local neodev = require("neodev") -- lua extras
+	local typescript_tools = require("typescript-tools")
 
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -24,7 +25,7 @@ function M.configure()
 
 	-- JS/TS
 	lspconfig.eslint.setup({ capabilities = capabilities })
-	lspconfig.tsserver.setup({ capabilities = capabilities })
+	typescript_tools.setup({ capabilities = capabilities })
 
 	-- Lua
 	neodev.setup({})
