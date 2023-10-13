@@ -45,6 +45,8 @@ function M.configure()
 			},
 		},
 
+		-- Improved UI for `vim.input` and `vim.select`
+		{ "stevearc/dressing.nvim" },
 
 		-- tabs
 		{
