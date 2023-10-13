@@ -51,6 +51,10 @@ function M.configure()
 				},
 			}),
 		},
+		window = {
+			completion = cmp.config.window.bordered(),
+			documentation = cmp.config.window.bordered(),
+		},
 	})
 end
 

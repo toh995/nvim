@@ -15,6 +15,10 @@ function M.configure()
 	vim.diagnostic.config({
 		update_in_insert = true,
 		severity_sort = true,
+		float = { border = "rounded" },
+		-- TODO: in nvim 0.10.0+, for the prefix we can pass in
+		-- a function which returns the diagnostics icon, based on
+		-- the severity
 		virtual_text = { prefix = "●" },
 	})
 
