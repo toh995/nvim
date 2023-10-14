@@ -51,6 +51,9 @@ function setup_tree(pkgs)
 		-- Set the minimum threshold for notify messages
 		notify = { threshold = vim.log.levels.WARN },
 
+		-- Set the trash command
+		trash = { cmd = "trash" },
+
 		-- Set keymappings
 		on_attach = function(bufnr)
 			local function opts(desc)
@@ -65,10 +68,14 @@ function setup_tree(pkgs)
 			vim.keymap.del("n", "J", { buffer = bufnr })
 			vim.keymap.del("n", "K", { buffer = bufnr })
 
-			-- Add some more keymaps
+			-- Add navigation keymaps
 			vim.keymap.set("n", "h", pkgs.api.node.navigate.parent_close, opts("Collapse current folder"))
 			vim.keymap.set("n", "H", pkgs.api.tree.collapse_all, opts("Collapse All"))
 			vim.keymap.set("n", "l", pkgs.api.node.open.edit, opts("Open"))
+
+			-- Set up trash
+			vim.keymap.del("n", "d", { buffer = bufnr })
+			vim.keymap.set("n", "d", pkgs.api.fs.trash, opts("Trash"))
 		end,
 	})
 end
