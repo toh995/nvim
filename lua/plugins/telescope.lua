@@ -5,7 +5,19 @@ function M.config()
 	local actions = require("telescope.actions")
 	local builtin = require("telescope.builtin")
 	local telescope = require("telescope")
+	local nvim_tree_api = require("nvim-tree.api")
 
+	--[[ 
+  https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions
+
+  todo:
+    - vim.api.nvim_create_user_command("RS", builtin.pickers, {})
+    - builtin.quickfix 
+    - builtin.quickfixhistory
+    - builtin.oldfiles
+    - builtin.colorscheme
+    - builtin.diagnostics
+  --]]
 	-- setup
 	telescope.setup({
 		defaults = {
@@ -20,25 +32,25 @@ function M.config()
 		},
 	})
 
-	-- user commands, to launch various picker windows
-	vim.api.nvim_create_user_command("F", function()
-		builtin.find_files({ hidden = true })
-	end, {})
-
+	-- Reopen previous telescope window
 	vim.api.nvim_create_user_command("R", builtin.resume, {})
 
-	--[[ 
-  https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions
+	-- File picker
+	vim.api.nvim_create_user_command("F", function()
+		builtin.find_files({
+			hidden = true,
+			attach_mappings = function()
+				actions.select_default:enhance({
+					post = function()
+						nvim_tree_api.tree.find_file({})
+					end,
+				})
+				return true
+			end,
+		})
+	end, {})
 
-  todo:
-    - vim.api.nvim_create_user_command("RS", builtin.pickers, {})
-    - builtin.quickfix 
-    - builtin.quickfixhistory
-    - builtin.oldfiles
-    - builtin.colorscheme
-    - builtin.diagnostics
-  --]]
-
+	-- Grep
 	vim.api.nvim_create_user_command("G", function(tbl)
 		local filepath = tbl.fargs[1] or "."
 		local glob_pattern = tbl.fargs[2] or ""
@@ -47,6 +59,14 @@ function M.config()
 			search_dirs = { filepath },
 			glob_pattern = glob_pattern,
 			prompt_title = "Grep in " .. filepath .. " " .. glob_pattern,
+			attach_mappings = function()
+				actions.select_default:enhance({
+					post = function()
+						nvim_tree_api.tree.find_file({})
+					end,
+				})
+				return true
+			end,
 		})
 	end, {
 		nargs = "*",

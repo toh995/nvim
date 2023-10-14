@@ -96,7 +96,10 @@ function M.configure()
 		-- fuzzy finder
 		{
 			"nvim-telescope/telescope.nvim",
-			dependencies = { "nvim-lua/plenary.nvim" },
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-tree/nvim-tree.lua",
+			},
 			branch = "0.1.x",
 			config = require("plugins.telescope").config,
 		},
