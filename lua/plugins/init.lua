@@ -111,6 +111,7 @@ function M.configure()
 		-- Markdown preview
 		{
 			"iamcco/markdown-preview.nvim",
+			-- need to use yarn for nixOS
 			build = "cd app && yarn install",
 			init = function()
 				vim.g.mkdp_filetypes = { "markdown" }
