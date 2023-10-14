@@ -48,6 +48,9 @@ function setup_tree(pkgs)
 		-- Disable window-picker, when opening a new file
 		actions = { open_file = { window_picker = { enable = false } } },
 
+		-- Set the minimum threshold for notify messages
+		notify = { threshold = vim.log.levels.WARN },
+
 		-- Set keymappings
 		on_attach = function(bufnr)
 			local function opts(desc)
