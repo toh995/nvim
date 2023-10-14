@@ -188,9 +188,6 @@ function M.configure()
 				vscode.load()
 			end,
 		},
-
-		-- editor config
-		{ "editorconfig/editorconfig-vim" },
 	})
 end
 
