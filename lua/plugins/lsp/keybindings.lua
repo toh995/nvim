@@ -24,6 +24,22 @@ function set_keybindings(pkgs)
 		vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = args.buf })
 		vim.keymap.set("", "<leader>k", vim.lsp.buf.hover, { noremap = true, buffer = args.buf })
 		vim.keymap.set("", "<leader>d", vim.diagnostic.open_float, { noremap = true })
+
+		-- Select menu for server restarts
+		vim.api.nvim_create_user_command("LSP", function(_)
+			local clients = vim.lsp.get_active_clients()
+			vim.ui.select(clients, {
+				prompt = "Choose a client to restart",
+				format_item = function(client)
+					print(vim.inspect(client))
+					return client.name
+				end,
+			}, function(client)
+				if client then
+					vim.cmd("LspRestart " .. client.id)
+				end
+			end)
+		end, {})
 	end
 end
 
