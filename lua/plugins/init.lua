@@ -52,15 +52,21 @@ function M.configure()
 			},
 		},
 
-		-- Improved UI for `vim.input` and `vim.select`
-		{ "stevearc/dressing.nvim" },
-
 		-- tabs
 		{
 			"akinsho/bufferline.nvim",
 			version = "*",
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = require("plugins.bufferline").config,
+		},
+
+		-- file explorer
+		{
+			"nvim-tree/nvim-tree.lua",
+			version = "*",
+			lazy = false,
+			dependencies = { "nvim-tree/nvim-web-devicons" },
+			config = require("plugins.nvim_tree").config,
 		},
 
 		-- Status line
@@ -73,25 +79,16 @@ function M.configure()
 			config = require("plugins.lualine").config,
 		},
 
+		-- Improved UI for `vim.input` and `vim.select`
+		{ "stevearc/dressing.nvim" },
+
 		-- syntax highlighting
 		{
 			"nvim-treesitter/nvim-treesitter",
-			build = function()
-				local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-				ts_update()
-			end,
+			build = ":TSUpdate",
 			config = require("plugins.nvim_treesitter").config,
 		},
 		{ "nvim-treesitter/nvim-treesitter-context" },
-
-		-- file explorer
-		{
-			"nvim-tree/nvim-tree.lua",
-			version = "*",
-			lazy = false,
-			dependencies = { "nvim-tree/nvim-web-devicons" },
-			config = require("plugins.nvim_tree").config,
-		},
 
 		-- fuzzy finder
 		{
@@ -116,6 +113,7 @@ function M.configure()
 			"iamcco/markdown-preview.nvim",
 			-- need to use yarn for nixOS
 			build = "cd app && yarn install",
+			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 			init = function()
 				vim.g.mkdp_filetypes = { "markdown" }
 			end,
@@ -147,17 +145,13 @@ function M.configure()
 		-- autopairs
 		{
 			"windwp/nvim-autopairs",
-			config = function()
-				require("nvim-autopairs").setup({})
-			end,
+			config = true,
 		},
 
 		-- auto-close HTML tags
 		{
 			"windwp/nvim-ts-autotag",
-			config = function()
-				require("nvim-ts-autotag").setup()
-			end,
+			config = true,
 		},
 
 		-- vim-tmux
@@ -172,10 +166,7 @@ function M.configure()
 		-- colorized git status in the signs column
 		{
 			"lewis6991/gitsigns.nvim",
-			-- TODO: Move these back into separate files??
-			config = function()
-				require("gitsigns").setup()
-			end,
+			config = true,
 		},
 
 		-- Color schemes
