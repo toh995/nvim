@@ -2,10 +2,11 @@
 local M = {}
 
 function M.config()
-	local b = require("bufferline")
+	local bufferline = require("bufferline")
 
 	-- set up some keyboard shortcuts for tabs
 	vim.keymap.set("", "t", ":tabnew<CR>", { noremap = true })
+	-- move current window to a new tab
 	vim.keymap.set("", "T", "<C-W>T", { noremap = true })
 	vim.keymap.set("", "Q", ":tabclose<CR>", { noremap = true })
 	vim.keymap.set("", "J", ":BufferLineCyclePrev<CR>", { noremap = true })
@@ -17,9 +18,10 @@ function M.config()
 	vim.keymap.set("", "<leader>K", ":tabmove+<CR>", { noremap = true })
 
 	-- user commands
+	-- open a new tab, which has a copy of the current window
 	vim.api.nvim_create_user_command("TVS", "tab vs", {})
 
-	b.setup({
+	bufferline.setup({
 		options = {
 			mode = "tabs",
 			separator_style = "padded_slant",

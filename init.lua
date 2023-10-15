@@ -28,6 +28,9 @@ vim.opt.expandtab = true
 -- see https://www.reddit.com/r/neovim/comments/ra7cbn/why_barbar_and_lualine_doesnt_align_with_nvimtree/
 vim.opt.fillchars:append("vert:▕")
 
+-- ensure colors are displayed properly
+vim.opt.termguicolors = true
+
 ------------------
 -- AUTOCOMMANDS --
 ------------------
