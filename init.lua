@@ -64,6 +64,25 @@ vim.keymap.set("", "<C-K>", "<C-W><C-K>", { noremap = true })
 vim.keymap.set("", "<C-L>", "<C-W><C-L>", { noremap = true })
 vim.keymap.set("", "<C-H>", "<C-W><C-H>", { noremap = true })
 
+-------------------
+-- USER COMMANDS --
+-------------------
+-- Always open help pages in the current window
+vim.api.nvim_create_user_command("H", function(tbl)
+	local arg = tbl.args
+	-- If we aren't currently on a help buffer,
+	-- then create a new empty buffer, with buftype == "help".
+	-- This is a hack based on https://stackoverflow.com/a/26431632
+	if vim.bo.buftype ~= "help" then
+		local bufnr = vim.api.nvim_create_buf(true, true)
+		vim.bo[bufnr].buftype = "help"
+		local curr_winnr = 0
+		vim.api.nvim_win_set_buf(curr_winnr, bufnr)
+	end
+	-- open help window
+	vim.cmd("vert help " .. arg)
+end, { nargs = 1 })
+
 -------------
 -- PLUGINS --
 -------------
