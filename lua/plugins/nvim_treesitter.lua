@@ -11,6 +11,13 @@ function M.config()
 	vim.opt.foldlevelstart = 99
 
 	configs.setup({
+		-- TODO: remove `markdown_inline`, when
+		-- this once this commit gets into `master`:
+		-- https://github.com/nvim-treesitter/nvim-treesitter/commit/c7ba60a512772bf14e5f71074972225377eec1a0
+		--
+		-- More info: https://github.com/nvim-treesitter/nvim-treesitter/issues/5529
+		ensure_installed = { "latex", "markdown_inline" },
+
 		-- Automatically install missing parsers when entering buffer
 		auto_install = true,
 
