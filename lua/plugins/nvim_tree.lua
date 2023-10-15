@@ -76,6 +76,15 @@ function setup_tree(pkgs)
 			-- Set up trash
 			vim.keymap.del("n", "d", { buffer = bufnr })
 			vim.keymap.set("n", "d", pkgs.api.fs.trash, opts("Trash"))
+
+			-- Open file in new tab
+			vim.keymap.del("n", "<C-t>", { buffer = bufnr })
+			vim.keymap.set("n", "<C-t>", function()
+				-- move the vim cursor to the right first,
+				-- then open the tab
+				vim.cmd("wincmd l")
+				pkgs.api.node.open.tab()
+			end, opts("Trash"))
 		end,
 	})
 end
