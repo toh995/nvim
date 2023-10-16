@@ -158,7 +158,7 @@ function M.configure()
 		-- show git blame inline
 		{
 			"f-person/git-blame.nvim",
-			config = require("plugins.git_blame").config,
+			config = require("plugins.gitblame").config,
 		},
 
 		-- colorized git status in the signs column

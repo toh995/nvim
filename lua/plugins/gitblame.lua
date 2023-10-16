@@ -1,4 +1,4 @@
--- @module plugins.git_blame
+-- @module plugins.gitblame
 local M = {}
 
 function M.config()
@@ -13,7 +13,8 @@ function M.config()
 
 	-- keybindings
 	-- vim.keymap.set("", "<leader>gb", function() vim.api.nvim_command("GitBlameToggle") end, { noremap = true })
-	vim.keymap.set("", "<leader>gbu", gitblame.open_commit_url, { noremap = true })
+	vim.keymap.set("", "<leader>gbu", ":GitBlameOpenCommitURL<CR>", { noremap = true })
+	vim.keymap.set("", "<leader>gu", ":GitBlameOpenFileURL<CR>", { noremap = true })
 end
 
 return M
