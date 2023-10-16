@@ -22,9 +22,13 @@ function M.config()
 		auto_install = true,
 
 		-- Syntax highlighting
-		highlight = {
-			enable = true,
-		},
+		highlight = { enable = true },
+
+		-- Auto-complete HTML tags
+		autotag = { enable = true },
+
+		-- Auto-insert `end`
+		endwise = { enable = true },
 	})
 end
 

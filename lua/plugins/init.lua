@@ -82,13 +82,23 @@ function M.configure()
 		-- Improved UI for `vim.input` and `vim.select`
 		{ "stevearc/dressing.nvim" },
 
-		-- syntax highlighting
+		-- treesitter
 		{
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
+			dependencies = {
+				"RRethy/nvim-treesitter-endwise",
+				"windwp/nvim-ts-autotag",
+			},
 			config = require("plugins.nvim_treesitter").config,
 		},
 		{ "nvim-treesitter/nvim-treesitter-context" },
+
+		-- Auto-pairs
+		{
+			"LunarWatcher/auto-pairs",
+			config = require("plugins.auto_pairs").config,
+		},
 
 		-- fuzzy finder
 		{
@@ -140,18 +150,6 @@ function M.configure()
 		{
 			"gbprod/cutlass.nvim",
 			config = require("plugins.cutlass").config,
-		},
-
-		-- autopairs
-		{
-			"windwp/nvim-autopairs",
-			config = true,
-		},
-
-		-- auto-close HTML tags
-		{
-			"windwp/nvim-ts-autotag",
-			config = true,
 		},
 
 		-- vim-tmux
