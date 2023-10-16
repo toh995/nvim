@@ -68,6 +68,17 @@ function M.configure()
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = require("plugins.nvim_tree").config,
 		},
+		-- auto-notify LSP server, when a rename happens
+		{
+			"antosha417/nvim-lsp-file-operations",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-tree/nvim-tree.lua",
+			},
+			opts = {
+				timeout_ms = 60000,
+			},
+		},
 
 		-- Status line
 		{
