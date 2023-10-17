@@ -188,6 +188,13 @@ function M.configure()
 				vscode.load()
 			end,
 		},
+		-- Need to enable alacritty settings too
+		-- {
+		-- 	"letorbi/vim-colors-modern-borland",
+		-- 	config = function()
+		-- 		vim.cmd("color borland")
+		-- 	end,
+		-- },
 	})
 end
 
