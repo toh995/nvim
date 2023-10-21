@@ -24,7 +24,7 @@ function M.config()
 	bufferline.setup({
 		options = {
 			mode = "tabs",
-			separator_style = "padded_slant",
+			separator_style = "slant",
 			buffer_close_icon = "x",
 			offsets = {
 				{
