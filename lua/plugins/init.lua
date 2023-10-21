@@ -195,6 +195,8 @@ function M.configure()
 		-- 		vim.cmd("color borland")
 		-- 	end,
 		-- },
+	}, {
+		ui = { border = "rounded" },
 	})
 end
 
