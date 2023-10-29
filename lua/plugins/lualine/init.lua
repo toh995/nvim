@@ -22,7 +22,10 @@ function M.config()
 	-- Set up lualine
 	lualine.setup({
 		options = {
-			disabled_filetypes = { statusline = { "help", "NvimTree" } },
+			disabled_filetypes = {
+				statusline = { "aerial", "help", "NvimTree" },
+				winbar = { "aerial", "help", "NvimTree" },
+			},
 		},
 		sections = {
 			lualine_a = { "mode" },
@@ -39,6 +42,19 @@ function M.config()
 			lualine_x = {},
 			lualine_y = {},
 			lualine_z = {},
+		},
+
+		winbar = {
+			lualine_c = {
+				-- {
+				-- 	"navic",
+				-- 	color_correction = nil,
+				-- 	navic_opts = nil,
+				-- },
+				-- {
+				-- 	"aerial",
+				-- },
+			},
 		},
 	})
 end

@@ -7,6 +7,9 @@ function M.configure()
 	local neodev = require("neodev") -- lua extras
 	local typescript_tools = require("typescript-tools")
 
+	-- set rounded borders for :LspInfo
+	require("lspconfig.ui.windows").default_options.border = "rounded"
+
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
 	-- Ember
@@ -25,7 +28,12 @@ function M.configure()
 
 	-- JS/TS
 	lspconfig.eslint.setup({ capabilities = capabilities })
-	typescript_tools.setup({ capabilities = capabilities })
+	typescript_tools.setup({
+		capabilities = capabilities,
+		on_attach = function(client, bufnr)
+			require("nvim-navic").attach(client, bufnr)
+		end,
+	})
 
 	-- Lua
 	neodev.setup({})
