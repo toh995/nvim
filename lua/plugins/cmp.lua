@@ -1,7 +1,7 @@
--- @module plugins.lsp.auto_complete
+-- @module plugins.cmp
 local M = {}
 
-function M.configure()
+function M.config()
 	local cmp = require("cmp")
 	local devicons = require("nvim-web-devicons")
 	local luasnip = require("luasnip")

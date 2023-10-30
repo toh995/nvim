@@ -31,17 +31,6 @@ function M.configure()
 				},
 				-- Telescope (for LSP go-tos)
 				{ "nvim-telescope/telescope.nvim" },
-				-- autocomplete
-				{ "hrsh7th/nvim-cmp" },
-				{ "hrsh7th/cmp-buffer" },
-				{ "hrsh7th/cmp-nvim-lsp" },
-				{ "hrsh7th/cmp-nvim-lsp-signature-help" },
-				{ "hrsh7th/cmp-path" },
-				-- icons for autocomplete
-				{ "nvim-tree/nvim-web-devicons" },
-				-- snippets
-				{ "L3MON4D3/LuaSnip" },
-				{ "saadparwaiz1/cmp_luasnip" },
 				-- custom lua stuff
 				{ "folke/neodev.nvim" },
 				-- custom tsserver
@@ -49,6 +38,23 @@ function M.configure()
 					"pmizio/typescript-tools.nvim",
 					dependencies = { "nvim-lua/plenary.nvim" },
 				},
+			},
+		},
+
+		-- Auto-complete
+		{
+			"hrsh7th/nvim-cmp",
+			config = require("plugins.cmp").config,
+			dependencies = {
+				"hrsh7th/cmp-buffer",
+				"hrsh7th/cmp-nvim-lsp",
+				"hrsh7th/cmp-nvim-lsp-signature-help",
+				"hrsh7th/cmp-path",
+				-- snippets
+				"L3MON4D3/LuaSnip",
+				"saadparwaiz1/cmp_luasnip",
+				-- icons for autocomplete
+				"nvim-tree/nvim-web-devicons",
 			},
 		},
 
