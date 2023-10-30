@@ -1,12 +1,12 @@
 -- @module plugins.lualine.components.diagnostics
-local DiagnosticIcons = require("plugins.lsp.diagnostics").Icons
+local user_icons = require("const.user_icons")
 
 return {
 	"diagnostics",
 	symbols = {
-		error = DiagnosticIcons.ERROR,
-		warn = DiagnosticIcons.WARN,
-		info = DiagnosticIcons.INFO,
-		hint = DiagnosticIcons.HINT,
+		error = user_icons.diagnostics.Error,
+		warn = user_icons.diagnostics.Warn,
+		info = user_icons.diagnostics.Hint,
+		hint = user_icons.diagnostics.Info,
 	},
 }

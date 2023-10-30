@@ -1,15 +1,8 @@
 -- @module plugins.lsp.diagnostics
 local M = {}
 
-M.Icons = {
-	ERROR = "󰅚 ",
-	WARN = "󰀪 ",
-	HINT = "󰌶 ",
-	INFO = "󰋽 ",
-}
-
 function M.configure()
-	local util = require("../../util")
+	local user_icons = require("const.user_icons")
 
 	-- set up some diagnostic behavior
 	vim.diagnostic.config({
@@ -24,11 +17,8 @@ function M.configure()
 
 	-- set the icons for the signs column
 	-- i.e. the column left of the line numbers
-	for name, icon in pairs(M.Icons) do
-		local normalized = string.lower(name)
-		normalized = util.capitalize_first_letter(normalized)
-
-		local hl = "DiagnosticSign" .. normalized
+	for name, icon in pairs(user_icons.diagnostics) do
+		local hl = "DiagnosticSign" .. name
 		vim.fn.sign_define(hl, {
 			text = icon,
 			texthl = hl,
