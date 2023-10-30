@@ -3,7 +3,9 @@ local M = {}
 
 function M.config()
 	-- Set up mason FIRST
-	require("mason").setup()
+	require("mason").setup({
+		ui = { border = "rounded" },
+	})
 	require("mason-lspconfig").setup({ automatic_installation = false })
 
 	-- Set up other stuff
