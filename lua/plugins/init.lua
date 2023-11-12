@@ -58,6 +58,47 @@ function M.configure()
 			},
 		},
 
+		-- treesitter
+		{
+			"nvim-treesitter/nvim-treesitter",
+			build = ":TSUpdate",
+			dependencies = {
+				"RRethy/nvim-treesitter-endwise",
+				"windwp/nvim-ts-autotag",
+			},
+			config = require("plugins.nvim_treesitter").config,
+		},
+		{ "nvim-treesitter/nvim-treesitter-context" },
+
+		-- {
+		-- 	"SmiteshP/nvim-navic",
+		-- 	dependencies = { "neovim/nvim-lspconfig" },
+		-- },
+
+		{
+			"lukas-reineke/indent-blankline.nvim",
+			main = "ibl",
+			opts = {
+				scope = {
+					show_start = false,
+					show_end = false,
+				},
+			},
+		},
+
+		{
+			"stevearc/aerial.nvim",
+			opts = {},
+			-- Optional dependencies
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+				-- TODO: what are devicons used for...?
+				"nvim-tree/nvim-web-devicons",
+				-- "onsails/lspkind.nvim",
+			},
+			config = require("plugins.aerial").config,
+		},
+
 		-- tabs
 		{
 			"akinsho/bufferline.nvim",
@@ -86,6 +127,17 @@ function M.configure()
 			},
 		},
 
+		-- fuzzy finder
+		{
+			"nvim-telescope/telescope.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-tree/nvim-tree.lua",
+			},
+			branch = "0.1.x",
+			config = require("plugins.telescope").config,
+		},
+
 		-- Status line
 		{
 			"nvim-lualine/lualine.nvim",
@@ -98,35 +150,6 @@ function M.configure()
 
 		-- Improved UI for `vim.input` and `vim.select`
 		{ "stevearc/dressing.nvim" },
-
-		-- treesitter
-		{
-			"nvim-treesitter/nvim-treesitter",
-			build = ":TSUpdate",
-			dependencies = {
-				"RRethy/nvim-treesitter-endwise",
-				"windwp/nvim-ts-autotag",
-			},
-			config = require("plugins.nvim_treesitter").config,
-		},
-		{ "nvim-treesitter/nvim-treesitter-context" },
-
-		-- Auto-pairs
-		{
-			"LunarWatcher/auto-pairs",
-			config = require("plugins.auto_pairs").config,
-		},
-
-		-- fuzzy finder
-		{
-			"nvim-telescope/telescope.nvim",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"nvim-tree/nvim-tree.lua",
-			},
-			branch = "0.1.x",
-			config = require("plugins.telescope").config,
-		},
 
 		-- test runner
 		{
@@ -158,6 +181,12 @@ function M.configure()
 		{
 			"numToStr/Comment.nvim",
 			config = require("plugins.comment").config,
+		},
+
+		-- Auto-pairs
+		{
+			"LunarWatcher/auto-pairs",
+			config = require("plugins.auto_pairs").config,
 		},
 
 		-- vim surround
@@ -248,7 +277,9 @@ function M.configure()
 		-- 	config = function()
 		-- 		require("fluoromachine").setup({
 		-- 			glow = true,
-		-- 			theme = "delta",
+		-- 			-- theme = "fluoromachine",
+		-- 			theme = "retrowave",
+		-- 			-- theme = "delta",
 		-- 		})
 		--
 		-- 		vim.cmd("colorscheme fluoromachine")
@@ -258,6 +289,10 @@ function M.configure()
 		-- {
 		-- 	"ribru17/bamboo.nvim",
 		-- 	config = function()
+		-- 		require("bamboo").setup({
+		-- 			-- style = "vlugaris",
+		-- 			style = "multiplex",
+		-- 		})
 		-- 		vim.cmd("colorscheme bamboo")
 		-- 	end,
 		-- },
