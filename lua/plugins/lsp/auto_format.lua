@@ -2,6 +2,7 @@
 local M = {}
 
 local build_eslint_d
+local build_fourmolu
 
 function M.configure()
 	local lspconfig = require("lspconfig")
@@ -16,11 +17,13 @@ function M.configure()
 	local util = require("../../util")
 
 	local eslint_d = build_eslint_d(fs)
+	local fourmolu = build_fourmolu(fs)
 
 	-----------------------------------
 	-- Build languages and filetypes --
 	-----------------------------------
 	local languages = {
+		haskell = { fourmolu },
 		lua = { stylua },
 		python = { black, ruff },
 	}
@@ -77,6 +80,19 @@ function build_eslint_d(fs)
 	local command = string.format("%s %s", fs.executable(formatter, fs.Scope.NODE), args)
 
 	return {
+		formatCommand = command,
+		formatStdin = true,
+	}
+end
+
+function build_fourmolu(fs)
+	-- Adapted from https://github.com/creativenull/efmls-configs-nvim/blob/b273ecd/lua/efmls-configs/formatters/fourmolu.lua
+	-- The only thing I changed was, adding the argument `--indentation=2`
+	local formatter = "fourmolu"
+	local command = string.format("%s --indentation=2 --stdin-input-file '${INPUT}' -", fs.executable(formatter))
+
+	return {
+		prefix = formatter,
 		formatCommand = command,
 		formatStdin = true,
 	}
