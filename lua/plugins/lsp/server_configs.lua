@@ -17,7 +17,25 @@ function M.configure()
 	lspconfig.glint.setup({ capabilities = capabilities })
 
 	-- Haskell
-	lspconfig.hls.setup({ capabilities = capabilities })
+	lspconfig.hls.setup({
+		capabilities = capabilities,
+		filetypes = { "haskell", "lhaskell", "cabal" },
+		settings = {
+			haskell = {
+				plugin = {
+					-- Configure renames
+					rename = {
+						globalOn = true,
+						renameOn = true,
+						config = {
+							-- Experimental cross-module renaming
+							crossModule = true,
+						},
+					},
+				},
+			},
+		},
+	})
 
 	-- HTML/CSS
 	lspconfig.cssls.setup({ capabilities = capabilities })
