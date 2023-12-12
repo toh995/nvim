@@ -3,7 +3,7 @@ local M = {}
 
 function M.config()
 	require("better_escape").setup({
-		mapping = { "jk", "kj" },
+		mapping = { "kj" },
 		clear_empty_lines = true,
 	})
 end
