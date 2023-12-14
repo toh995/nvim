@@ -16,6 +16,9 @@ function M.configure()
 	lspconfig.ember.setup({ capabilities = capabilities })
 	lspconfig.glint.setup({ capabilities = capabilities })
 
+	-- Go
+	lspconfig.gopls.setup({ capabilities = capabilities })
+
 	-- Haskell
 	lspconfig.hls.setup({
 		capabilities = capabilities,

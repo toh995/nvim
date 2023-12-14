@@ -10,6 +10,7 @@ function M.configure()
 	local fs = require("efmls-configs.fs")
 
 	local black = require("efmls-configs.formatters.black")
+	local gofmt = require("efmls-configs.formatters.gofmt")
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
 	local ruff = require("efmls-configs.formatters.ruff")
 	local stylua = require("efmls-configs.formatters.stylua")
@@ -23,6 +24,7 @@ function M.configure()
 	-- Build languages and filetypes --
 	-----------------------------------
 	local languages = {
+		go = { gofmt },
 		haskell = { fourmolu },
 		lua = { stylua },
 		python = { black, ruff },
