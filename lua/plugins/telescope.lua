@@ -35,6 +35,12 @@ function M.config()
 	-- Reopen previous telescope window
 	vim.api.nvim_create_user_command("R", builtin.resume, {})
 
+	-- LSP diagnostics
+	vim.api.nvim_create_user_command("D", function()
+		-- fetch for current buffer only
+		builtin.diagnostics({ bufnr = 0 })
+	end, {})
+
 	-- File picker
 	vim.api.nvim_create_user_command("F", function()
 		builtin.find_files({
