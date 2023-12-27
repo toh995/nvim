@@ -18,6 +18,7 @@ function M.configure()
 
 	-- Go
 	lspconfig.gopls.setup({ capabilities = capabilities })
+	lspconfig.golangci_lint_ls.setup({ capabilities = capabilities })
 
 	-- Haskell
 	lspconfig.hls.setup({
