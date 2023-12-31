@@ -40,6 +40,10 @@ function M.config()
 		-- fetch for current buffer only
 		builtin.diagnostics({ bufnr = 0 })
 	end, {})
+	vim.api.nvim_create_user_command("DA", function()
+		-- fetch for ALL buffers
+		builtin.diagnostics({ bufnr = nil })
+	end, {})
 
 	-- File picker
 	vim.api.nvim_create_user_command("F", function()
