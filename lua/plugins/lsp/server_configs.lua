@@ -82,6 +82,9 @@ function M.configure()
 	-- Nix
 	lspconfig.nil_ls.setup({ capabilities = capabilities })
 
+	-- Protobuf
+	lspconfig.bufls.setup({ capabilities = capabilities })
+
 	-- Python
 	lspconfig.pylsp.setup({ capabilities = capabilities })
 	-- lspconfig.pyright.setup({ capabilities = capabilities })
