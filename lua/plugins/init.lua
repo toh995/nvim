@@ -148,6 +148,19 @@ function M.configure()
 			config = require("plugins.lualine").config,
 		},
 
+		-- Status column
+		{
+			"luukvbaal/statuscol.nvim",
+			config = require("plugins.statuscol").config,
+		},
+
+		-- Improved UI for folds
+		{
+			"kevinhwang91/nvim-ufo",
+			dependencies = { "kevinhwang91/promise-async" },
+			config = require("plugins.ufo").config,
+		},
+
 		-- Improved UI for `vim.input` and `vim.select`
 		{ "stevearc/dressing.nvim" },
 

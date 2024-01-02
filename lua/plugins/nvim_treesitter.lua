@@ -4,12 +4,7 @@ local M = {}
 function M.config()
 	local configs = require("nvim-treesitter.configs")
 
-	-- use treesitter for folding
-	vim.opt.foldmethod = "expr"
-	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-	-- ensure that newly opened buffers start with all folds open
-	vim.opt.foldlevelstart = 99
-
+	---@diagnostic disable-next-line: missing-fields
 	configs.setup({
 		-- TODO: remove `markdown_inline`, when
 		-- this once this commit gets into `master`:
