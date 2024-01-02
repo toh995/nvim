@@ -1,5 +1,15 @@
 -- @module const.user_icons
+local chevron = {
+	Down = "",
+	Right = "",
+}
+
 return {
+	-- Duplicate chevron for LSP auto-complete
+	chevron = {
+		Down = chevron.Down,
+		Right = chevron.Right,
+	},
 	diagnostics = {
 		Error = "󰅚 ",
 		Warn = "󰀪 ",
@@ -14,7 +24,7 @@ return {
 		Codeium = "󰘦 ",
 		Color = "",
 		Control = "",
-		Collapsed = "",
+		Collapsed = chevron.Right,
 		Constant = "",
 		Constructor = "",
 		Copilot = "",

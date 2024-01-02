@@ -3,18 +3,18 @@ local M = {}
 
 function M.config()
 	local ufo = require("ufo")
+	local icons = require("const.user_icons")
 
 	vim.o.foldcolumn = "1" -- '0' is not bad
 	vim.o.foldlevel = 99 -- Using ufo provider need a large value
 	vim.o.foldlevelstart = 99
 	vim.o.foldenable = true
-	-- @todo: consolidate the chevron icons
 	vim.opt.fillchars:append({
 		eob = " ",
 		fold = " ",
-		foldopen = "",
+		foldopen = icons.chevron.Down,
 		foldsep = " ",
-		foldclose = "",
+		foldclose = icons.chevron.Right,
 	})
 
 	vim.keymap.set("n", "<leader>h", "zc") -- close fold
