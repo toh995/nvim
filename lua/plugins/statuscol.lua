@@ -4,9 +4,14 @@ local M = {}
 function M.config()
 	local builtin = require("statuscol.builtin")
 
+	local ft = require("const.filetypes")
+
 	require("statuscol").setup({
-		-- @todo: extract filetypes into const file
-		ft_ignore = { "aerial", "help", "NvimTree" },
+		ft_ignore = {
+			ft.Aerial,
+			ft.Help,
+			ft.NvimTree,
+		},
 		segments = {
 			-- Fold symbols
 			{

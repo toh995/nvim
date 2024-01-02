@@ -3,6 +3,7 @@ local M = {}
 
 function M.config()
 	local ufo = require("ufo")
+
 	local icons = require("const.user_icons")
 
 	vim.o.foldcolumn = "1" -- '0' is not bad
