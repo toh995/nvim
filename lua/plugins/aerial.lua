@@ -3,6 +3,7 @@ local M = {}
 
 function M.config()
 	local aerial = require("aerial")
+	local data = require("aerial.data")
 
 	-- Keymapping to toggle the aerial window
 	vim.keymap.set("", "<leader>a", function()
@@ -42,6 +43,7 @@ function M.config()
 				ember = -1,
 				eslint = -1,
 				glint = -1,
+				golangci_lint_ls = -1,
 				neodev = -1,
 				ruff_lsp = -1,
 			},
@@ -51,11 +53,8 @@ function M.config()
 			["H"] = "actions.tree_close_all",
 			["L"] = "actions.tree_open_all",
 			["h"] = "actions.tree_close",
-			-- ["l"] = "actions.tree_open",
 			["l"] = {
 				callback = function()
-					local aerial = require("aerial")
-					local data = require("aerial.data")
 					local index = vim.api.nvim_win_get_cursor(0)[1]
 					local bufdata = data.get_or_create(0)
 					local item = bufdata:item(index)
@@ -74,7 +73,6 @@ function M.config()
 			["<C-v>"] = "actions.jump_vsplit",
 			["<C-t>"] = {
 				callback = function()
-					local aerial = require("aerial")
 					aerial.select({ split = "tab vs" })
 				end,
 			},
