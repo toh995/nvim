@@ -2,8 +2,6 @@
 local M = {}
 
 function M.config()
-	local gitblame = require("gitblame")
-
 	-- disable gitblame on startup
 	-- vim.g.gitblame_enabled = 0
 

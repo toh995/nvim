@@ -185,6 +185,13 @@ function M.configure()
 			config = require("plugins.markdown_preview").config,
 		},
 
+		-- Jump
+		{
+			"folke/flash.nvim",
+			event = "VeryLazy",
+			config = require("plugins.flash").config,
+		},
+
 		-- Better escape
 		{
 			"max397574/better-escape.nvim",
