@@ -24,6 +24,25 @@ function M.config()
 
 		-- Auto-insert `end`
 		endwise = { enable = true },
+
+		textobjects = {
+			select = {
+				enable = true,
+				keymaps = {
+					["ab"] = "@block.outer",
+					["ib"] = "@block.inner",
+				},
+			},
+		},
+
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "gnn",
+				node_incremental = "K",
+				node_decremental = "J",
+			},
+		},
 	})
 end
 

@@ -63,6 +63,7 @@ function M.configure()
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
 			dependencies = {
+				"nvim-treesitter/nvim-treesitter-textobjects",
 				"RRethy/nvim-treesitter-endwise",
 				"windwp/nvim-ts-autotag",
 			},
