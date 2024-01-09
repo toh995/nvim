@@ -26,10 +26,12 @@ function M.config()
 		},
 		filter_kind = false, -- display all symbols
 
+		manage_folds = false,
+		link_folds_to_tree = false,
+		link_tree_to_folds = false,
+
 		highlight_on_hover = true,
 		highlight_on_jump = false,
-
-		-- show_guides = true,
 
 		treesitter = { update_delay = 200 },
 		markdown = { update_delay = 200 },
