@@ -3,6 +3,7 @@ local M = {}
 
 function M.config()
 	local bufferline = require("bufferline")
+	local ft = require("const.filetypes")
 
 	-- set up some keyboard shortcuts for tabs
 	vim.keymap.set("", "t", ":tabnew<CR>", { noremap = true })
@@ -28,10 +29,12 @@ function M.config()
 			buffer_close_icon = "x",
 			offsets = {
 				{
-					filetype = "NvimTree",
-					text = "",
-					highlight = "Directory",
-					text_align = "left",
+					filetype = ft.NvimTree,
+				},
+				{
+					filetype = ft.Aerial,
+					highlight = "BufferlineGroupSeparator",
+					separator = "▕",
 				},
 			},
 		},
