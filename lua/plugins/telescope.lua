@@ -35,6 +35,9 @@ function M.config()
 	-- Reopen previous telescope window
 	vim.api.nvim_create_user_command("R", builtin.resume, {})
 
+	-- LSP symbols
+	vim.api.nvim_create_user_command("LS", builtin.lsp_document_symbols, {})
+
 	-- LSP diagnostics
 	vim.api.nvim_create_user_command("D", function()
 		-- fetch for current buffer only
