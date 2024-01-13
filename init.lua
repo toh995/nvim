@@ -81,7 +81,7 @@ vim.api.nvim_create_user_command("H", function(tbl)
 	end
 	-- open help window
 	vim.cmd("vert help " .. arg)
-end, { nargs = 1 })
+end, { nargs = 1, complete = "help" })
 
 -------------
 -- PLUGINS --
