@@ -4,7 +4,7 @@ local M = {}
 function M.config()
 	local ufo = require("ufo")
 
-	local icons = require("const.user_icons")
+	local user_icons = require("const.user_icons")
 
 	vim.o.foldcolumn = "1" -- '0' is not bad
 	vim.o.foldlevel = 99 -- Using ufo provider need a large value
@@ -13,9 +13,9 @@ function M.config()
 	vim.opt.fillchars:append({
 		eob = " ",
 		fold = " ",
-		foldopen = icons.chevron.Down,
+		foldopen = user_icons.chevron.Down,
 		foldsep = " ",
-		foldclose = icons.chevron.Right,
+		foldclose = user_icons.chevron.Right,
 	})
 
 	vim.keymap.set("n", "<leader>h", "zc") -- close fold

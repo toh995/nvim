@@ -5,6 +5,8 @@ function M.config()
 	local aerial = require("aerial")
 	local data = require("aerial.data")
 
+	local user_icons = require("const.user_icons")
+
 	-- Keymapping to toggle the aerial window
 	vim.keymap.set("", "<leader>a", function()
 		vim.cmd("AerialToggle")
@@ -80,7 +82,7 @@ function M.config()
 			},
 		},
 
-		icons = require("const.user_icons").kinds,
+		icons = user_icons.kinds,
 
 		-- post_parse_symbol = function(bufnr, item, ctx)
 		-- 	-- vim.notify(vim.inspect(item))

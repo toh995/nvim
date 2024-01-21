@@ -58,7 +58,7 @@ function M.configure()
 			},
 		},
 
-		-- treesitter
+		-- Treesitter
 		{
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
@@ -71,11 +71,7 @@ function M.configure()
 		},
 		{ "nvim-treesitter/nvim-treesitter-context" },
 
-		-- {
-		-- 	"SmiteshP/nvim-navic",
-		-- 	dependencies = { "neovim/nvim-lspconfig" },
-		-- },
-
+		-- Indent blankline
 		{
 			"lukas-reineke/indent-blankline.nvim",
 			main = "ibl",
@@ -87,20 +83,18 @@ function M.configure()
 			},
 		},
 
+		-- Code outline
 		{
 			"stevearc/aerial.nvim",
 			opts = {},
 			-- Optional dependencies
 			dependencies = {
 				"nvim-treesitter/nvim-treesitter",
-				-- TODO: what are devicons used for...?
-				"nvim-tree/nvim-web-devicons",
-				-- "onsails/lspkind.nvim",
 			},
 			config = require("plugins.aerial").config,
 		},
 
-		-- tabs
+		-- Tabs
 		{
 			"akinsho/bufferline.nvim",
 			version = "*",
@@ -108,7 +102,7 @@ function M.configure()
 			config = require("plugins.bufferline").config,
 		},
 
-		-- file explorer
+		-- File explorer
 		{
 			"nvim-tree/nvim-tree.lua",
 			version = "*",
@@ -116,7 +110,7 @@ function M.configure()
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = require("plugins.nvim_tree").config,
 		},
-		-- auto-notify LSP server, when a rename happens
+		-- Auto-notify LSP server, when a rename happens
 		{
 			"antosha417/nvim-lsp-file-operations",
 			dependencies = {
@@ -128,7 +122,7 @@ function M.configure()
 			},
 		},
 
-		-- fuzzy finder
+		-- Fuzzy finder
 		{
 			"nvim-telescope/telescope.nvim",
 			dependencies = {
@@ -165,7 +159,7 @@ function M.configure()
 		-- Improved UI for `vim.input` and `vim.select`
 		{ "stevearc/dressing.nvim" },
 
-		-- test runner
+		-- Test runner
 		{
 			"vim-test/vim-test",
 			dependencies = { "preservim/vimux" },
@@ -210,31 +204,31 @@ function M.configure()
 			config = require("plugins.auto_pairs").config,
 		},
 
-		-- vim surround
+		-- Vim surround
 		{ "tpope/vim-surround" },
 
-		-- cutlass
+		-- Cutlass
 		{
 			"gbprod/cutlass.nvim",
 			config = require("plugins.cutlass").config,
 		},
 
-		-- vim-tmux
+		-- Vim-tmux
 		{ "christoomey/vim-tmux-navigator" },
 
-		-- show git blame inline
+		-- Show git blame inline
 		{
 			"f-person/git-blame.nvim",
 			config = require("plugins.gitblame").config,
 		},
 
-		-- colorized git status in the signs column
+		-- Colorized git status in the signs column
 		{
 			"lewis6991/gitsigns.nvim",
 			config = true,
 		},
 
-		-- Color schemes
+		-- Color scheme
 		{
 			"catppuccin/nvim",
 			name = "catppuccin",
