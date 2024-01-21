@@ -198,7 +198,7 @@ function M.configure()
 			config = require("plugins.better_escape").config,
 		},
 
-		-- comment
+		-- Comment
 		{
 			"numToStr/Comment.nvim",
 			config = require("plugins.comment").config,
@@ -235,106 +235,12 @@ function M.configure()
 		},
 
 		-- Color schemes
-		-- { "lunarvim/Onedarker.nvim" },
-
-		-- {
-		-- 	"Mofiqul/vscode.nvim",
-		-- 	config = function()
-		-- 		local vscode = require("vscode")
-		-- 		vscode.setup({})
-		-- 		vscode.load()
-		-- 	end,
-		-- },
-
-		-- Need to enable alacritty settings too
-		-- {
-		-- 	"letorbi/vim-colors-modern-borland",
-		-- 	config = function()
-		-- 		vim.cmd("color borland")
-		-- 	end,
-		-- },
-
-		-- {
-		-- 	"folke/tokyonight.nvim",
-		-- 	lazy = false,
-		-- 	priority = 1000,
-		-- 	config = function()
-		-- 		vim.cmd("colorscheme tokyonight-storm")
-		-- 	end,
-		-- },
-
 		{
 			"catppuccin/nvim",
 			name = "catppuccin",
 			priority = 1000,
-			config = function()
-				vim.cmd("colorscheme catppuccin-mocha")
-			end,
+			config = require("plugins.catppuccin").config,
 		},
-
-		-- {
-		-- 	"Shatur/neovim-ayu",
-		-- 	config = function()
-		-- 		-- vim.cmd("colorscheme ayu-dark")
-		-- 		vim.cmd("colorscheme ayu-mirage")
-		-- 	end,
-		-- },
-
-		-- {
-		-- 	"EdenEast/nightfox.nvim",
-		-- 	config = function()
-		-- 		-- vim.cmd("colorscheme nightfox")
-		-- 		-- vim.cmd("colorscheme duskfox")
-		-- 		vim.cmd("colorscheme nordfox")
-		-- 		-- vim.cmd("colorscheme terafox")
-		-- 		-- vim.cmd("colorscheme carbonfox")
-		-- 		-- vim.cmd("colorscheme nightfox")
-		-- 		-- vim.cmd("colorscheme nightfox")
-		-- 	end,
-		-- },
-
-		-- {
-		-- 	"maxmx03/FluoroMachine.nvim",
-		-- 	config = function()
-		-- 		require("fluoromachine").setup({
-		-- 			glow = true,
-		-- 			-- theme = "fluoromachine",
-		-- 			theme = "retrowave",
-		-- 			-- theme = "delta",
-		-- 		})
-		--
-		-- 		vim.cmd("colorscheme fluoromachine")
-		-- 	end,
-		-- },
-
-		-- {
-		-- 	"ribru17/bamboo.nvim",
-		-- 	config = function()
-		-- 		require("bamboo").setup({
-		-- 			-- style = "vlugaris",
-		-- 			style = "multiplex",
-		-- 		})
-		-- 		vim.cmd("colorscheme bamboo")
-		-- 	end,
-		-- },
-
-		-- {
-		-- 	"cryptomilk/nightcity.nvim",
-		-- 	config = function()
-		-- 		require("nightcity").setup({
-		-- 			style = "afterlife", -- The theme comes in two styles: kabuki or afterlife
-		-- 		})
-		-- 		vim.cmd("colorscheme nightcity")
-		-- 	end,
-		-- },
-
-		-- {
-		-- 	"oxfist/night-owl.nvim",
-		-- 	config = function()
-		-- 		-- vim.opt.background = "dark" -- default to dark or light style
-		-- 		vim.cmd([[colorscheme night-owl]])
-		-- 	end,
-		-- },
 	}, {
 		ui = { border = "rounded" },
 	})
