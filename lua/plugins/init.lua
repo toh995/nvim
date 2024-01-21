@@ -199,10 +199,7 @@ function M.configure()
 		},
 
 		-- Auto-pairs
-		{
-			"LunarWatcher/auto-pairs",
-			config = require("plugins.auto_pairs").config,
-		},
+		{ "LunarWatcher/auto-pairs" },
 
 		-- Vim surround
 		{ "tpope/vim-surround" },
