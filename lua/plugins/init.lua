@@ -74,13 +74,7 @@ function M.configure()
 		-- Indent blankline
 		{
 			"lukas-reineke/indent-blankline.nvim",
-			main = "ibl",
-			opts = {
-				scope = {
-					show_start = false,
-					show_end = false,
-				},
-			},
+			config = require("plugins.indent_blankline").config,
 		},
 
 		-- Code outline
