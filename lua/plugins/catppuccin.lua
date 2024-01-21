@@ -26,6 +26,8 @@ cfg = {
 		return {
 			-- Add a background highlight for `` in markdown
 			["@markup.raw.markdown_inline"] = { bg = colors.surface1, fg = colors.teal },
+			-- Ensure builtin types behave the same as other types
+			["@type.builtin"] = { link = "Type" },
 		}
 	end,
 
