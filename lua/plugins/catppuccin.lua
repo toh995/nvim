@@ -19,6 +19,7 @@ cfg = {
 
 	styles = {
 		keywords = { "italic" },
+		operators = { "italic" },
 		types = { "italic" },
 	},
 
@@ -26,7 +27,7 @@ cfg = {
 		return {
 			-- Add a background highlight for `` in markdown
 			["@markup.raw.markdown_inline"] = { bg = colors.surface1, fg = colors.teal },
-			-- Ensure builtin types behave the same as other types
+			-- Ensure builtin types behave similarly to other types
 			["@type.builtin"] = { link = "Type" },
 		}
 	end,
