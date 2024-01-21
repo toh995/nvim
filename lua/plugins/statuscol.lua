@@ -13,22 +13,22 @@ function M.config()
 			ft.NvimTree,
 		},
 		segments = {
-			-- Fold symbols
-			{
-				text = {
-					function(...)
-						return builtin.foldfunc(...) .. " "
-					end,
-				},
-				click = "v:lua.ScFa",
-			},
-			-- Signs column (git + diagnostics)
-			{ text = { "%s" }, click = "v:lua.ScSa" },
 			-- Line numbers
 			{
 				text = { builtin.lnumfunc, " " },
 				condition = { true, builtin.not_empty },
 				click = "v:lua.ScLa",
+			},
+			-- Signs column (git + diagnostics)
+			{ text = { "%s" }, click = "v:lua.ScSa" },
+			-- Fold symbols
+			{
+				text = {
+					function(...)
+						return builtin.foldfunc(...) .. "  "
+					end,
+				},
+				click = "v:lua.ScFa",
 			},
 		},
 	})
