@@ -16,7 +16,6 @@ function M.config()
     - builtin.quickfixhistory
     - builtin.oldfiles
     - builtin.colorscheme
-    - builtin.diagnostics
   --]]
 	-- setup
 	telescope.setup({
@@ -30,6 +29,19 @@ function M.config()
 				},
 			},
 		},
+	})
+
+	-- autocommands
+	vim.api.nvim_create_augroup("telescope", { clear = true })
+
+	-- Show line numbers in the preview window!
+	-- Reference: https://github.com/nvim-telescope/telescope.nvim?tab=readme-ov-file#previewers
+	vim.api.nvim_create_autocmd("User", {
+		group = "telescope",
+		pattern = "TelescopePreviewerLoaded",
+		callback = function()
+			vim.wo.number = true
+		end,
 	})
 
 	-- Reopen previous telescope window
