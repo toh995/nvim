@@ -3,6 +3,7 @@ local M = {}
 
 function M.config()
 	local lualine = require("lualine")
+	local highlight = require("lualine.highlight")
 
 	local constFt = require("const.filetypes")
 	local diagnostics = require("plugins.lualine.components.diagnostics")
@@ -18,6 +19,14 @@ function M.config()
 		group = "lualine_augroup",
 		pattern = "LspProgressStatusUpdated",
 		callback = lualine.refresh,
+	})
+
+	-- Ensure the WinSeparator is correct in the statusline
+	vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+		callback = function()
+			local hl_group = "lualine_a" .. highlight.get_mode_suffix()
+			vim.api.nvim_set_hl(0, "StatusLine", { link = hl_group })
+		end,
 	})
 
 	-- Set up lualine
