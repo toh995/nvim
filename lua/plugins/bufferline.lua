@@ -30,6 +30,8 @@ function M.config()
 			offsets = {
 				{
 					filetype = ft.NvimTree,
+					highlight = "BufferlineGroupSeparator",
+					separator = "▕",
 				},
 				{
 					filetype = ft.Aerial,
