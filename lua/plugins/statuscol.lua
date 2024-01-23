@@ -4,13 +4,13 @@ local M = {}
 function M.config()
 	local builtin = require("statuscol.builtin")
 
-	local ft = require("const.filetypes")
+	local const_ft = require("const.filetypes")
 
 	require("statuscol").setup({
 		ft_ignore = {
-			ft.Aerial,
-			ft.Help,
-			ft.NvimTree,
+			const_ft.Aerial,
+			const_ft.Help,
+			const_ft.NvimTree,
 		},
 		segments = {
 			-- Line numbers

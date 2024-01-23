@@ -5,7 +5,7 @@ function M.config()
 	local lualine = require("lualine")
 	local highlight = require("lualine.highlight")
 
-	local constFt = require("const.filetypes")
+	local const_ft = require("const.filetypes")
 	local diagnostics = require("plugins.lualine.components.diagnostics")
 	local filetype = require("plugins.lualine.components.filetype")
 	local filename = require("plugins.lualine.components.filename")
@@ -33,8 +33,8 @@ function M.config()
 	lualine.setup({
 		options = {
 			disabled_filetypes = {
-				statusline = { constFt.Aerial, constFt.Help, constFt.NvimTree },
-				winbar = { constFt.Aerial, constFt.Help, constFt.NvimTree },
+				statusline = { const_ft.Aerial, const_ft.Help, const_ft.NvimTree },
+				winbar = { const_ft.Aerial, const_ft.Help, const_ft.NvimTree },
 			},
 		},
 		sections = {

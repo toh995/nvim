@@ -3,7 +3,7 @@ local M = {}
 
 function M.config()
 	local catppuccin = require("catppuccin")
-	local constFt = require("const.filetypes")
+	local const_ft = require("const.filetypes")
 
 	-- Catppuccin setup
 	catppuccin.setup({
@@ -39,8 +39,8 @@ function M.config()
 
 	-- Set dark highlights
 	local dark_fts = {
-		[constFt.Aerial] = true,
-		[constFt.Help] = true,
+		[const_ft.Aerial] = true,
+		[const_ft.Help] = true,
 	}
 	vim.api.nvim_create_autocmd({ "FileType" }, {
 		callback = function(opts)
