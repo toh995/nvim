@@ -11,12 +11,6 @@ end
 cfg = {
 	flavour = "mocha",
 
-	dim_inactive = {
-		enabled = true,
-		shade = "dark",
-		percentage = 2.5, -- percentage of the shade to apply to the inactive window
-	},
-
 	styles = {
 		keywords = { "italic" },
 		operators = { "italic" },
