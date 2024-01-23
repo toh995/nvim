@@ -1,34 +1,59 @@
 -- @module plugins.cmp
 local M = {}
 
-local cfg
-
 function M.config()
-	require("catppuccin").setup(cfg)
+	local catppuccin = require("catppuccin")
+	local constFt = require("const.filetypes")
+
+	-- Catppuccin setup
+	catppuccin.setup({
+		flavour = "mocha",
+		styles = {
+			keywords = { "italic" },
+			operators = { "italic" },
+			types = { "italic" },
+		},
+		integrations = {
+			treesitter_context = true,
+		},
+		custom_highlights = function(colors)
+			return {
+				-- Add a background highlight for `` in markdown
+				["@markup.raw.markdown_inline"] = { bg = colors.surface1, fg = colors.teal },
+				-- Ensure builtin types behave similarly to other types
+				["@type.builtin"] = { link = "Type" },
+				-- Define "dark" windows
+				["DarkNormal"] = { bg = colors.mantle, fg = colors.text },
+				["DarkStatusLine"] = { bg = colors.mantle, fg = colors.text },
+				["DarkWinSeparator"] = { bg = colors.mantle, fg = colors.crust },
+				-- Set NvimTree to "dark"
+				["NvimTreeNormal"] = { link = "DarkNormal" },
+				["NvimTreeStatusLine"] = { link = "DarkStatusLine" },
+				["NvimTreeWinSeparator"] = { link = "DarkWinSeparator" },
+			}
+		end,
+	})
+
+	-- Set the color scheme
 	vim.cmd("colorscheme catppuccin-mocha")
+
+	-- Set dark highlights
+	local dark_fts = {
+		[constFt.Aerial] = true,
+		[constFt.Help] = true,
+	}
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		callback = function(opts)
+			local ft = opts.match
+			if dark_fts[ft] then
+				vim.opt_local.winhighlight:append({
+					["Normal"] = "DarkNormal",
+					["StatusLine"] = "DarkStatusLine",
+					["WinSeparator"] = "DarkWinSeparator",
+				})
+			end
+		end,
+	})
 end
-
-cfg = {
-	flavour = "mocha",
-
-	styles = {
-		keywords = { "italic" },
-		operators = { "italic" },
-		types = { "italic" },
-	},
-
-	custom_highlights = function(colors)
-		return {
-			-- Add a background highlight for `` in markdown
-			["@markup.raw.markdown_inline"] = { bg = colors.surface1, fg = colors.teal },
-			-- Ensure builtin types behave similarly to other types
-			["@type.builtin"] = { link = "Type" },
-		}
-	end,
-
-	integrations = {
-		treesitter_context = true,
-	},
-}
 
 return M
