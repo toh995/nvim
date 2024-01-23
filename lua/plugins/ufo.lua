@@ -4,7 +4,7 @@ local M = {}
 function M.config()
 	local ufo = require("ufo")
 
-	local constFt = require("const.filetypes")
+	local const_ft = require("const.filetypes")
 	local user_icons = require("const.user_icons")
 
 	vim.o.foldcolumn = "1" -- '0' is not bad
@@ -21,14 +21,13 @@ function M.config()
 
 	-- Disable folds on certain filetypes
 	local disabled_fts = {
-		[constFt.Aerial] = true,
-		[constFt.NvimTree] = true,
+		[const_ft.Aerial] = true,
+		[const_ft.NvimTree] = true,
 	}
-	vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	vim.api.nvim_create_autocmd({ "FileType" }, {
 		callback = function(opts)
-			local ft = vim.bo[opts.buf].filetype
-			local is_disabled = disabled_fts[ft]
-			if is_disabled then
+			local ft = opts.match
+			if disabled_fts[ft] then
 				vim.opt_local.foldenable = false
 			end
 		end,
