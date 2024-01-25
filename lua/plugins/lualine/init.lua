@@ -29,6 +29,17 @@ function M.config()
 		end,
 	})
 
+	-- HACK: For some reason, the lualine option `disabled_filetypes` doesn't
+	-- work for the `help` filetype ¯\_(ツ)_/¯
+	-- Let's force-disable it here via autocommand
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		callback = function(opts)
+			if opts.match == const_ft.Help then
+				vim.opt_local.statusline = ""
+			end
+		end,
+	})
+
 	-- Set up lualine
 	lualine.setup({
 		options = {
