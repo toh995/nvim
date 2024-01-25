@@ -1,6 +1,8 @@
 -- @module plugins.lualine
 local M = {}
 
+local set_autocmds
+
 function M.config()
 	local lualine = require("lualine")
 	local highlight = require("lualine.highlight")
@@ -13,32 +15,12 @@ function M.config()
 	local lsp_clients = require("plugins.lualine.components.lsp_clients")
 	local lsp_status = require("plugins.lualine.components.lsp_status")
 
-	-- Auto-refresh lualine, for LSP progress events
-	vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
-	vim.api.nvim_create_autocmd("User", {
-		group = "lualine_augroup",
-		pattern = "LspProgressStatusUpdated",
-		callback = lualine.refresh,
-	})
-
-	-- Ensure the WinSeparator is correct in the statusline
-	vim.api.nvim_create_autocmd({ "ModeChanged" }, {
-		callback = function()
-			local hl_group = "lualine_a" .. highlight.get_mode_suffix()
-			vim.api.nvim_set_hl(0, "StatusLine", { link = hl_group })
-		end,
-	})
-
-	-- HACK: For some reason, the lualine option `disabled_filetypes` doesn't
-	-- work for the `help` filetype ¯\_(ツ)_/¯
-	-- Let's force-disable it here via autocommand
-	vim.api.nvim_create_autocmd({ "FileType" }, {
-		callback = function(opts)
-			if opts.match == const_ft.Help then
-				vim.opt_local.statusline = ""
-			end
-		end,
-	})
+	local pkgs = {
+		const_ft = const_ft,
+		highlight = highlight,
+		lualine = lualine,
+	}
+	set_autocmds(pkgs)
 
 	-- Set up lualine
 	lualine.setup({
@@ -64,6 +46,38 @@ function M.config()
 			lualine_y = {},
 			lualine_z = {},
 		},
+	})
+end
+
+function set_autocmds(pkgs)
+	local augroup = vim.api.nvim_create_augroup("lualine_custom", { clear = true })
+
+	-- Auto-refresh lualine, for LSP progress events
+	vim.api.nvim_create_autocmd("User", {
+		group = augroup,
+		pattern = "LspProgressStatusUpdated",
+		callback = pkgs.lualine.refresh,
+	})
+
+	-- Ensure the WinSeparator is correct in the statusline
+	vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+		group = augroup,
+		callback = function()
+			local hl_group = "lualine_a" .. pkgs.highlight.get_mode_suffix()
+			vim.api.nvim_set_hl(0, "StatusLine", { link = hl_group })
+		end,
+	})
+
+	-- HACK: For some reason, the lualine option `disabled_filetypes` doesn't
+	-- work for the `help` filetype ¯\_(ツ)_/¯
+	-- Let's force-disable it here via autocommand
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		group = augroup,
+		callback = function(opts)
+			if opts.match == pkgs.const_ft.Help then
+				vim.opt_local.statusline = ""
+			end
+		end,
 	})
 end
 

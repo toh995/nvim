@@ -24,7 +24,9 @@ function M.config()
 		[const_ft.Aerial] = true,
 		[const_ft.NvimTree] = true,
 	}
+	local augroup = vim.api.nvim_create_augroup("ufo_custom", { clear = true })
 	vim.api.nvim_create_autocmd({ "FileType" }, {
+		group = augroup,
 		callback = function(opts)
 			local ft = opts.match
 			if disabled_fts[ft] then

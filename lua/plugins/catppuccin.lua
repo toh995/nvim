@@ -42,7 +42,9 @@ function M.config()
 		[const_ft.Aerial] = true,
 		[const_ft.Help] = true,
 	}
+	local augroup = vim.api.nvim_create_augroup("catppuccin_custom", { clear = true })
 	vim.api.nvim_create_autocmd({ "FileType" }, {
+		group = augroup,
 		callback = function(opts)
 			local ft = opts.match
 			if dark_fts[ft] then
