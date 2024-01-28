@@ -57,8 +57,9 @@ function M.config()
 	-- Reopen previous telescope window
 	vim.api.nvim_create_user_command("R", builtin.resume, {})
 
-	-- LSP symbols
-	vim.api.nvim_create_user_command("LS", builtin.lsp_document_symbols, {})
+	-- Aerial
+	telescope.load_extension("aerial")
+	vim.api.nvim_create_user_command("S", telescope.extensions.aerial.aerial, {})
 
 	-- LSP diagnostics
 	vim.api.nvim_create_user_command("D", function()

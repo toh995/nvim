@@ -124,6 +124,8 @@ function M.configure()
 				{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 				-- auto-open files in nvim-tree
 				"nvim-tree/nvim-tree.lua",
+				-- aerial extension
+				"stevearc/aerial.nvim",
 			},
 			branch = "0.1.x",
 			config = require("plugins.telescope").config,
