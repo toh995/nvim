@@ -28,6 +28,8 @@ function M.config()
 		},
 		filter_kind = false, -- display all symbols
 
+		icons = user_icons.kinds,
+
 		manage_folds = false,
 		link_folds_to_tree = false,
 		link_tree_to_folds = false,
@@ -81,62 +83,6 @@ function M.config()
 				end,
 			},
 		},
-
-		icons = user_icons.kinds,
-
-		-- post_parse_symbol = function(bufnr, item, ctx)
-		-- 	-- vim.notify(vim.inspect(item))
-		-- 	--
-		-- 	if
-		-- 		item.kind == "Array"
-		-- 		or item.kind == "Constructor"
-		-- 		or item.kind == "Function"
-		-- 		or item.kind == "Method"
-		-- 	then
-		-- 		if item.children and #item.children > 0 then
-		-- 			item.kind = item.kind .. "Branch"
-		-- 		end
-		-- 	end
-		-- 	return true
-		-- end,
-		--
-		-- get_highlight = function(symbol, is_icon, is_collapsed)
-		-- 	symbol = vim.deepcopy(symbol)
-		-- 	symbol.kind = symbol.kind:gsub("Branch", "")
-		--
-		-- 	-- If the symbol has a non-public scope, use that as the highlight group (e.g. AerialPrivate)
-		-- 	if symbol.scope and not is_icon and symbol.scope ~= "public" then
-		-- 		return string.format("Aerial%s", symbol.scope:gsub("^%l", string.upper))
-		-- 	end
-		--
-		-- 	return string.format("Aerial%s%s", symbol.kind, is_icon and "Icon" or "")
-		--
-		-- 	-- return require("aerial.highlight").get_highlight(symbol, is_icon, is_collapsed)
-		-- end,
-		--
-		-- -- post_add_all_symbols = function(bufnr, items, ctx)
-		-- -- 	vim.notify(vim.inspect(items))
-		-- -- 	return items
-		-- -- end,
-		--
-		-- icons = {
-		-- 	Array = "  ",
-		-- 	ArrayBranch = " ",
-		-- 	ArrayBranchCollapsed = " ",
-		-- 	ArrayCollapsed = " ",
-		-- 	Constructor = "  ",
-		-- 	ConstructorBranch = " ",
-		-- 	ConstructorBranchCollapsed = " ",
-		-- 	ConstructorCollapsed = " ",
-		-- 	Function = "  ",
-		-- 	FunctionBranch = " ",
-		-- 	FunctionBranchCollapsed = " ",
-		-- 	FunctionCollapsed = " ",
-		-- 	Method = "  ",
-		-- 	MethodBranch = " ",
-		-- 	MethodBranchCollapsed = " ",
-		-- 	MethodCollapsed = " ",
-		-- },
 	})
 end
 
