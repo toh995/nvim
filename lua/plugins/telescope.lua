@@ -11,7 +11,6 @@ function M.config()
   https://github.com/nvim-telescope/telescope.nvim/wiki/Extensions
 
   todo:
-    - vim.api.nvim_create_user_command("RS", builtin.pickers, {})
     - builtin.quickfix 
     - builtin.quickfixhistory
     - builtin.oldfiles
@@ -56,6 +55,7 @@ function M.config()
 
 	-- Reopen previous telescope window
 	vim.api.nvim_create_user_command("R", builtin.resume, {})
+	vim.api.nvim_create_user_command("RS", builtin.pickers, {})
 
 	-- Aerial
 	telescope.load_extension("aerial")
