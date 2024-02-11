@@ -56,6 +56,7 @@ function M.configure()
 	neodev.setup({})
 	lspconfig.lua_ls.setup({
 		capabilities = capabilities,
+		library = { plugins = { "nvim-dap-ui" }, types = true },
 		settings = {
 			Lua = {
 				runtime = {

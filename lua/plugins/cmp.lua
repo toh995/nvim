@@ -3,9 +3,11 @@ local M = {}
 
 function M.config()
 	local cmp = require("cmp")
+	local cmp_dap = require("cmp_dap")
 	local devicons = require("nvim-web-devicons")
 	local luasnip = require("luasnip")
 
+	local const_ft = require("const.filetypes")
 	local user_icons = require("const.user_icons")
 
 	local MENU = {
@@ -16,6 +18,16 @@ function M.config()
 		nvim_lua = "(Lua)",
 	}
 
+	cmp.setup.filetype({
+		const_ft.DapRepl,
+		const_ft.DapuiScopes,
+		const_ft.DapuiWatches,
+	}, {
+		sources = {
+			{ name = "dap" },
+		},
+	})
+
 	---@diagnostic disable-next-line: missing-fields
 	cmp.setup({
 		sources = {
@@ -25,6 +37,11 @@ function M.config()
 			{ name = "nvim_lsp_signature_help" },
 			{ name = "path" },
 		},
+
+		enabled = function()
+			return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or cmp_dap.is_dap_buffer()
+		end,
+
 		snippet = {
 			expand = function(args)
 				luasnip.lsp_expand(args.body)

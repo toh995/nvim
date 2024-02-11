@@ -10,6 +10,18 @@ return {
 		Down = chevron.Down,
 		Right = chevron.Right,
 	},
+	dap = {
+		Disconnect = "",
+		Pause = "",
+		-- Play = "",
+		Play = "",
+		RunLast = "",
+		StepBack = "",
+		StepInto = "",
+		StepOut = "",
+		StepOver = "",
+		Terminate = "",
+	},
 	diagnostics = {
 		Error = "󰅚 ",
 		Warn = "󰀪 ",

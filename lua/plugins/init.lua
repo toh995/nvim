@@ -47,6 +47,7 @@ function M.configure()
 			config = require("plugins.cmp").config,
 			dependencies = {
 				"hrsh7th/cmp-buffer",
+				"rcarriga/cmp-dap",
 				"hrsh7th/cmp-nvim-lsp",
 				"hrsh7th/cmp-nvim-lsp-signature-help",
 				"hrsh7th/cmp-path",
@@ -55,6 +56,17 @@ function M.configure()
 				"saadparwaiz1/cmp_luasnip",
 				-- icons for autocomplete
 				"nvim-tree/nvim-web-devicons",
+			},
+		},
+
+		-- DAP
+		{
+			"mfussenegger/nvim-dap",
+			config = require("plugins.dap").config,
+			dependencies = {
+				"rcarriga/nvim-dap-ui",
+				-- adapter for nvim lua plugins
+				"jbyuki/one-small-step-for-vimkind",
 			},
 		},
 
