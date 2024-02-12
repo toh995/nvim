@@ -65,6 +65,11 @@ function M.configure()
 			config = require("plugins.dap").config,
 			dependencies = {
 				"rcarriga/nvim-dap-ui",
+				-- render ANSI Escape Sequences
+				{
+					"m00qek/baleia.nvim",
+					version = "v1.4.0",
+				},
 				-- adapter for nvim lua plugins
 				"jbyuki/one-small-step-for-vimkind",
 			},

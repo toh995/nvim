@@ -1,7 +1,8 @@
 -- @module plugins.dap
 local M = {}
 
-local set_dapui_win_opts
+local after_open
+local build_ft_to_bufnrs
 local build_ft_to_winnrs
 local WinOptManager
 
@@ -9,6 +10,7 @@ function M.config()
 	local dap = require("dap")
 	local dap_ext_vscode = require("dap.ext.vscode")
 	local dapui = require("dapui")
+	local baleia = require("baleia").setup()
 
 	local const_ft = require("const.filetypes")
 	local user_icons = require("const.user_icons")
@@ -19,16 +21,23 @@ function M.config()
 
   UI
   - breakpoint UI
+  - switch the "arrow" icons to chevron
+  
+  - command to clear the repl
+  - update cmp source
+  - double-check "missing-fields"
+  - generalize "WinOptManager"...?
   ]]
 	--
+
 	vim.api.nvim_create_user_command("DE", function()
 		dapui.toggle()
-		set_dapui_win_opts(const_ft)
+		after_open(const_ft, baleia)
 	end, {})
 	vim.keymap.set("", "<leader>db", dap.toggle_breakpoint, { noremap = true })
 	vim.keymap.set("", "<leader>dp", function()
 		dapui.open()
-		set_dapui_win_opts(const_ft)
+		after_open(const_ft, baleia)
 		dap.continue()
 	end, { noremap = true })
 	vim.keymap.set("", "<leader>dl", dap.step_over, { noremap = true })
@@ -139,12 +148,24 @@ function M.config()
 		callback = function()
 			dapui.toggle()
 			dapui.toggle()
-			set_dapui_win_opts(const_ft)
+			after_open(const_ft, baleia)
 		end,
 	})
 end
 
-function set_dapui_win_opts(const_ft)
+---@type boolean
+local has_escaped_repl = false
+
+function after_open(const_ft, baleia)
+	-- set up ANSI-escape in the dap repl
+	if not has_escaped_repl then
+		local repl_bufnrs = build_ft_to_bufnrs()[const_ft.DapRepl]
+		for _, bufnr in ipairs(repl_bufnrs) do
+			baleia.automatically(bufnr)
+		end
+		has_escaped_repl = true
+	end
+
 	local win_opt_mgr = WinOptManager:new()
 
 	local all_dap_fts = {
@@ -172,7 +193,7 @@ function set_dapui_win_opts(const_ft)
 		const_ft.DapuiWatches,
 		const_ft.DapuiStacks,
 	}) do
-		-- winOptMgr:append(ft, "fillchars", "stl:━,stlnc:━")
+		-- win_opt_mgr:append(ft, "fillchars", "stl:━,stlnc:━")
 		win_opt_mgr:append(ft, "fillchars", "stl:─,stlnc:─")
 	end
 
@@ -183,26 +204,39 @@ function set_dapui_win_opts(const_ft)
 	win_opt_mgr:set(const_ft.DapuiBreakpoints, "winbar", "%#Normal#Breakpoints")
 end
 
+---@return table<string, integer[]>
+function build_ft_to_bufnrs()
+	local ret = {}
+	local buffers = vim.fn.getbufinfo()
+	for _, buf in ipairs(buffers) do
+		local ft = vim.bo[buf.bufnr].filetype
+		ret[ft] = ret[ft] or {}
+		table.insert(ret[ft], buf.bufnr)
+	end
+	return ret
+end
+
+---@return table<string, integer[]>
+function build_ft_to_winnrs()
+	local ret = {}
+	for ft, bufnrs in pairs(build_ft_to_bufnrs()) do
+		ret[ft] = ret[ft] or {}
+		for _, bufnr in ipairs(bufnrs) do
+			local winnrs = vim.fn.win_findbuf(bufnr)
+			for _, winnr in ipairs(winnrs) do
+				table.insert(ret[ft], winnr)
+			end
+		end
+	end
+	return ret
+end
+
 ---@class WinOptManager
 ---@field private ft_to_winnrs table<string, integer[]> a map from filetype to window numbers
 WinOptManager = {}
 function WinOptManager:new()
 	self.ft_to_winnrs = build_ft_to_winnrs()
 	return self
-end
-
----@return table<string, integer[]>
-function build_ft_to_winnrs()
-	local ret = {}
-	local buffers = vim.fn.getbufinfo()
-	for _, buf in ipairs(buffers) do
-		local ft = vim.bo[buf.bufnr].filetype
-		ret[ft] = ret[ft] or {}
-		for _, winnr in ipairs(buf.windows) do
-			table.insert(ret[ft], winnr)
-		end
-	end
-	return ret
 end
 
 ---@param ft string the filetype
