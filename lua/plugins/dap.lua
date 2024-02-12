@@ -1,11 +1,16 @@
 -- @module plugins.dap
 local M = {}
 
+local set_dapui_win_opts
+local build_ft_to_winnrs
+local WinOptManager
+
 function M.config()
 	local dap = require("dap")
 	local dap_ext_vscode = require("dap.ext.vscode")
 	local dapui = require("dapui")
 
+	local const_ft = require("const.filetypes")
 	local user_icons = require("const.user_icons")
 
 	--[[
@@ -14,18 +19,20 @@ function M.config()
 
   UI
   - breakpoint UI
-  - repl rendering icons
   - Disable in DAP windows:
-    - lualine
     - UFO
   - bufferline offset
   - bufferline "unsaved" icon
   ]]
 	--
-	vim.api.nvim_create_user_command("DE", dapui.toggle, {})
+	vim.api.nvim_create_user_command("DE", function()
+		dapui.toggle()
+		set_dapui_win_opts(const_ft)
+	end, {})
 	vim.keymap.set("", "<leader>db", dap.toggle_breakpoint, { noremap = true })
 	vim.keymap.set("", "<leader>dp", function()
 		dapui.open()
+		set_dapui_win_opts(const_ft)
 		dap.continue()
 	end, { noremap = true })
 	vim.keymap.set("", "<leader>dl", dap.step_over, { noremap = true })
@@ -136,8 +143,91 @@ function M.config()
 		callback = function()
 			dapui.toggle()
 			dapui.toggle()
+			set_dapui_win_opts(const_ft)
 		end,
 	})
+end
+
+function set_dapui_win_opts(const_ft)
+	local winOptMgr = WinOptManager:new()
+
+	-- Set up the statusline hl group
+	for _, ft in ipairs({
+		const_ft.DapRepl,
+		const_ft.DapuiBreakpoints,
+		const_ft.DapuiConsole,
+		const_ft.DapuiScopes,
+		const_ft.DapuiStacks,
+		const_ft.DapuiWatches,
+	}) do
+		winOptMgr:append(ft, "winhighlight", "StatusLine:NormalBg,StatusLineNC:Normal")
+	end
+
+	-- Set up horizontal dividers between windows
+	for _, ft in ipairs({
+		const_ft.DapuiScopes,
+		const_ft.DapuiWatches,
+		const_ft.DapuiStacks,
+	}) do
+		-- winOptMgr:append(ft, "fillchars", "stl:━,stlnc:━")
+		winOptMgr:append(ft, "fillchars", "stl:─,stlnc:─")
+	end
+
+	-- Set up winbar
+	winOptMgr:set(const_ft.DapuiScopes, "winbar", "%#Normal#Variables")
+	winOptMgr:set(const_ft.DapuiWatches, "winbar", "%#Normal#Watch")
+	winOptMgr:set(const_ft.DapuiStacks, "winbar", "%#Normal#Call Stack")
+	winOptMgr:set(const_ft.DapuiBreakpoints, "winbar", "%#Normal#Breakpoints")
+end
+
+---@class WinOptManager
+---@field private ft_to_winnrs table<string, integer[]> a map from filetype to window numbers
+WinOptManager = {}
+function WinOptManager:new()
+	self.ft_to_winnrs = build_ft_to_winnrs()
+	return self
+end
+
+---@return table<string, integer[]>
+function build_ft_to_winnrs()
+	local ret = {}
+	local buffers = vim.fn.getbufinfo()
+	for _, buf in ipairs(buffers) do
+		local ft = vim.bo[buf.bufnr].filetype
+		ret[ft] = ret[ft] or {}
+		for _, winnr in ipairs(buf.windows) do
+			table.insert(ret[ft], winnr)
+		end
+	end
+	return ret
+end
+
+---@param ft string the filetype
+---@param opt_name string
+---@param val any
+function WinOptManager:set(ft, opt_name, val)
+	local winnrs = self.ft_to_winnrs[ft]
+	for _, winnr in ipairs(winnrs) do
+		vim.wo[winnr][opt_name] = val
+		-- vim.api.nvim_set_option_value(opt_name, val, { win = winnr, scope = "local" })
+	end
+end
+
+---@param ft string the filetype
+---@param opt_name string
+---@param append_val string
+function WinOptManager:append(ft, opt_name, append_val)
+	if append_val == "" then
+		error("passed in an empty `append_val`")
+		return
+	end
+	local winnrs = self.ft_to_winnrs[ft]
+	for _, winnr in ipairs(winnrs) do
+		local cur_val = vim.wo[winnr][opt_name]
+		local new_val = (cur_val == "" and append_val) or cur_val .. "," .. append_val
+		vim.wo[winnr][opt_name] = new_val
+		-- vim.api.nvim_set_option_value(opt_name, new_val, { win = winnr, scope = "local" })
+	end
 end
 
 return M

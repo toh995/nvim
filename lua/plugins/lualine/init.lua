@@ -22,12 +22,24 @@ function M.config()
 	}
 	set_autocmds(pkgs)
 
+	local disabled_fts = {
+		const_ft.Aerial,
+		const_ft.DapRepl,
+		const_ft.DapuiBreakpoints,
+		const_ft.DapuiConsole,
+		const_ft.DapuiScopes,
+		const_ft.DapuiStacks,
+		const_ft.DapuiWatches,
+		const_ft.Help,
+		const_ft.NvimTree,
+	}
+
 	-- Set up lualine
 	lualine.setup({
 		options = {
 			disabled_filetypes = {
-				statusline = { const_ft.Aerial, const_ft.Help, const_ft.NvimTree },
-				winbar = { const_ft.Aerial, const_ft.Help, const_ft.NvimTree },
+				statusline = disabled_fts,
+				winbar = disabled_fts,
 			},
 		},
 		sections = {

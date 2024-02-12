@@ -22,6 +22,8 @@ function M.config()
 				["@markup.raw.markdown_inline"] = { bg = colors.surface1, fg = colors.teal },
 				-- Ensure builtin types behave similarly to other types
 				["@type.builtin"] = { link = "Type" },
+				-- Utility
+				["NormalBg"] = { bg = colors.base },
 				-- Define "dark" windows
 				["DarkNormal"] = { bg = colors.mantle, fg = colors.text },
 				["DarkStatusLine"] = { bg = colors.mantle, fg = colors.text },
