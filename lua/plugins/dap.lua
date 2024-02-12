@@ -19,8 +19,6 @@ function M.config()
 
   UI
   - breakpoint UI
-  - Disable in DAP windows:
-    - UFO
   - bufferline offset
   - bufferline "unsaved" icon
   ]]
@@ -149,18 +147,25 @@ function M.config()
 end
 
 function set_dapui_win_opts(const_ft)
-	local winOptMgr = WinOptManager:new()
+	local win_opt_mgr = WinOptManager:new()
 
-	-- Set up the statusline hl group
-	for _, ft in ipairs({
+	local all_dap_fts = {
 		const_ft.DapRepl,
 		const_ft.DapuiBreakpoints,
 		const_ft.DapuiConsole,
 		const_ft.DapuiScopes,
 		const_ft.DapuiStacks,
 		const_ft.DapuiWatches,
-	}) do
-		winOptMgr:append(ft, "winhighlight", "StatusLine:NormalBg,StatusLineNC:Normal")
+	}
+
+	-- Disable folds
+	for _, ft in ipairs(all_dap_fts) do
+		win_opt_mgr:set(ft, "foldenable", false)
+	end
+
+	-- Set up the statusline hl group
+	for _, ft in ipairs(all_dap_fts) do
+		win_opt_mgr:append(ft, "winhighlight", "StatusLine:NormalBg,StatusLineNC:Normal")
 	end
 
 	-- Set up horizontal dividers between windows
@@ -170,14 +175,14 @@ function set_dapui_win_opts(const_ft)
 		const_ft.DapuiStacks,
 	}) do
 		-- winOptMgr:append(ft, "fillchars", "stl:━,stlnc:━")
-		winOptMgr:append(ft, "fillchars", "stl:─,stlnc:─")
+		win_opt_mgr:append(ft, "fillchars", "stl:─,stlnc:─")
 	end
 
 	-- Set up winbar
-	winOptMgr:set(const_ft.DapuiScopes, "winbar", "%#Normal#Variables")
-	winOptMgr:set(const_ft.DapuiWatches, "winbar", "%#Normal#Watch")
-	winOptMgr:set(const_ft.DapuiStacks, "winbar", "%#Normal#Call Stack")
-	winOptMgr:set(const_ft.DapuiBreakpoints, "winbar", "%#Normal#Breakpoints")
+	win_opt_mgr:set(const_ft.DapuiScopes, "winbar", "%#Normal#Variables")
+	win_opt_mgr:set(const_ft.DapuiWatches, "winbar", "%#Normal#Watch")
+	win_opt_mgr:set(const_ft.DapuiStacks, "winbar", "%#Normal#Call Stack")
+	win_opt_mgr:set(const_ft.DapuiBreakpoints, "winbar", "%#Normal#Breakpoints")
 end
 
 ---@class WinOptManager
