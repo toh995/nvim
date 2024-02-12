@@ -1,6 +1,8 @@
 -- @module plugins.bufferline
 local M = {}
 
+local build_offsets
+
 function M.config()
 	local bufferline = require("bufferline")
 	local const_ft = require("const.filetypes")
@@ -27,20 +29,30 @@ function M.config()
 			mode = "tabs",
 			separator_style = "slant",
 			buffer_close_icon = "x",
-			offsets = {
-				{
-					filetype = const_ft.NvimTree,
-					highlight = "BufferlineGroupSeparator",
-					separator = "▕",
-				},
-				{
-					filetype = const_ft.Aerial,
-					highlight = "BufferlineGroupSeparator",
-					separator = "▕",
-				},
-			},
+			offsets = build_offsets(const_ft),
 		},
 	})
+end
+
+function build_offsets(const_ft)
+	local fts = {
+		const_ft.Aerial,
+		const_ft.DapuiScopes,
+		const_ft.DapuiWatches,
+		const_ft.DapuiStacks,
+		const_ft.DapuiBreakpoints,
+		const_ft.NvimTree,
+	}
+
+	local ret = {}
+	for _, ft in ipairs(fts) do
+		table.insert(ret, {
+			filetype = ft,
+			highlight = "BufferlineGroupSeparator",
+			separator = "▕",
+		})
+	end
+	return ret
 end
 
 return M
