@@ -24,12 +24,27 @@ function M.config()
 	-- open a new tab, which has a copy of the current window
 	vim.api.nvim_create_user_command("TVS", "tab vs", {})
 
+	local excluded_fts = {
+		[const_ft.Aerial] = true,
+		[const_ft.DapRepl] = true,
+		[const_ft.DapuiBreakpoints] = true,
+		[const_ft.DapuiConsole] = true,
+		[const_ft.DapuiScopes] = true,
+		[const_ft.DapuiStacks] = true,
+		[const_ft.DapuiWatches] = true,
+		[const_ft.NvimTree] = true,
+	}
+
 	bufferline.setup({
 		options = {
 			mode = "tabs",
 			separator_style = "slant",
 			buffer_close_icon = "x",
 			offsets = build_offsets(const_ft),
+			custom_filter = function(bufnr)
+				local ft = vim.bo[bufnr].filetype
+				return not excluded_fts[ft]
+			end,
 		},
 	})
 end

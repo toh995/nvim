@@ -19,8 +19,6 @@ function M.config()
 
   UI
   - breakpoint UI
-  - bufferline offset
-  - bufferline "unsaved" icon
   ]]
 	--
 	vim.api.nvim_create_user_command("DE", function()
