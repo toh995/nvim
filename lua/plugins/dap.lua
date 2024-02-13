@@ -24,6 +24,7 @@ function M.config()
   UI
   - switch the "arrow" icons to chevron
   
+  - keyboard bindings for traversing the tree
   - command to clear the repl
   - update cmp source
   - double-check "missing-fields"
@@ -32,9 +33,26 @@ function M.config()
 	--
 
 	-- Set up the sign column
-	vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint", numhl = "DapBreakpoint" })
-	vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpoint", numhl = "DapBreakpoint" })
-	vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", numhl = "DapStopped" })
+	vim.fn.sign_define({
+		{
+			name = "DapBreakpoint",
+			text = user_icons.dap.Breakpoint,
+			texthl = "DapBreakpoint",
+			numhl = "DapBreakpoint",
+		},
+		{
+			name = "DapBreakpointRejected",
+			text = user_icons.dap.BreakpointRejected,
+			texthl = "DapBreakpoint",
+			numhl = "DapBreakpoint",
+		},
+		{
+			name = "DapStopped",
+			text = user_icons.dap.Stopped,
+			texthl = "DapStopped",
+			numhl = "DapStopped",
+		},
+	})
 
 	-- Keyboard mappings
 	vim.keymap.set("", "<leader>de", function()

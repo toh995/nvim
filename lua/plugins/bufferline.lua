@@ -5,7 +5,9 @@ local build_offsets
 
 function M.config()
 	local bufferline = require("bufferline")
+
 	local const_ft = require("const.filetypes")
+	local user_icons = require("const.user_icons")
 
 	-- set up some keyboard shortcuts for tabs
 	vim.keymap.set("", "t", ":tabnew<CR>", { noremap = true })
@@ -39,8 +41,8 @@ function M.config()
 		options = {
 			mode = "tabs",
 			separator_style = "slant",
-			buffer_close_icon = "x",
-			offsets = build_offsets(const_ft),
+			buffer_close_icon = user_icons.ui.Close,
+			offsets = build_offsets(const_ft, user_icons),
 			custom_filter = function(bufnr)
 				local ft = vim.bo[bufnr].filetype
 				return not excluded_fts[ft]
@@ -49,7 +51,7 @@ function M.config()
 	})
 end
 
-function build_offsets(const_ft)
+function build_offsets(const_ft, user_icons)
 	local fts = {
 		const_ft.Aerial,
 		const_ft.DapuiScopes,
@@ -64,7 +66,7 @@ function build_offsets(const_ft)
 		table.insert(ret, {
 			filetype = ft,
 			highlight = "BufferlineGroupSeparator",
-			separator = "▕",
+			separator = user_icons.ui.VertSeparator,
 		})
 	end
 	return ret

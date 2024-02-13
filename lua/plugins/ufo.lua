@@ -14,9 +14,9 @@ function M.config()
 	vim.opt.fillchars:append({
 		eob = " ",
 		fold = " ",
-		foldopen = user_icons.chevron.Down,
+		foldopen = user_icons.ui.ChevronDown,
 		foldsep = " ",
-		foldclose = user_icons.chevron.Right,
+		foldclose = user_icons.ui.ChevronRight,
 	})
 
 	-- Disable folds on certain filetypes

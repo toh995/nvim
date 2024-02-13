@@ -1,16 +1,12 @@
 -- @module const.user_icons
-local chevron = {
-	Down = "",
-	Right = "",
-}
+local ChevronDown = ""
+local ChevronRight = ""
 
 return {
-	-- Duplicate chevron for LSP auto-complete
-	chevron = {
-		Down = chevron.Down,
-		Right = chevron.Right,
-	},
 	dap = {
+		Breakpoint = "",
+		BreakpointRejected = "",
+		Stopped = "",
 		Disconnect = "",
 		Pause = "",
 		-- Play = "",
@@ -36,7 +32,7 @@ return {
 		Codeium = "󰘦 ",
 		Color = "",
 		Control = "",
-		Collapsed = chevron.Right,
+		Collapsed = ChevronRight,
 		Constant = "",
 		Constructor = "",
 		Copilot = "",
@@ -72,5 +68,12 @@ return {
 		Unit = "",
 		Value = "",
 		Variable = "",
+	},
+	ui = {
+		ChevronDown = ChevronDown,
+		ChevronRight = ChevronRight,
+		CircleFilled = "●",
+		Close = "x",
+		VertSeparator = "▕",
 	},
 }

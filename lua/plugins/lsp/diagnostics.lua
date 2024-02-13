@@ -12,19 +12,36 @@ function M.configure()
 		-- TODO: in nvim 0.10.0+, for the prefix we can pass in
 		-- a function which returns the diagnostics icon, based on
 		-- the severity
-		virtual_text = { prefix = "●" },
+		virtual_text = { prefix = user_icons.ui.CircleFilled },
 	})
 
-	-- set the icons for the signs column
-	-- i.e. the column left of the line numbers
-	for name, icon in pairs(user_icons.diagnostics) do
-		local hl = "DiagnosticSign" .. name
-		vim.fn.sign_define(hl, {
-			text = icon,
-			texthl = hl,
-			numhl = hl,
-		})
-	end
+	-- set the signs for the sign/status column
+	vim.fn.sign_define({
+		{
+			name = "DiagnosticSignError",
+			texthl = "DiagnosticSignError",
+			numhl = "DiagnosticSignError",
+			text = user_icons.diagnostics.Error,
+		},
+		{
+			name = "DiagnosticSignWarn",
+			texthl = "DiagnosticSignWarn",
+			numhl = "DiagnosticSignWarn",
+			text = user_icons.diagnostics.Warn,
+		},
+		{
+			name = "DiagnosticSignHint",
+			texthl = "DiagnosticSignHint",
+			numhl = "DiagnosticSignHint",
+			text = user_icons.diagnostics.Hint,
+		},
+		{
+			name = "DiagnosticSignInfo",
+			texthl = "DiagnosticSignInfo",
+			numhl = "DiagnosticSignInfo",
+			text = user_icons.diagnostics.Info,
+		},
+	})
 end
 
 return M
