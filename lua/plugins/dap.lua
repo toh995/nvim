@@ -1,16 +1,18 @@
 -- @module plugins.dap
 local M = {}
 
+local is_open
 local after_open
 local build_ft_to_bufnrs
 local build_ft_to_winnrs
 local WinOptManager
 
 function M.config()
+	local baleia = require("baleia").setup()
 	local dap = require("dap")
 	local dap_ext_vscode = require("dap.ext.vscode")
 	local dapui = require("dapui")
-	local baleia = require("baleia").setup()
+	local dapui_windows = require("dapui.windows")
 
 	local const_ft = require("const.filetypes")
 	local user_icons = require("const.user_icons")
@@ -32,7 +34,9 @@ function M.config()
 
 	vim.keymap.set("", "<leader>de", function()
 		dapui.toggle()
-		after_open(const_ft, baleia)
+		if is_open(dapui_windows) then
+			after_open(const_ft, baleia)
+		end
 	end, { noremap = true })
 	vim.keymap.set("", "<leader>db", dap.toggle_breakpoint, { noremap = true })
 	vim.keymap.set("", "<leader>dp", function()
@@ -144,11 +148,23 @@ function M.config()
 		group = augroup,
 		pattern = { "*" },
 		callback = function()
-			dapui.toggle()
-			dapui.toggle()
-			after_open(const_ft, baleia)
+			if is_open(dapui_windows) then
+				dapui.toggle()
+				dapui.toggle()
+				after_open(const_ft, baleia)
+			end
 		end,
 	})
+end
+
+---@return boolean
+function is_open(dapui_windows)
+	for _, win_layout in ipairs(dapui_windows.layouts) do
+		if win_layout:is_open() then
+			return true
+		end
+	end
+	return false
 end
 
 ---@type boolean
