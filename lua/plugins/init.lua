@@ -187,9 +187,7 @@ function M.configure()
 			-- need to use yarn for nixOS
 			build = "cd app && yarn install",
 			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-			init = function()
-				vim.g.mkdp_filetypes = { "markdown" }
-			end,
+			init = function() vim.g.mkdp_filetypes = { "markdown" } end,
 			ft = { "markdown" },
 			config = require("plugins.markdown_preview").config,
 		},

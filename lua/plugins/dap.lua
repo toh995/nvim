@@ -45,9 +45,7 @@ function M.config()
 	vim.keymap.set("", "<leader>dr", dap.run_last, { noremap = true })
 	vim.keymap.set("", "<leader>ds", dap.terminate, { noremap = true })
 	vim.keymap.set("", "<leader>dd", dap.disconnect, { noremap = true })
-	vim.keymap.set("", "<leader>dk", function()
-		dapui.eval(nil, { enter = true })
-	end, { noremap = true })
+	vim.keymap.set("", "<leader>dk", function() dapui.eval(nil, { enter = true }) end, { noremap = true })
 
 	---@diagnostic disable-next-line: missing-fields
 	dapui.setup({

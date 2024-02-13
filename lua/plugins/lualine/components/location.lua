@@ -5,6 +5,4 @@
 -- %l == current line number
 -- %L == total number of lines in buffer
 -- %c == current column number
-return function()
-	return "ln %l/%L:%c"
-end
+return function() return "ln %l/%L:%c" end

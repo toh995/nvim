@@ -8,9 +8,7 @@ function M.config()
 	local user_icons = require("const.user_icons")
 
 	-- Keymapping to toggle the aerial window
-	vim.keymap.set("", "<leader>a", function()
-		vim.cmd("AerialToggle")
-	end, { noremap = true })
+	vim.keymap.set("", "<leader>a", function() vim.cmd("AerialToggle") end, { noremap = true })
 
 	-- config/setup
 	aerial.setup({
@@ -78,9 +76,7 @@ function M.config()
 			},
 			["<C-v>"] = "actions.jump_vsplit",
 			["<C-t>"] = {
-				callback = function()
-					aerial.select({ split = "tab vs" })
-				end,
+				callback = function() aerial.select({ split = "tab vs" }) end,
 			},
 		},
 	})

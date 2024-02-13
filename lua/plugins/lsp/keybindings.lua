@@ -19,9 +19,7 @@ function M.configure()
 		local clients = vim.lsp.get_active_clients()
 		vim.ui.select(clients, {
 			prompt = "Choose a client to restart",
-			format_item = function(client)
-				return client.name
-			end,
+			format_item = function(client) return client.name end,
 		}, function(client)
 			if client then
 				vim.cmd("LspRestart " .. client.id)

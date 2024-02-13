@@ -38,14 +38,10 @@ function M.config()
 			{ name = "path" },
 		},
 
-		enabled = function()
-			return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or cmp_dap.is_dap_buffer()
-		end,
+		enabled = function() return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or cmp_dap.is_dap_buffer() end,
 
 		snippet = {
-			expand = function(args)
-				luasnip.lsp_expand(args.body)
-			end,
+			expand = function(args) luasnip.lsp_expand(args.body) end,
 		},
 		mapping = cmp.mapping.preset.insert({
 			["<CR>"] = cmp.mapping.confirm({ select = true }),

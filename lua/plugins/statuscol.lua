@@ -24,9 +24,7 @@ function M.config()
 			-- Fold symbols
 			{
 				text = {
-					function(...)
-						return builtin.foldfunc(...) .. "  "
-					end,
+					function(...) return builtin.foldfunc(...) .. "  " end,
 				},
 				click = "v:lua.ScFa",
 			},

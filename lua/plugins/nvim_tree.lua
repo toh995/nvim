@@ -17,13 +17,14 @@ function M.config()
 	setup_tree(pkgs)
 
 	-- Keymappings
-	vim.keymap.set("", "<leader>nt", function()
-		pkgs.api.tree.toggle({ find_file = true })
-	end, { noremap = true })
+	vim.keymap.set("", "<leader>nt", function() pkgs.api.tree.toggle({ find_file = true }) end, { noremap = true })
 
-	vim.keymap.set("", "<leader>nf", function()
-		pkgs.api.tree.find_file({ focus = true, open = true })
-	end, { noremap = true })
+	vim.keymap.set(
+		"",
+		"<leader>nf",
+		function() pkgs.api.tree.find_file({ focus = true, open = true }) end,
+		{ noremap = true }
+	)
 end
 
 function setup_tree(pkgs)

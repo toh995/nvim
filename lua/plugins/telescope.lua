@@ -49,9 +49,7 @@ function set_autocmds()
 	vim.api.nvim_create_autocmd("User", {
 		group = augroup,
 		pattern = "TelescopePreviewerLoaded",
-		callback = function()
-			vim.wo.number = true
-		end,
+		callback = function() vim.wo.number = true end,
 	})
 end
 
@@ -68,14 +66,10 @@ function set_usercmds(pkgs)
 
 	-- LSP diagnostics
 	-- Current buffer only
-	vim.api.nvim_create_user_command("D", function()
-		pkgs.builtin.diagnostics({ bufnr = 0 })
-	end, {})
+	vim.api.nvim_create_user_command("D", function() pkgs.builtin.diagnostics({ bufnr = 0 }) end, {})
 
 	-- ALL buffers
-	vim.api.nvim_create_user_command("DA", function()
-		pkgs.builtin.diagnostics({ bufnr = nil })
-	end, {})
+	vim.api.nvim_create_user_command("DA", function() pkgs.builtin.diagnostics({ bufnr = nil }) end, {})
 
 	-- File picker
 	vim.api.nvim_create_user_command("F", function()
@@ -83,9 +77,7 @@ function set_usercmds(pkgs)
 			hidden = true,
 			attach_mappings = function()
 				pkgs.actions.select_default:enhance({
-					post = function()
-						pkgs.nvim_tree_api.tree.find_file({})
-					end,
+					post = function() pkgs.nvim_tree_api.tree.find_file({}) end,
 				})
 				return true
 			end,
@@ -103,9 +95,7 @@ function set_usercmds(pkgs)
 			prompt_title = "Grep in " .. filepath .. " " .. glob_pattern,
 			attach_mappings = function()
 				pkgs.actions.select_default:enhance({
-					post = function()
-						pkgs.nvim_tree_api.tree.find_file({})
-					end,
+					post = function() pkgs.nvim_tree_api.tree.find_file({}) end,
 				})
 				return true
 			end,
