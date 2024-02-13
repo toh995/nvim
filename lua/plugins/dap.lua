@@ -22,7 +22,6 @@ function M.config()
   - lua plugin debugging
 
   UI
-  - breakpoint UI
   - switch the "arrow" icons to chevron
   
   - command to clear the repl
@@ -32,6 +31,12 @@ function M.config()
   ]]
 	--
 
+	-- Set up the sign column
+	vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DapBreakpoint", numhl = "DapBreakpoint" })
+	vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DapBreakpoint", numhl = "DapBreakpoint" })
+	vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", numhl = "DapStopped" })
+
+	-- Keyboard mappings
 	vim.keymap.set("", "<leader>de", function()
 		dapui.toggle()
 		if is_open(dapui_windows) then

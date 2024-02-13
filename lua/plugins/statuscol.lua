@@ -13,14 +13,27 @@ function M.config()
 			const_ft.NvimTree,
 		},
 		segments = {
+			-- Breakpoints
+			{
+				sign = {
+					name = { "Dap*" },
+					auto = true,
+				},
+			},
 			-- Line numbers
 			{
 				text = { builtin.lnumfunc, " " },
 				condition = { true, builtin.not_empty },
 				click = "v:lua.ScLa",
 			},
-			-- Signs column (git + diagnostics)
-			{ text = { "%s" }, click = "v:lua.ScSa" },
+			-- Gitsigns + diagnostics
+			{
+				sign = {
+					namespace = { "gitsign*" },
+					name = { "Diagnostic*" },
+					auto = true,
+				},
+			},
 			-- Fold symbols
 			{
 				text = {

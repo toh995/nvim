@@ -164,6 +164,12 @@ function M.configure()
 			config = require("plugins.statuscol").config,
 		},
 
+		-- Colorized git status in the signs column
+		{
+			"lewis6991/gitsigns.nvim",
+			config = true,
+		},
+
 		-- Improved UI for folds
 		{
 			"kevinhwang91/nvim-ufo",
@@ -230,12 +236,6 @@ function M.configure()
 		{
 			"f-person/git-blame.nvim",
 			config = require("plugins.gitblame").config,
-		},
-
-		-- Colorized git status in the signs column
-		{
-			"lewis6991/gitsigns.nvim",
-			config = true,
 		},
 
 		-- Color scheme
