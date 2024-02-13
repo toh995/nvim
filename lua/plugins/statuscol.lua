@@ -9,6 +9,12 @@ function M.config()
 	require("statuscol").setup({
 		ft_ignore = {
 			const_ft.Aerial,
+			const_ft.DapRepl,
+			const_ft.DapuiBreakpoints,
+			const_ft.DapuiConsole,
+			const_ft.DapuiScopes,
+			const_ft.DapuiStacks,
+			const_ft.DapuiWatches,
 			const_ft.Help,
 			const_ft.NvimTree,
 		},
