@@ -15,8 +15,6 @@ function M.configure()
 	local ruff = require("efmls-configs.formatters.ruff")
 	local stylua = require("efmls-configs.formatters.stylua")
 
-	local util = require("../../util")
-
 	local eslint_d = build_eslint_d(fs)
 	local fourmolu = build_fourmolu(fs)
 
@@ -39,7 +37,7 @@ function M.configure()
 		languages[lang] = { prettier_d }
 	end
 
-	local filetypes = util.tbl_keys(languages)
+	local filetypes = vim.tbl_keys(languages)
 
 	----------------
 	-- Set up efm --
