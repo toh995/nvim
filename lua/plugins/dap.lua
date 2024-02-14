@@ -11,6 +11,7 @@ function M.config()
 	local baleia = require("baleia").setup()
 	local dap = require("dap")
 	local dap_ext_vscode = require("dap.ext.vscode")
+	local dap_repl = require("dap.repl")
 	local dapui = require("dapui")
 	local dapui_windows = require("dapui.windows")
 
@@ -20,12 +21,7 @@ function M.config()
 	--[[
   KEYBOARD SHORTCUTS
   - lua plugin debugging
-
-  UI
-  - switch the "arrow" icons to chevron
   
-  - keyboard bindings for traversing the tree
-  - command to clear the repl
   - update cmp source
   - double-check "missing-fields"
   - generalize "WinOptManager"...?
@@ -55,6 +51,10 @@ function M.config()
 	})
 
 	-- Keyboard mappings
+	dap_repl.commands = vim.tbl_extend("force", dap_repl.commands, {
+		clear = { "", ".clear" },
+	})
+
 	vim.keymap.set("", "<leader>de", function()
 		dapui.toggle()
 		if is_open(dapui_windows) then
