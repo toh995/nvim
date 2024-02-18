@@ -20,11 +20,6 @@ function M.config()
 	local user_icons = require("const.user_icons")
 
 	--[[
-  KEYBOARD SHORTCUTS
-  - lua plugin debugging
-  
-  - update cmp source
-  - double-check "missing-fields"
   - generalize "WinOptManager"...?
 
   - zsh vim mode
@@ -78,6 +73,7 @@ function M.config()
 	vim.keymap.set("", "<leader>dr", dap.run_last, { noremap = true })
 	vim.keymap.set("", "<leader>ds", dap.terminate, { noremap = true })
 	vim.keymap.set("", "<leader>dd", dap.disconnect, { noremap = true })
+	---@diagnostic disable-next-line: missing-fields
 	vim.keymap.set("", "<leader>dk", function() dapui.eval(nil, { enter = true }) end, { noremap = true })
 
 	-- neovim lua debugging
@@ -85,9 +81,11 @@ function M.config()
 
 	---@diagnostic disable-next-line: missing-fields
 	dapui.setup({
+		---@diagnostic disable-next-line: missing-fields
 		floating = {
 			border = "rounded",
 		},
+		---@diagnostic disable-next-line: missing-fields
 		controls = {
 			icons = {
 				disconnect = user_icons.dap.Disconnect,
