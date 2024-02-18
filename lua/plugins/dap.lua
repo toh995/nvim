@@ -14,6 +14,7 @@ function M.config()
 	local dap_repl = require("dap.repl")
 	local dapui = require("dapui")
 	local dapui_windows = require("dapui.windows")
+	local osv = require("osv")
 
 	local const_ft = require("const.filetypes")
 	local user_icons = require("const.user_icons")
@@ -25,6 +26,11 @@ function M.config()
   - update cmp source
   - double-check "missing-fields"
   - generalize "WinOptManager"...?
+
+  - zsh vim mode
+  - tmux session picker (https://github.com/27medkamal/tmux-session-wizard)
+  - fix vim-test
+  - octo.nvim
   ]]
 	--
 
@@ -73,6 +79,9 @@ function M.config()
 	vim.keymap.set("", "<leader>ds", dap.terminate, { noremap = true })
 	vim.keymap.set("", "<leader>dd", dap.disconnect, { noremap = true })
 	vim.keymap.set("", "<leader>dk", function() dapui.eval(nil, { enter = true }) end, { noremap = true })
+
+	-- neovim lua debugging
+	vim.api.nvim_create_user_command("OSV", function() osv.launch({ port = 8086 }) end, {})
 
 	---@diagnostic disable-next-line: missing-fields
 	dapui.setup({
