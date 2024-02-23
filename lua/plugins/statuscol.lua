@@ -20,6 +20,7 @@ function M.config()
 		},
 		segments = {
 			-- Breakpoints
+			-- Signs defined in `plugins.dap.signs_ui`
 			{
 				sign = {
 					name = { "Dap*" },
@@ -33,6 +34,7 @@ function M.config()
 				click = "v:lua.ScLa",
 			},
 			-- Gitsigns + diagnostics
+			-- Diagnostic signs defined in `plugins.lsp.diagnostics`
 			{
 				sign = {
 					namespace = { "gitsign*" },

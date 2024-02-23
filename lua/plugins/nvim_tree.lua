@@ -18,7 +18,6 @@ function M.config()
 
 	-- Keymappings
 	vim.keymap.set("", "<leader>nt", function() pkgs.api.tree.toggle({ find_file = true }) end, { noremap = true })
-
 	vim.keymap.set(
 		"",
 		"<leader>nf",

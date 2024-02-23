@@ -20,6 +20,7 @@ function M.config()
 	})
 
 	-- Disable folds on certain filetypes
+	-- ALSO, check `plugins.dap.helpers.window`
 	local disabled_fts = {
 		[const_ft.Aerial] = true,
 		[const_ft.NvimTree] = true,
