@@ -53,10 +53,14 @@ function M.configure()
 	typescript_tools.setup({ capabilities = capabilities })
 
 	-- Lua
-	neodev.setup({})
+	neodev.setup({
+		library = {
+			types = true,
+			plugins = { "nvim-dap-ui" },
+		},
+	})
 	lspconfig.lua_ls.setup({
 		capabilities = capabilities,
-		library = { plugins = { "nvim-dap-ui" }, types = true },
 		settings = {
 			Lua = {
 				runtime = {
