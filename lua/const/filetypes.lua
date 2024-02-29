@@ -9,4 +9,5 @@ return {
 	DapuiWatches = "dapui_watches",
 	Help = "help",
 	NvimTree = "NvimTree",
+	TelescopePrompt = "TelescopePrompt",
 }

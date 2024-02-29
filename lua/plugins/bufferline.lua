@@ -35,6 +35,7 @@ function M.config()
 		[const_ft.DapuiStacks] = true,
 		[const_ft.DapuiWatches] = true,
 		[const_ft.NvimTree] = true,
+		[const_ft.TelescopePrompt] = true,
 	}
 
 	bufferline.setup({
