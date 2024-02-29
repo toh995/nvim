@@ -9,6 +9,7 @@ function M.configure()
 
 	local fs = require("efmls-configs.fs")
 
+	local alejandra = require("efmls-configs.formatters.alejandra")
 	local black = require("efmls-configs.formatters.black")
 	local gofmt = require("efmls-configs.formatters.gofmt")
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
@@ -25,6 +26,7 @@ function M.configure()
 		go = { gofmt },
 		haskell = { fourmolu },
 		lua = { stylua },
+		nix = { alejandra },
 		python = { black, ruff },
 	}
 
