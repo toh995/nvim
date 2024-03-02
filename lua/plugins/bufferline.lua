@@ -24,7 +24,7 @@ function M.config()
 
 	-- user commands
 	-- open a new tab, which has a copy of the current window
-	vim.api.nvim_create_user_command("TVS", "tab vs", {})
+	vim.api.nvim_create_user_command("TS", "tab vs", {})
 
 	local excluded_fts = {
 		[const_ft.Aerial] = true,
