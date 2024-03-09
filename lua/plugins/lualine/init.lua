@@ -79,18 +79,6 @@ function set_autocmds(pkgs)
 			vim.api.nvim_set_hl(0, "StatusLine", { link = hl_group })
 		end,
 	})
-
-	-- HACK: For some reason, the lualine option `disabled_filetypes` doesn't
-	-- work for the `help` filetype ¯\_(ツ)_/¯
-	-- Let's force-disable it here via autocommand
-	vim.api.nvim_create_autocmd({ "FileType" }, {
-		group = augroup,
-		callback = function(opts)
-			if opts.match == pkgs.const_ft.Help then
-				vim.opt_local.statusline = ""
-			end
-		end,
-	})
 end
 
 return M

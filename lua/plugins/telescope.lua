@@ -60,6 +60,9 @@ function set_usercmds(pkgs)
 	-- Multiple
 	vim.api.nvim_create_user_command("RS", pkgs.builtin.pickers, {})
 
+	-- Help tags
+	vim.api.nvim_create_user_command("H", pkgs.builtin.help_tags, {})
+
 	-- Aerial
 	pkgs.telescope.load_extension("aerial")
 	vim.api.nvim_create_user_command("S", pkgs.telescope.extensions.aerial.aerial, {})
@@ -67,7 +70,6 @@ function set_usercmds(pkgs)
 	-- LSP diagnostics
 	-- Current buffer only
 	vim.api.nvim_create_user_command("D", function() pkgs.builtin.diagnostics({ bufnr = 0 }) end, {})
-
 	-- ALL buffers
 	vim.api.nvim_create_user_command("DA", function() pkgs.builtin.diagnostics({ bufnr = nil }) end, {})
 
