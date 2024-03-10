@@ -10,6 +10,7 @@ function M.config()
 		builtin = require("telescope.builtin"),
 		nvim_tree_api = require("nvim-tree.api"),
 		telescope = require("telescope"),
+		better_escape = require("plugins.better_escape"),
 	}
 
 	-- Set up telescope
@@ -21,6 +22,7 @@ function M.config()
 					["<C-u>"] = false,
 					["<C-j>"] = pkgs.actions.move_selection_next,
 					["<C-k>"] = pkgs.actions.move_selection_previous,
+					[pkgs.better_escape.keystring] = "close",
 				},
 			},
 		},
