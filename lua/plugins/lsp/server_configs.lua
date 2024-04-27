@@ -12,6 +12,9 @@ function M.configure()
 
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
+	-- Docker
+	lspconfig.dockerls.setup({ capabilities = capabilities })
+
 	-- Ember
 	lspconfig.ember.setup({ capabilities = capabilities })
 	lspconfig.glint.setup({ capabilities = capabilities })
