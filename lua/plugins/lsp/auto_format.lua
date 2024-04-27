@@ -14,6 +14,7 @@ function M.configure()
 	local gofmt = require("efmls-configs.formatters.gofmt")
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
 	local ruff = require("efmls-configs.formatters.ruff")
+	local shfmt = require("efmls-configs.formatters.shfmt")
 	local stylua = require("efmls-configs.formatters.stylua")
 
 	local eslint_d = build_eslint_d(fs)
@@ -28,6 +29,7 @@ function M.configure()
 		lua = { stylua },
 		nix = { alejandra },
 		python = { black, ruff },
+		sh = { shfmt },
 	}
 
 	-- Web-dev

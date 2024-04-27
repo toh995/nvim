@@ -12,6 +12,9 @@ function M.configure()
 
 	local capabilities = cmp_nvim_lsp.default_capabilities()
 
+	-- Bash
+	lspconfig.bashls.setup({ capabilities = capabilities })
+
 	-- Docker
 	lspconfig.dockerls.setup({ capabilities = capabilities })
 
