@@ -32,7 +32,7 @@ function M.configure()
 	end, { noremap = true })
 	vim.keymap.set("", "<leader>dl", dap.step_over, { noremap = true })
 	vim.keymap.set("", "<leader>dh", dap.step_back, { noremap = true })
-	vim.keymap.set("", "<leader>dr", dap.run_last, { noremap = true })
+	vim.keymap.set("", "<leader>dr", dap.restart, { noremap = true })
 	vim.keymap.set("", "<leader>ds", dap.terminate, { noremap = true })
 	vim.keymap.set("", "<leader>dd", dap.disconnect, { noremap = true })
 	---@diagnostic disable-next-line: missing-fields

@@ -66,6 +66,7 @@ function M.configure()
 			dependencies = {
 				"rcarriga/nvim-dap-ui",
 				"nvim-neotest/nvim-nio",
+				"leoluz/nvim-dap-go",
 				-- adapter for nvim lua plugins
 				"jbyuki/one-small-step-for-vimkind",
 				-- render ANSI Escape Sequences

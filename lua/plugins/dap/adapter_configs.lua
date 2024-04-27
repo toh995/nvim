@@ -4,6 +4,12 @@ local M = {}
 function M.configure()
 	local dap = require("dap")
 	local dap_ext_vscode = require("dap.ext.vscode")
+	local dap_go = require("dap-go")
+
+	--------
+	-- Go --
+	--------
+	dap_go.setup()
 
 	-------------
 	-- Node.js --
