@@ -4,6 +4,19 @@ local M = {}
 function M.configure()
 	local user_icons = require("const.user_icons")
 
+	local severity_icons = {
+		[vim.diagnostic.severity.ERROR] = user_icons.diagnostics.Error,
+		[vim.diagnostic.severity.WARN] = user_icons.diagnostics.Warn,
+		[vim.diagnostic.severity.INFO] = user_icons.diagnostics.Info,
+		[vim.diagnostic.severity.HINT] = user_icons.diagnostics.Hint,
+	}
+	local severity_highlights = {
+		[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+		[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+		[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+		[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+	}
+
 	-- set up some diagnostic behavior
 	vim.diagnostic.config({
 		update_in_insert = true,
@@ -13,33 +26,10 @@ function M.configure()
 		-- a function which returns the diagnostics icon, based on
 		-- the severity
 		virtual_text = { prefix = user_icons.ui.CircleFilled },
-	})
-
-	-- set the signs for the sign/status column
-	vim.fn.sign_define({
-		{
-			name = "DiagnosticSignError",
-			texthl = "DiagnosticSignError",
-			numhl = "DiagnosticSignError",
-			text = user_icons.diagnostics.Error,
 		},
-		{
-			name = "DiagnosticSignWarn",
-			texthl = "DiagnosticSignWarn",
-			numhl = "DiagnosticSignWarn",
-			text = user_icons.diagnostics.Warn,
-		},
-		{
-			name = "DiagnosticSignHint",
-			texthl = "DiagnosticSignHint",
-			numhl = "DiagnosticSignHint",
-			text = user_icons.diagnostics.Hint,
-		},
-		{
-			name = "DiagnosticSignInfo",
-			texthl = "DiagnosticSignInfo",
-			numhl = "DiagnosticSignInfo",
-			text = user_icons.diagnostics.Info,
+		signs = {
+			text = severity_icons,
+			numhl = severity_highlights,
 		},
 	})
 end

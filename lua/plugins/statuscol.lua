@@ -34,11 +34,9 @@ function M.config()
 				click = "v:lua.ScLa",
 			},
 			-- Gitsigns + diagnostics
-			-- Diagnostic signs defined in `plugins.lsp.diagnostics`
 			{
 				sign = {
-					namespace = { "gitsign*" },
-					name = { "Diagnostic*" },
+					namespace = { "gitsign*", "diagnostic/signs" },
 					auto = true,
 				},
 			},
