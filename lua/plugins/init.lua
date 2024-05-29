@@ -93,7 +93,6 @@ function M.configure()
 		-- Indent blankline
 		{
 			"lukas-reineke/indent-blankline.nvim",
-			version = "v3.5.x", -- TODO: remove this version pin, after upgrading to nvim 0.10
 			config = require("plugins.indent_blankline").config,
 		},
 
