@@ -26,7 +26,6 @@ function M.configure()
 		-- a function which returns the diagnostics icon, based on
 		-- the severity
 		virtual_text = { prefix = user_icons.ui.CircleFilled },
-		},
 		signs = {
 			text = severity_icons,
 			numhl = severity_highlights,
