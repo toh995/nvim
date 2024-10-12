@@ -55,8 +55,45 @@ function M.configure()
 	})
 
 	-- JS/TS
-	lspconfig.eslint.setup({ capabilities = capabilities })
-	typescript_tools.setup({ capabilities = capabilities })
+
+	-- local pipe
+	-- local pipe_name
+
+	lspconfig.eslint.setup({
+		capabilities = capabilities,
+		cmd_env = { NODE_OPTIONS = "--max-old-space-size=16384" },
+		-- settings = { run = "onSave" },
+
+		-- before_init = function(_, config)
+		-- 	pipe = vim.uv.new_pipe(true)
+		--
+		-- 	vim.notify(vim.uv.pipe_getsockname(pipe))
+		--
+		-- 	pipe:connect("/tmp/sock.test", function(err)
+		-- 		if err then
+		-- 			vim.schedule(
+		-- 				function()
+		-- 					vim.notify(
+		-- 						string.format("Could not connect to :%s, reason: %s", pipe_path, vim.inspect(err)),
+		-- 						vim.log.levels.WARN
+		-- 					)
+		-- 				end
+		-- 			)
+		-- 		end
+		-- 	end)
+		-- 	vim.system({ "vscode-eslint-language-server", "--pipe=/tmp/sock.test" })
+		-- 	config.cmd = vim.lsp.rpc.connect(pipe_name)
+		-- end,
+
+		-- cmd = vim.lsp.rpc.connect(pipe_name),
+	})
+	typescript_tools.setup({
+		capabilities = capabilities,
+		settings = {
+			tsserver_max_memory = 16384,
+			publish_diagnostic_on = "change",
+		},
+	})
 
 	-- Lua
 	neodev.setup({
