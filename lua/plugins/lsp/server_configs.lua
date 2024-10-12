@@ -55,8 +55,17 @@ function M.configure()
 	})
 
 	-- JS/TS
-	lspconfig.eslint.setup({ capabilities = capabilities })
-	typescript_tools.setup({ capabilities = capabilities })
+	lspconfig.eslint.setup({
+		capabilities = capabilities,
+		cmd_env = { NODE_OPTIONS = "--max-old-space-size=16384" },
+	})
+	typescript_tools.setup({
+		capabilities = capabilities,
+		settings = {
+			tsserver_max_memory = 16384,
+			publish_diagnostic_on = "change",
+		},
+	})
 
 	-- Lua
 	neodev.setup({
