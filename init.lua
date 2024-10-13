@@ -24,6 +24,7 @@ vim.opt.splitright = true
 -- set the display width for tab characters
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
 -- ensure that status-line and other things are aligned
