@@ -15,6 +15,7 @@ end
 
 function M.config()
 	require("better_escape").setup({
+		default_mappings = false,
 		mappings = {
 			i = {
 				k = { j = handle_escape },
