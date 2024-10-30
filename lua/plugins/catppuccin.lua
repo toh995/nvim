@@ -32,6 +32,10 @@ function M.config()
 				["NvimTreeNormal"] = { link = "DarkNormal" },
 				["NvimTreeStatusLine"] = { link = "DarkStatusLine" },
 				["NvimTreeWinSeparator"] = { link = "DarkWinSeparator" },
+				-- Word illumination
+				["IlluminatedWordText"] = { bg = colors.surface2 },
+				["IlluminatedWordRead"] = { bg = colors.surface2 },
+				["IlluminatedWordWrite"] = { bg = colors.surface2 },
 			}
 		end,
 	})

@@ -96,6 +96,12 @@ function M.configure()
 			config = require("plugins.indent_blankline").config,
 		},
 
+		-- Illuminate current word
+		{
+			"RRethy/vim-illuminate",
+			config = require("plugins.illuminate").config,
+		},
+
 		-- Code outline
 		{
 			"stevearc/aerial.nvim",
