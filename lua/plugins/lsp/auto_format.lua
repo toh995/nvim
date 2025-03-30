@@ -67,7 +67,7 @@ function M.configure()
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = augroup,
 		callback = function(args)
-			local efm = vim.lsp.get_active_clients({ name = "efm", bufnr = args.buf })
+			local efm = vim.lsp.get_clients({ name = "efm", bufnr = args.buf })
 			if vim.tbl_isempty(efm) then
 				return
 			end

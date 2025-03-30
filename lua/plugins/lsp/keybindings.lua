@@ -16,7 +16,7 @@ function M.configure()
 
 	-- Select menu for server restarts
 	vim.api.nvim_create_user_command("LSP", function(_)
-		local clients = vim.lsp.get_active_clients()
+		local clients = vim.lsp.get_clients()
 		vim.ui.select(clients, {
 			prompt = "Choose a client to restart",
 			format_item = function(client) return client.name end,
