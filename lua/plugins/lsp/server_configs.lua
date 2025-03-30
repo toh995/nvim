@@ -103,12 +103,12 @@ function M.configure()
 	lspconfig.nil_ls.setup({ capabilities = capabilities })
 
 	-- Protobuf
-	lspconfig.bufls.setup({ capabilities = capabilities })
+	lspconfig.buf_ls.setup({ capabilities = capabilities })
 
 	-- Python
 	lspconfig.pylsp.setup({ capabilities = capabilities })
 	-- lspconfig.pyright.setup({ capabilities = capabilities })
-	lspconfig.ruff_lsp.setup({ capabilities = capabilities })
+	lspconfig.ruff.setup({ capabilities = capabilities })
 end
 
 return M
