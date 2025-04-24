@@ -250,7 +250,10 @@ function M.configure()
 		},
 
 		-- Auto-pairs
-		{ "LunarWatcher/auto-pairs" },
+		{
+			"windwp/nvim-autopairs",
+			config = true,
+		},
 
 		-- Vim surround
 		{ "tpope/vim-surround" },
