@@ -169,7 +169,6 @@ function M.configure()
 		-- Status column
 		{
 			"luukvbaal/statuscol.nvim",
-			branch = "0.10",
 			config = require("plugins.statuscol").config,
 		},
 

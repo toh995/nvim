@@ -36,7 +36,7 @@ function M.config()
 			-- Gitsigns + diagnostics
 			{
 				sign = {
-					namespace = { "gitsign*", "diagnostic/signs" },
+					namespace = { "gitsign*", "diagnostic.signs" },
 					auto = true,
 				},
 			},
