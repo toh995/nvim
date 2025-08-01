@@ -91,7 +91,10 @@ function M.configure()
 			},
 			config = require("plugins.nvim_treesitter").config,
 		},
-		{ "nvim-treesitter/nvim-treesitter-context" },
+		{
+			"nvim-treesitter/nvim-treesitter-context",
+			opts = {},
+		},
 
 		-- Indent blankline
 		{
