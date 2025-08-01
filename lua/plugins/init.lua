@@ -219,6 +219,24 @@ function M.configure()
 			config = require("plugins.flash").config,
 		},
 
+		-- Smooth scroll
+		{
+			"karb94/neoscroll.nvim",
+			config = function()
+				local neoscroll = require("neoscroll")
+				neoscroll.setup({
+					easing = "quintic",
+					hide_cursor = false,
+				})
+				local duration = 1
+				-- vim.keymap.set("", "<C-d>", function() neoscroll.ctrl_d({ duration = duration }) end)
+				-- vim.keymap.set("", "<C-u>", function() neoscroll.ctrl_u({ duration = duration }) end)
+				vim.keymap.set("", "D", function() neoscroll.scroll(0.2, { duration = duration }) end)
+				vim.keymap.set("", "U", function() neoscroll.scroll(-0.2, { duration = duration }) end)
+				vim.keymap.set("", "<PageDown>", function() neoscroll.ctrl_f({ duration = duration }) end)
+				vim.keymap.set("", "<PageUp>", function() neoscroll.ctrl_b({ duration = duration }) end)
+			end,
+		},
 		-- Better escape
 		{
 			"max397574/better-escape.nvim",
