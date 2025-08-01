@@ -9,6 +9,7 @@ function M.config()
 	illuminate.configure({
 		filetypes_denylist = {
 			const_ft.Aerial,
+			const_ft.Dbee,
 			const_ft.Help,
 			const_ft.NvimTree,
 		},

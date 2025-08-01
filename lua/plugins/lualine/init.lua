@@ -30,6 +30,7 @@ function M.config()
 		const_ft.DapuiScopes,
 		const_ft.DapuiStacks,
 		const_ft.DapuiWatches,
+		const_ft.Dbee,
 		const_ft.Help,
 		const_ft.NvimTree,
 	}

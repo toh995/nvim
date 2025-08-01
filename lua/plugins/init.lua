@@ -303,6 +303,14 @@ function M.configure()
 			priority = 1000,
 			config = require("plugins.catppuccin").config,
 		},
+
+		-- DB client
+		{
+			"kndndrj/nvim-dbee",
+			dependencies = { "MunifTanjim/nui.nvim" },
+			build = function() require("dbee").install() end,
+			config = require("plugins.dbee").config,
+		},
 	}, {
 		ui = { border = "rounded" },
 	})

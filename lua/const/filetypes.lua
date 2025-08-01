@@ -7,6 +7,7 @@ return {
 	DapuiScopes = "dapui_scopes",
 	DapuiStacks = "dapui_stacks",
 	DapuiWatches = "dapui_watches",
+	Dbee = "dbee",
 	Help = "help",
 	NvimTree = "NvimTree",
 	TelescopePrompt = "TelescopePrompt",
