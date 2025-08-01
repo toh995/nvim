@@ -43,7 +43,6 @@ function M.config()
 			diagnostics_trigger_update = false,
 			update_delay = 200,
 			priority = {
-				efm = -1,
 				ember = -1,
 				eslint = -1,
 				glint = -1,

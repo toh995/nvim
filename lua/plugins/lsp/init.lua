@@ -9,7 +9,6 @@ function M.config()
 	require("mason-lspconfig").setup({ automatic_installation = false })
 
 	-- Set up other stuff
-	require("plugins.lsp.auto_format").configure()
 	require("plugins.lsp.diagnostics").configure()
 	require("plugins.lsp.keybindings").configure()
 	require("plugins.lsp.server_configs").configure()

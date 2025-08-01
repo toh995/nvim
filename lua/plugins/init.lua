@@ -25,10 +25,6 @@ function M.configure()
 			dependencies = {
 				{ "williamboman/mason.nvim" },
 				{ "williamboman/mason-lspconfig.nvim" },
-				{
-					"creativenull/efmls-configs-nvim",
-					version = "v1.x.x",
-				},
 				-- Telescope (for LSP go-tos)
 				{ "nvim-telescope/telescope.nvim" },
 				-- custom lua stuff
@@ -57,6 +53,13 @@ function M.configure()
 				-- icons for autocomplete
 				"nvim-tree/nvim-web-devicons",
 			},
+		},
+
+		-- Format on save
+		{
+			"stevearc/conform.nvim",
+			opts = {},
+			config = require("plugins.conform").config,
 		},
 
 		-- DAP
