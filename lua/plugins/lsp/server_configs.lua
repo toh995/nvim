@@ -4,7 +4,6 @@ local M = {}
 function M.configure()
 	local blink = require("blink.cmp")
 	local lspconfig = require("lspconfig")
-	local neodev = require("neodev") -- lua extras
 	local typescript_tools = require("typescript-tools")
 
 	-- set rounded borders for :LspInfo
@@ -68,12 +67,6 @@ function M.configure()
 	})
 
 	-- Lua
-	neodev.setup({
-		library = {
-			types = true,
-			plugins = { "nvim-dap-ui" },
-		},
-	})
 	lspconfig.lua_ls.setup({
 		capabilities = capabilities,
 		settings = {

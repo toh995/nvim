@@ -5,11 +5,6 @@ function M.config()
 	local blink = require("blink.cmp")
 	local const_ft = require("const.filetypes")
 
-	-- @fixme:
-	--  - highlight groups for blink.cmp
-	--  - cmp-nvim-lsp-signature-help
-	--  - dap
-	--  - luasnip
 	blink.setup({
 		keymap = {
 			preset = "super-tab",
@@ -18,7 +13,6 @@ function M.config()
 			nerd_font_variant = "mono",
 			kind_icons = require("const.user_icons").kinds,
 		},
-		-- @fixme: import "DressingInput" from FileType const file
 		enabled = function() return not vim.tbl_contains({ const_ft.DressingInput }, vim.bo.filetype) end,
 		signature = { enabled = true, window = { border = "rounded" } },
 		completion = {
@@ -45,10 +39,25 @@ function M.config()
 			accept = { auto_brackets = { enabled = true } },
 			ghost_text = { enabled = false },
 		},
-		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
-		},
 		fuzzy = { implementation = "prefer_rust_with_warning" },
+		sources = {
+			default = {
+				"buffer",
+				"lsp",
+				"path",
+				"snippets",
+				-- custom sources
+				"lazydev",
+			},
+			providers = {
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					-- make lazydev completions top priority (see `:h blink.cmp`)
+					score_offset = 100,
+				},
+			},
+		},
 	})
 end
 

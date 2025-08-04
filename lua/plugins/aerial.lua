@@ -47,7 +47,6 @@ function M.config()
 				eslint = -1,
 				glint = -1,
 				golangci_lint_ls = -1,
-				neodev = -1,
 				ruff_lsp = -1,
 			},
 		},

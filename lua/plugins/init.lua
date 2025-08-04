@@ -28,12 +28,21 @@ function M.configure()
 				{ "saghen/blink.cmp" },
 				-- Telescope (for LSP go-tos)
 				{ "nvim-telescope/telescope.nvim" },
-				-- custom lua stuff
-				{ "folke/neodev.nvim" },
 				-- custom tsserver
 				{
 					"pmizio/typescript-tools.nvim",
 					dependencies = { "nvim-lua/plenary.nvim" },
+				},
+			},
+		},
+		-- Custom Lua LSP config
+		{
+			"folke/lazydev.nvim",
+			ft = "lua",
+			opts = {
+				library = {
+					-- Load luvit types when the `vim.uv` word is found
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 				},
 			},
 		},
@@ -44,6 +53,7 @@ function M.configure()
 			dependencies = {
 				"rafamadriz/friendly-snippets",
 				"nvim-tree/nvim-web-devicons",
+				"folke/lazydev.nvim", -- for lazydev completions
 			},
 			version = "1.*",
 			config = require("plugins.blink").config,
