@@ -6,7 +6,10 @@ function M.config()
 	require("mason").setup({
 		ui = { border = "rounded" },
 	})
-	require("mason-lspconfig").setup({ automatic_installation = false })
+	require("mason-lspconfig").setup({
+		automatic_installation = false,
+		automatic_enable = false,
+	})
 
 	-- Set up other stuff
 	require("plugins.lsp.diagnostics").configure()
