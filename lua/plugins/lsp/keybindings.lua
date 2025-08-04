@@ -47,8 +47,13 @@ function set_keybindings(pkgs)
 		-- vim.keymap.set("", "<leader>gd", vim.lsp.buf.definition, { noremap = true, buffer = args.buf })
 		-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = args.buf })
 		vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = args.buf })
-		vim.keymap.set("", "<leader>k", vim.lsp.buf.hover, { noremap = true, buffer = args.buf })
 		vim.keymap.set("", "<leader>p", vim.diagnostic.open_float, { noremap = true })
+		vim.keymap.set(
+			"",
+			"<leader>k",
+			function() vim.lsp.buf.hover({ border = "rounded" }) end,
+			{ noremap = true, buffer = args.buf }
+		)
 	end
 end
 
