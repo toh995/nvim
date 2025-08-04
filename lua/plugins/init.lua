@@ -25,6 +25,7 @@ function M.configure()
 			dependencies = {
 				{ "williamboman/mason.nvim" },
 				{ "williamboman/mason-lspconfig.nvim" },
+				{ "saghen/blink.cmp" },
 				-- Telescope (for LSP go-tos)
 				{ "nvim-telescope/telescope.nvim" },
 				-- custom lua stuff
@@ -39,20 +40,14 @@ function M.configure()
 
 		-- Auto-complete
 		{
-			"hrsh7th/nvim-cmp",
-			config = require("plugins.cmp").config,
+			"saghen/blink.cmp",
 			dependencies = {
-				"hrsh7th/cmp-buffer",
-				"rcarriga/cmp-dap",
-				"hrsh7th/cmp-nvim-lsp",
-				"hrsh7th/cmp-nvim-lsp-signature-help",
-				"hrsh7th/cmp-path",
-				-- snippets
-				"L3MON4D3/LuaSnip",
-				"saadparwaiz1/cmp_luasnip",
-				-- icons for autocomplete
+				"rafamadriz/friendly-snippets",
 				"nvim-tree/nvim-web-devicons",
 			},
+			version = "1.*",
+			config = require("plugins.blink").config,
+			-- opts_extend = { "sources.default" },
 		},
 
 		-- Format on save

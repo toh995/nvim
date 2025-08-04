@@ -2,7 +2,7 @@
 local M = {}
 
 function M.configure()
-	local cmp_nvim_lsp = require("cmp_nvim_lsp")
+	local blink = require("blink.cmp")
 	local lspconfig = require("lspconfig")
 	local neodev = require("neodev") -- lua extras
 	local typescript_tools = require("typescript-tools")
@@ -10,7 +10,7 @@ function M.configure()
 	-- set rounded borders for :LspInfo
 	require("lspconfig.ui.windows").default_options.border = "rounded"
 
-	local capabilities = cmp_nvim_lsp.default_capabilities()
+	local capabilities = blink.get_lsp_capabilities()
 
 	-- Bash
 	lspconfig.bashls.setup({ capabilities = capabilities })

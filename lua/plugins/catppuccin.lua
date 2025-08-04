@@ -1,4 +1,4 @@
--- @module plugins.cmp
+-- @module plugins.catppuccin
 local M = {}
 
 function M.config()
