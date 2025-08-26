@@ -10,7 +10,7 @@ function M.config()
 			haskell = { "fourmolu" },
 			lua = { "stylua" },
 			nix = { "alejandra" },
-			python = { "black", "ruff_fix" },
+			python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 			sh = { "shfmt" },
 			-- Web dev
 			javascript = { "prettierd", "eslint_d" },
