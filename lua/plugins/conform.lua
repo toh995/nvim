@@ -12,6 +12,7 @@ function M.config()
 			nix = { "alejandra" },
 			python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 			sh = { "shfmt" },
+			toml = { "taplo" },
 			-- Web dev
 			javascript = { "prettierd", "eslint_d" },
 			typescript = { "prettierd", "eslint_d" },
