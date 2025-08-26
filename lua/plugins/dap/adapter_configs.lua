@@ -5,6 +5,7 @@ function M.configure()
 	local dap = require("dap")
 	local dap_ext_vscode = require("dap.ext.vscode")
 	local dap_go = require("dap-go")
+	local dap_python = require("dap-python")
 
 	--------
 	-- Go --
@@ -48,6 +49,12 @@ function M.configure()
 			name = "Attach to running Neovim instance",
 		},
 	}
+
+	------------
+	-- Python --
+	------------
+	dap_python.setup("uv")
+	dap_python.test_runner = "pytest"
 end
 
 return M

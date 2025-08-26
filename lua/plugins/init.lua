@@ -75,6 +75,7 @@ function M.configure()
 				"rcarriga/nvim-dap-ui",
 				"nvim-neotest/nvim-nio",
 				"leoluz/nvim-dap-go",
+				"mfussenegger/nvim-dap-python",
 				-- adapter for nvim lua plugins
 				"jbyuki/one-small-step-for-vimkind",
 				-- render ANSI Escape Sequences
