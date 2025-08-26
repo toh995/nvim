@@ -39,8 +39,8 @@ function setup_tree(pkgs)
 		-- Hide the root folder path displayed at the top
 		renderer = { root_folder_label = false },
 
-		-- Show git-ignored files in the tree
-		filters = { git_ignored = false },
+		-- Hide git-ignored files by default
+		filters = { git_ignored = true },
 
 		-- Auto-expand the size of the tree window
 		view = { width = {} },
