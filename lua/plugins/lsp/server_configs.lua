@@ -99,7 +99,8 @@ function M.configure()
 	lspconfig.buf_ls.setup({ capabilities = capabilities })
 
 	-- Python
-	lspconfig.pylsp.setup({ capabilities = capabilities })
+	lspconfig.basedpyright.setup({ capabilities = capabilities })
+	-- lspconfig.pylsp.setup({ capabilities = capabilities })
 	-- lspconfig.pyright.setup({ capabilities = capabilities })
 	lspconfig.ruff.setup({ capabilities = capabilities })
 end
