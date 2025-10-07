@@ -30,30 +30,16 @@ end
 
 function set_keybindings(pkgs)
 	return function(args)
-		vim.keymap.set("", "<leader>gd", pkgs.telescope_builtin.lsp_definitions, { noremap = true, buffer = args.buf })
-		vim.keymap.set(
-			"",
-			"<leader>gi",
-			pkgs.telescope_builtin.lsp_implementations,
-			{ noremap = true, buffer = args.buf }
-		)
-		vim.keymap.set("", "<leader>gr", pkgs.telescope_builtin.lsp_references, { noremap = true, buffer = args.buf })
-		vim.keymap.set(
-			"",
-			"<leader>gt",
-			pkgs.telescope_builtin.lsp_type_definitions,
-			{ noremap = true, buffer = args.buf }
-		)
-		-- vim.keymap.set("", "<leader>gd", vim.lsp.buf.definition, { noremap = true, buffer = args.buf })
-		-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, { noremap = true, buffer = args.buf })
-		vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, { noremap = true, buffer = args.buf })
+		local opts = { noremap = true, buffer = args.buf }
+		vim.keymap.set("", "<leader>gd", pkgs.telescope_builtin.lsp_definitions, opts)
+		vim.keymap.set("", "<leader>gi", pkgs.telescope_builtin.lsp_implementations, opts)
+		vim.keymap.set("", "<leader>gr", pkgs.telescope_builtin.lsp_references, opts)
+		vim.keymap.set("", "<leader>gt", pkgs.telescope_builtin.lsp_type_definitions, opts)
+		-- vim.keymap.set("", "<leader>gd", vim.lsp.buf.definition, opts)
+		-- vim.keymap.set("", "<leader>gr", vim.lsp.buf.references, opts)
+		vim.keymap.set("", "<leader>rn", vim.lsp.buf.rename, opts)
 		vim.keymap.set("", "<leader>p", vim.diagnostic.open_float, { noremap = true })
-		vim.keymap.set(
-			"",
-			"<leader>k",
-			function() vim.lsp.buf.hover({ border = "rounded" }) end,
-			{ noremap = true, buffer = args.buf }
-		)
+		vim.keymap.set("", "<leader>k", function() vim.lsp.buf.hover({ border = "rounded" }) end, opts)
 	end
 end
 
