@@ -3,7 +3,6 @@ local M = {}
 
 function M.configure()
 	local dap = require("dap")
-	local dap_ext_vscode = require("dap.ext.vscode")
 	local dap_go = require("dap-go")
 	local dap_python = require("dap-python")
 
@@ -26,11 +25,6 @@ function M.configure()
 			args = { "${port}", "localhost" },
 		},
 	}
-
-	-- register configuration
-	dap_ext_vscode.load_launchjs(nil, {
-		["pwa-node"] = { "javascript", "typescript" },
-	})
 
 	--------------
 	-- Nvim Lua --
