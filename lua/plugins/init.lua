@@ -272,12 +272,6 @@ function M.configure()
 			},
 		},
 
-		-- Comment
-		{
-			"numToStr/Comment.nvim",
-			config = require("plugins.comment").config,
-		},
-
 		-- Auto-pairs
 		{
 			"windwp/nvim-autopairs",
