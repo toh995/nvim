@@ -33,6 +33,12 @@ function M.configure()
 					"pmizio/typescript-tools.nvim",
 					dependencies = { "nvim-lua/plenary.nvim" },
 				},
+				{
+					-- Coq / Rocq LSP client (goal panel, info panel, proof navigation, etc.)
+					"tomtomjhj/coq-lsp.nvim",
+					-- Coq syntax highlighting + ftdetect.
+					dependencies = { "jlapolla/vim-coq-plugin" },
+				},
 			},
 		},
 		-- Custom Lua LSP config
