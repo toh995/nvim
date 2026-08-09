@@ -33,6 +33,7 @@ function M.configure()
 			filetypes = { "haskell", "lhaskell", "cabal" },
 			settings = {
 				haskell = {
+					formattingProvider = "fourmolu",
 					plugin = {
 						-- Configure renames
 						rename = {

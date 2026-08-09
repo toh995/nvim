@@ -5,6 +5,7 @@ function M.config()
 	-- setup
 	vim.g["test#strategy"] = "vimux"
 	vim.g["test#javascript#mocha#executable"] = "mocha"
+	vim.g["test#haskell#runner"] = "cabaltest"
 
 	-- keybindings
 	vim.keymap.set("", "<leader>t", ":TestNearest<CR>", { noremap = true })

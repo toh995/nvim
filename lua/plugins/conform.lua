@@ -6,6 +6,7 @@ function M.config()
 
 	conform.setup({
 		formatters_by_ft = {
+			cabal = { "cabal_fmt" },
 			go = { "gofmt" },
 			haskell = { "fourmolu" },
 			lua = { "stylua" },
