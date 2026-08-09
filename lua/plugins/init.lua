@@ -232,47 +232,6 @@ function M.configure()
 			config = require("plugins.vim_test").config,
 		},
 
-		-- Markdown preview
-		-- {
-		-- 	"MeanderingProgrammer/render-markdown.nvim",
-		-- 	dependencies = {
-		-- 		"nvim-treesitter/nvim-treesitter",
-		-- 		"nvim-tree/nvim-web-devicons",
-		-- 	},
-		-- 	config = function()
-		-- 		render_markdown = require("render-markdown")
-		-- 		render_markdown.setup({
-		-- 			enabled = false,
-		-- 			completions = { blink = { enabled = true } },
-		-- 		})
-		-- 		vim.keymap.set("", "<leader>mp", ":RenderMarkdown buf_toggle<CR>", { noremap = true })
-		-- 	end,
-		-- },
-		{
-			"OXY2DEV/markview.nvim",
-			lazy = false,
-			-- For `nvim-treesitter`
-			priority = 49,
-			-- For blink.cmp's completion source
-			dependencies = {
-				"saghen/blink.cmp",
-			},
-			config = function()
-				local markview = require("markview")
-				markview.setup({
-					preview = {
-						enable = false,
-					},
-					markdown = {
-						headings = {
-							shift_width = 0,
-						},
-					},
-				})
-				vim.keymap.set("", "<leader>mp", ":Markview splitToggle<CR>", { noremap = true })
-			end,
-		},
-
 		-- Jump
 		{
 			"folke/flash.nvim",
