@@ -2,49 +2,76 @@
 local M = {}
 
 function M.config()
-	local configs = require("nvim-treesitter.configs")
+	local autotags = require("nvim-ts-autotag")
+	local textobjects = require("nvim-treesitter-textobjects")
+	local textobjects_select = require("nvim-treesitter-textobjects.select")
+	local treesitter = require("nvim-treesitter")
 
-	---@diagnostic disable-next-line: missing-fields
-	configs.setup({
-		-- TODO: remove `markdown_inline`, when
-		-- this once this commit gets into `master`:
-		-- https://github.com/nvim-treesitter/nvim-treesitter/commit/c7ba60a512772bf14e5f71074972225377eec1a0
-		--
-		-- More info: https://github.com/nvim-treesitter/nvim-treesitter/issues/5529
-		ensure_installed = { "latex", "markdown_inline" },
+	-- Initial setup
+	treesitter.setup({
+		install_dir = vim.fn.stdpath("data") .. "/site",
+	})
 
-		-- Automatically install missing parsers when entering buffer
-		auto_install = true,
+	-- Auto-complete HTML tags
+	autotags.setup()
 
-		-- Syntax highlighting
-		highlight = { enable = true },
+	-- Syntax Highlighting
+	vim.api.nvim_create_autocmd("FileType", {
+		callback = function(args)
+			local lang = vim.treesitter.language.get_lang(args.match)
+			if lang and vim.treesitter.language.add(lang) then
+				vim.treesitter.start(args.buf)
+			end
+		end,
+	})
 
-		-- Auto-complete HTML tags
-		autotag = { enable = true },
+	-- Incremental block selection
+	vim.keymap.set("n", "gnn", function() vim.treesitter.select("parent") end, { desc = "Init selection" })
+	vim.keymap.set("x", "K", function() vim.treesitter.select("parent") end, { desc = "Increment node" })
+	vim.keymap.set("x", "J", function() vim.treesitter.select("child") end, { desc = "Decrement node" })
 
-		-- Auto-insert `end`
-		endwise = { enable = true },
+	-- Textobjects
+	textobjects.setup({ select = { lookahead = true } })
+	local textobject_keymap = {
+		["ab"] = "@block.outer",
+		["ib"] = "@block.inner",
+		["af"] = "@function.outer",
+		["if"] = "@function.inner",
+	}
+	for lhs, query in pairs(textobject_keymap) do
+		vim.keymap.set(
+			{ "x", "o" },
+			lhs,
+			function() textobjects_select.select_textobject(query, "textobjects") end,
+			{ desc = "Select " .. query }
+		)
+	end
 
-		textobjects = {
-			select = {
-				enable = true,
-				keymaps = {
-					["ab"] = "@block.outer",
-					["ib"] = "@block.inner",
-					["af"] = "@function.outer",
-					["if"] = "@function.inner",
-				},
-			},
-		},
-
-		incremental_selection = {
-			enable = true,
-			keymaps = {
-				init_selection = "gnn",
-				node_incremental = "K",
-				node_decremental = "J",
-			},
-		},
+	-- Language parser install
+	treesitter.install({
+		"bash",
+		"clojure",
+		"csv",
+		"dockerfile",
+		"git_config",
+		"gitcommit",
+		"gitignore",
+		"go",
+		"haskell",
+		"html",
+		"json",
+		"just",
+		"latex",
+		"lua",
+		"make",
+		"markdown",
+		"markdown_inline",
+		"nix",
+		"python",
+		"toml",
+		"vim",
+		"vimdoc",
+		"yaml",
 	})
 end
 

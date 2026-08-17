@@ -14,8 +14,8 @@ function M.config()
 	-- move current window to a new tab
 	vim.keymap.set("", "T", "<C-W>T", { noremap = true })
 	vim.keymap.set("", "Q", ":tabclose<CR>", { noremap = true })
-	vim.keymap.set("", "J", ":BufferLineCyclePrev<CR>", { noremap = true })
-	vim.keymap.set("", "K", ":BufferLineCycleNext<CR>", { noremap = true })
+	vim.keymap.set("n", "J", ":BufferLineCyclePrev<CR>", { noremap = true })
+	vim.keymap.set("n", "K", ":BufferLineCycleNext<CR>", { noremap = true })
 	-- BufferLineMovePrev and BufferLineMoveNext aren't working
 	-- as of 2022-11-13
 	-- but tabmove is working fine

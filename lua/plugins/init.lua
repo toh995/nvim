@@ -104,9 +104,13 @@ function M.configure()
 		-- Treesitter
 		{
 			"nvim-treesitter/nvim-treesitter",
+			lazy = false,
 			build = ":TSUpdate",
 			dependencies = {
-				"nvim-treesitter/nvim-treesitter-textobjects",
+				{
+					"nvim-treesitter/nvim-treesitter-textobjects",
+					branch = "main",
+				},
 				"RRethy/nvim-treesitter-endwise",
 				"windwp/nvim-ts-autotag",
 			},
@@ -189,7 +193,7 @@ function M.configure()
 				-- aerial extension
 				"stevearc/aerial.nvim",
 			},
-			branch = "0.1.x",
+			version = "0.2.*",
 			config = require("plugins.telescope").config,
 		},
 
